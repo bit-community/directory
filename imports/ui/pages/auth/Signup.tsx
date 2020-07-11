@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Validator from '/imports/lib/validator'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor'
 import { Formik, FormikProps } from 'formik'
@@ -10,6 +10,7 @@ import path from '../../path'
 
 
 const Signup: React.FC = () => {
+    const history = useHistory()
 
     interface AuthInterface {
         fullname: string,
@@ -39,6 +40,7 @@ const Signup: React.FC = () => {
             }
             else {
                 alert(`SIGNUP WAS SUCCESSFUL FOR ${JSON.stringify(Meteor.user())}`)
+                history.push(path.onboarding)
             }
         })
     }

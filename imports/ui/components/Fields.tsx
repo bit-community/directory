@@ -16,17 +16,17 @@ import * as Analytics from '/imports/ui/analytics'
 
 
 const FormikButton = styled(Button) <{ withIcon: boolean | undefined }>`
-    border-radius: 3px;
+    border-radius: 1px;
     min-height: 56px;
     justify-content: ${(props) => props.withIcon ? 'space-between' : 'center'};
     align-content: center;
 `
 
 const FormikTextArea = styled(Textarea)`
-    border-radius: 3px;
+    border-radius: 1px;
     padding-top: 2.5rem;
     padding-bottom: 1rem;
-    border: 1.3px solid #979797;
+    border: 1.1px solid #979797;
     font-size: ${(props: any) => props.theme.custom.inputFontSize};
     border-bottom: 1.4px solid #979797;
     /* border-right: none; */
@@ -41,10 +41,10 @@ const FormikTextArea = styled(Textarea)`
 
 
 const FormikInput = styled(Input)`
-    border-width: 1.3px;
-    border-radius: 3px;
-    padding-top: 2rem;
-    padding-bottom: 1.3rem;
+    border-width: 1.1px;
+    border-radius: 1px;
+    /* padding-top: 2rem; */
+    /* padding-bottom: 1.3rem; */
     font-size: ${(props: any) => props.theme.custom.inputFontSize};
     /* border-top: none; */
     /* border-right: none; */
@@ -56,9 +56,9 @@ const FormikInput = styled(Input)`
     }
 `
 const FormikSelect = styled(Select)`
-    border-radius: 3px;
-    border-width: 1.3px;
-    border: 1.3px solid;
+    border-radius: 1px;
+    border-width: 1.1px;
+    border: 1.1px solid;
     height: 55px;
     /* border-right: none; */
     /* border-top: none; */
@@ -71,13 +71,13 @@ const FormikSelect = styled(Select)`
 `
 const FormikLabel = styled(FormLabel) <{ fsize?: string }>`
     font-size: ${props => props.fsize ? props.fsize : '11px'};
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     transition: ease-in 0.2s;
     z-index: 11111;
-    padding: .1rem;
-    padding-left: 1rem;
-    padding-right: 10px;
+    /* padding: .1rem; */
+    /* padding-left: 1rem; */
+    /* padding-right: 10px; */
    
 `
 

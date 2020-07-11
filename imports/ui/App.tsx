@@ -1,5 +1,5 @@
 import React from 'react';
-import Dashboard from '/imports/ui/pages/workspace/dashboard';
+import Directory from '/imports/ui/pages/workspace/dashboard';
 import { Login } from '/imports/ui/pages/auth'
 import { Accounts } from 'meteor/accounts-base';
 
@@ -17,7 +17,7 @@ export default class App extends React.Component<{}, AppProps> {
     const isUser = Accounts.user()
     const isUserId = Accounts.userId()
 
-    return isUserId !== null ? <Dashboard /> : <Login />
+    return isUserId !== null ? <Directory /> : <Login />
 
     // return Accounts.user() && Accounts.userId() ? <Dashboard /> : <Login />
   }

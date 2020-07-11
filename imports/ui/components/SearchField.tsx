@@ -15,8 +15,8 @@ import { TransactionSearch } from '/imports/ui/components/List'
 import { ICustomer, ITransaction } from '/imports/api/schema'
 
 const FormikInput = styled(Input)`
-    border-width: 1.3px;
-    border-radius: 3px;
+    border-width: 1.1px;
+    border-radius: 1px;
     padding-top: 2rem;
     padding-bottom: 1.3rem;
     font-size: ${(props: any) => props.theme.custom.inputFontSize};

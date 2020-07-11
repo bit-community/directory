@@ -6,7 +6,7 @@ import * as Analytics from '/imports/ui/analytics';
 
 
 
-const Box = styled(ChakraBox)`
+const Box = styled(ChakraBox) <any>`
     /* width: 16.8rem; */
     display: block;
     width: 100%;
@@ -14,7 +14,7 @@ const Box = styled(ChakraBox)`
 `
 
 const StyledButton = styled(Button) <{ withIcon: boolean | undefined }>`
-    border-radius: 3px;
+    border-radius: 1px;
     min-height: 54px;
     justify-content: ${(props) => props.withIcon ? 'space-between' : 'center'};
     align-content: center;
@@ -111,7 +111,7 @@ export const LinkButton: React.FC<ILinkButton> = (props) => {
     }
     return (
         <Link to={buttonLink}>
-            <Box as="button" width="16.5rem" rounded="3px" bg={buttonColor || 'blue.500'} size="lg" border={border} borderColor={borderColor} color={color} px={4} h={8} {...props} onClick={() => handleClick(analyticName)}>
+            <Box as="button" width="16.5rem" rounded="1px" bg={buttonColor || 'blue.500'} size="lg" border={border} borderColor={borderColor} color={color} px={4} h={8} {...props} onClick={() => handleClick(analyticName)}>
                 <strong> {buttonName}</strong>
             </Box>
         </Link>

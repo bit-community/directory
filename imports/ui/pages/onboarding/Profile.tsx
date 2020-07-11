@@ -7,9 +7,12 @@ import * as Validator from '/imports/lib/validator'
 import { Formik, FormikProps } from 'formik'
 import { InputField, FormikForm } from '/imports/ui/components'
 
+export interface OnboardingProps {
+    data: any;
+    updateState: () => void;
+}
 
-const OriginForm: React.FunctionComponent = (props: any) => {
-    const history = useHistory();
+const OriginForm: React.FunctionComponent<OnboardingProps> = (props) => {
 
     interface IAuthInterface {
         companyname: string,
@@ -26,20 +29,17 @@ const OriginForm: React.FunctionComponent = (props: any) => {
     }
 
     const handleSubmit = (values: IAuthInterface): void => {
-        props.updateState({value: values})
+        props.updateState({ value: values })
         console.log(values)
     }
 
 
 
 
-
-
     return (
         <Box p={4}>
-            <Heading>Create Company</Heading>
-            <Box mb="20"><p>We will use this information to setup
-your company account</p></Box>
+            <Heading>Directory Profile Application</Heading>
+            <Box mb="20"><p>We will use this information to setup your profile and appr </p></Box>
 
             <Box height="3rem"></Box>
 
