@@ -113,7 +113,7 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
                             <TextAreaField label="Professional Bio" placeholder="Network Engineer with 40+ years experience in ..." name="professionalBio" validate={Validator.isRequired} />
                             <InputField label="Years of Experience" placeholder="4" name="yearsOfExperience" validate={Validator.isNumeric} />
                             {/* // Move this skills to the first page of onboarding */}
-                            <SelectField label="Skills" placeholder="Your Skills" name=" skills" options={["UX Designer", 'Frontend Developer']} validate={Validator.isRequired} />
+                            <SelectField label="Skills" placeholder="Your Skills" name="skills" options={["UX Designer", 'Frontend Developer']} validate={Validator.isRequired} />
 
                             <InputField label="Website URL" type="url" placeholder="Link to portfolio" name="websiteUrl" validate={Validator.isRequired} />
                             <InputField label="Instagram Profile" type="url" placeholder="https://instagram.com/baddiesintech" name="instagramProfile" />

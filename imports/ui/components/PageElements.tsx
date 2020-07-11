@@ -73,7 +73,7 @@ export const PageHeader: React.FC<IPageHeader> = (props): JSX.Element => {
 
 export const DesktopLayout: React.FC<any> = (props): JSX.Element => {
     return (
-        <Stack maxWidth="800px" margin="auto" px="6" {...props}>
+        <Stack maxWidth="800px" margin="auto" px={[3, 4, 6, 8]} {...props}>
             {props.children}
         </Stack>
     )

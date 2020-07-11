@@ -4,7 +4,16 @@ import { Link } from "react-router-dom";
 import { Icon, Box, Heading } from "@chakra-ui/core";
 import styled from '@emotion/styled'
 import path from '../../../path'
-import { PageHeader, BreakLayout } from '/imports/ui/components'
+import { PageHeader, DesktopLayout } from '/imports/ui/components'
+
+
+const Layout = styled(DesktopLayout)`
+    border: 2px solid;
+    margin-top: -100px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    border-bottom: 4px solid
+`
 
 
 const DrawerLink = styled.li`
@@ -30,20 +39,20 @@ export default function AccountPage(this: any) {
     <div>
       <PageHeader useHeader title="Your Transactions" />
 
-      <BreakLayout>
+      <Layout>
         <NavWrapper>
           <DrawerLink><Link to={path.onboarding}>Profile</Link> </DrawerLink>
-          <DrawerLink><Link to={path.onboarding}>Update Account</Link> </DrawerLink>
+          <DrawerLink><Link to={path.onboarding}>Update Profile</Link> </DrawerLink>
 
           <Box mt="5" width="100%">
             <Heading as="h1" size="md" pl="4">User Account</Heading>
             <DrawerLink><Link to={path.auth.loginRoute}>Login</Link></DrawerLink>
-            <DrawerLink><Link to={path.auth.signupRoute}>Signup<Icon name="external-link" mx="2px" /></Link></DrawerLink>
-            <DrawerLink><Link to={path.auth.resetPasswordRoute}>Reset Account <Icon name="external-link" mx="2px" /></Link></DrawerLink>
+            {/* <DrawerLink><Link to={path.auth.signupRoute}>Signup<Icon name="external-link" mx="2px" /></Link></DrawerLink> */}
+            <DrawerLink><Link to={path.auth.resetPasswordRoute}>Reset Password <Icon name="external-link" mx="2px" /></Link></DrawerLink>
             <DrawerLink><Link to={path.auth.logoutRoute}>Logout</Link></DrawerLink>
           </Box>
         </NavWrapper>
-      </BreakLayout>
+      </Layout>
 
     </div >
   );

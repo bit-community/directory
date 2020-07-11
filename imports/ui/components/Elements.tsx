@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { Text } from '@chakra-ui/core'
 
 
+
 // export const OverflowText = styled.div`
 // 	width: 11rem;
 // 	font-size: ${(props) => (props.fontSize ? props.fontSize : 'inherit')};
