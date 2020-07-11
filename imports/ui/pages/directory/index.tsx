@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled'
-import path from '../../../path'
+import path from '../../path'
 import { withTracker } from 'meteor/react-meteor-data'
 import { Flex, Stack, Box, Avatar, Stat, StatNumber, StatHelpText, StatGroup, Heading, Icon } from '@chakra-ui/core'
 import { ActionCard, ActionCardRow, StatusText, PageHeader, TransactionList } from '/imports/ui/components/'
@@ -54,6 +54,7 @@ class DashboardPage extends React.Component {
       <Dashboard>
 
         <PageHeader useHeader />
+        <div>Welcome Home</div>
 
 
 

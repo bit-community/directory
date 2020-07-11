@@ -1,5 +1,5 @@
 import React from 'react';
-import Directory from '/imports/ui/pages/workspace/dashboard';
+import Directory from '/imports/ui/pages/directory';
 import { Login } from '/imports/ui/pages/auth'
 import { Accounts } from 'meteor/accounts-base';
 

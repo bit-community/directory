@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Icon, Box, Heading } from "@chakra-ui/core";
 import styled from '@emotion/styled'
-import path from '../../../path'
+import path from '../../path'
 import { PageHeader, DesktopLayout } from '/imports/ui/components'
 
 
@@ -41,6 +41,7 @@ export default function AccountPage(this: any) {
 
       <Layout>
         <NavWrapper>
+          <DrawerLink><Link to={path.root}>Home</Link> </DrawerLink>
           <DrawerLink><Link to={path.onboarding}>Profile</Link> </DrawerLink>
           <DrawerLink><Link to={path.onboarding}>Update Profile</Link> </DrawerLink>
 

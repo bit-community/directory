@@ -5,12 +5,12 @@ import { Box } from '@chakra-ui/core'
 import * as Validator from '/imports/lib/validator'
 import { Formik, FormikProps } from 'formik'
 import { PageHeader, FormikForm, CustomerSearch, CustomerSearchField } from '/imports/ui/components'
-import Path from '../../../path'
+import Path from '/imports/ui/path'
 
 // API related imports
 import { withTracker } from 'meteor/react-meteor-data'
 import { Meteor } from 'meteor/meteor'
-import { Customers } from '/imports/api/collections'
+import { Profile as Customers } from '/imports/api/collections'
 import { ICustomer } from '/imports/api/schema';
 
 type CreateProps = {
