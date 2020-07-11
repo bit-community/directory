@@ -1,0 +1,24 @@
+import React from 'react'
+//import { Box, Icon} from '@chakra-ui/core'
+import { PositiveFeedback } from '/imports/ui/components'
+import Path from '../../../path';
+
+
+
+const Success: React.FunctionComponent = () => {
+
+
+    return (
+        <PositiveFeedback
+            message="A customer has been created successfully."
+            iconName="check-circle"
+            // iconSize="6rem"
+            buttonLink={Path.workspace.customer}
+            buttonName="VIEW CUSTOMERS"
+        />
+
+
+    );
+}
+
+export default Success

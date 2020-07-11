@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:ital,wght@0,400;0,700;1,400&display=swap');
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Karla', "Segoe UI", "Cantarell", "Oxygen", "Ubuntu", "Roboto", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+/* @media (min-width: 620px) {
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+} */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Karla', "Segoe UI", "Cantarell", "Oxygen", "Ubuntu", "Roboto", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+body {
+  font-family: 'Karla', sans-serif;
+  height: 100%;
+  font-size: 16px;
+  background-color: #FCFDFF;
+  line-height: 1.5;
+  /* margin: 0 auto; */
+}
+
+section#drawer-1 {
+  background-color: #38a169;
+}
+
+/* Chrome, Safari, Edge, Opera */
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
