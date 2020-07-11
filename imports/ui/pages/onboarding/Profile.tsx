@@ -1,69 +1,154 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
+import path from '/imports/ui/path'
 
-import { Box, Heading } from '@chakra-ui/core'
-//import * as Analytics from '/imports/ui/analytics'
+import { Box, Accordion, AccordionItem, AccordionHeader, AccordionPanel, Icon } from '@chakra-ui/core'
 import * as Validator from '/imports/lib/validator'
 import { Formik, FormikProps } from 'formik'
-import { InputField, FormikForm } from '/imports/ui/components'
+
+import { InputField, DesktopLayout, PageHeader, FormikForm, SelectField, CheckField } from '/imports/ui/components'
+import { Meteor } from 'meteor/meteor';
+import styled from '@emotion/styled'
+
+const Layout = styled(DesktopLayout)`
+    border: 2px solid;
+    margin-top: -100px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    border-bottom: 4px solid
+`
+
+
+
+
+interface IAuthInterface {
+    fullName: string,
+    emailAddress: string,
+    countryOfResidence: string,
+    cityOrState: string,
+    profilePhoto: string,
+    professionalTitle: string,
+    professionalBio: string,
+    yearsOfExperience: string,
+    skills: string[],
+    websiteUrl: string,
+    instagramProfile: string,
+    twitterProfile: string,
+    facebookProfile: string,
+    projects: string[],
+    mentorshipConsent: boolean,
+    waiverOfLiability: boolean
+}
 
 export interface OnboardingProps {
     data: any;
-    updateState: () => void;
+    updateState: (v: IAuthInterface) => void;
 }
 
-const OriginForm: React.FunctionComponent<OnboardingProps> = (props) => {
+const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
+    const history = useHistory()
 
-    interface IAuthInterface {
-        companyname: string,
-        address: string,
-        phonenumber: string,
-        email: string,
-        [key: string]: string
-    }
     const authInit: IAuthInterface = {
-        companyname: "",
-        address: "",
-        phonenumber: "",
-        email: "",
+        fullName: "",
+        emailAddress: "",
+        countryOfResidence: "",
+        cityOrState: "",
+        profilePhoto: "",
+        professionalTitle: "",
+        professionalBio: "",
+        yearsOfExperience: "",
+        skills: [],
+        websiteUrl: "",
+        instagramProfile: "",
+        twitterProfile: "",
+        facebookProfile: "",
+        projects: [],
+        mentorshipConsent: false,
+        waiverOfLiability: false
     }
 
-    const handleSubmit = (values: IAuthInterface): void => {
-        props.updateState({ value: values })
-        console.log(values)
+
+
+    const handleSubmit = async (value: IAuthInterface) => {
+        await props.updateState(value)
+        console.log(value)
+        history.push(`${path.onboarding}/success`)
     }
+
 
 
 
 
     return (
-        <Box p={4}>
-            <Heading>Directory Profile Application</Heading>
-            <Box mb="20"><p>We will use this information to setup your profile and appr </p></Box>
+        <React.Fragment>
+            <PageHeader useHeader title="Directory Profile" subTitle="Fill the form to add a your profile to our directory" />
+            <Layout>
+                <Box mb="5">
+                    <p>Please carefully fill out the form below to apply to join the BiT Directory. You will receive an email with your access link once your profile has been approved!</p>
+                </Box>
 
-            <Box height="3rem"></Box>
+                <Formik
+                    initialValues={authInit}
+                    onSubmit={(values, actions) => {
+                        setTimeout(() => {
+                            handleSubmit(values)
+                            Meteor.call('profile.insert', values)
+                            actions.setSubmitting(false);
+                        }, 300);
+                    }}
+                >
+                    {(props: FormikProps<any>) => (
+                        <FormikForm isLoading={props.isSubmitting} analyticName="Directory Application" formProps={props} withIcon buttonName="Create Profile">
+                            <InputField label="Full Name" placeholder="Allie Tsahey" name="fullName" validate={Validator.isRequired} />
+                            <InputField label="Email Address" type="email" placeholder="allie@baddiesintech.co" name="emailAddress" validate={Validator.isEmail} />
+                            <InputField label="Country of Residence" placeholder="Ghana" name="countryOfResidence" validate={Validator.isEmail} />
+                            <InputField label="City / State" placeholder="Accra" name="cityOrState" validate={Validator.isRequired} />
+                            <InputField label="Professional Title" placeholder="Accra" name="professionaTitle" validate={Validator.isRequired} />
+                            <InputField label="Professional Bio" placeholder="Accra" name="professionalBio" validate={Validator.isRequired} />
+                            <InputField label="Years of Experience" placeholder="Accra" name="yearsOfExperience" validate={Validator.isNumeric} />
+                            <SelectField label="Skills" placeholder="Accra" name="skills" options={["UX Designer", 'Frontend Developer']} validate={Validator.isRequired} />
+                            <InputField label="Website URL" type="url" placeholder="Link to portfolio" name="websiteUrl" validate={Validator.isRequired} />
+                            <InputField label="Instagram Profile" type="url" placeholder="https://instagram.com/baddiesintech" name="instagramProfile" />
+                            <InputField label="Twitter Profile" type="url" placeholder="https://twitter.com/baddiesintech" name="twitterProfile" />
+                            <InputField label="Facebook Profile" type="url" placeholder="https://facebook.com/baddiesintech" name="facebookProfile" />
 
-            <Formik
-                initialValues={authInit}
-                onSubmit={(values, actions) => {
-                    setTimeout(() => {
-                        handleSubmit(values)
-                        actions.setSubmitting(false);
-                    }, 300);
-                }}
-            >
-                {(props: FormikProps<any>) => (
-                    <FormikForm isLoading={props.isSubmitting} analyticName="Signup Form" formProps={props} buttonName="Create Your Company">
-                        <InputField label="Company Name" placeholder="Meltwater" name="companyname" validate={Validator.isRequired} />
-                        <InputField label="Corporate Address" placeholder="22 Aluguntugui Street" name="address" validate={Validator.isRequired} />
-                        <InputField label="Corporate Phone Number" placeholder="0244-973-237" name="phonenumber" validate={Validator.isNumeric} />
-                        <InputField label="Corporate Email" placeholder="Your Email" name="email" validate={Validator.isEmail} />
-                    </FormikForm>
-                )}
-            </Formik>
+                            <Box mt="6" fontWeight="bold">Others</Box>
+                            <InputField label="Profile Photo" type="file" placeholder="Accra" name="profilePhoto" />
+                            <InputField label="Project Attachments" type="file" placeholder="projects" name="projects" />
+                            <CheckField name="mentorshipConsent" boxLabel="Would you like to mentor other women in tech?" validate={Validator.isRequired} />
+                            <CheckField name="waiverOfLiability" boxLabel="Accept our Waiver of Liability" validate={Validator.isRequired} />
 
-        </Box>
+
+
+                            <Box height="2rem"></Box>
+
+                            {/* Add Accordion Section for Optional Guarantor Form */}
+                            {/* <Accordion defaultIndex={3} allowToggle>
+                                <AccordionItem>
+                                {({ isExpanded }) => (
+                                    <>
+                                    <AccordionHeader>
+                                    <Box flex="1" textAlign="left">Add a Guarantor</Box>
+                                    <Icon size="12px" name={isExpanded ? "minus" : "add"} />
+                                    </AccordionHeader>
+                                    <AccordionPanel pb={8}>
+                                    <InputField label="Name" placeholder="Benjamin Kwame" name="name" />
+                                    <InputField label="Address" placeholder="12 Aluguntugui street" name="address" />
+                                    <InputField label="Phone Number" placeholder="0244-973-237" name="phonenumber" />
+                                    <InputField label="Email" placeholder="benj@getBaddies in Tech.co" name="email" />
+                                    
+                                    </AccordionPanel>
+                                    </>
+                                    )}
+                                    </AccordionItem>
+                                </Accordion> */}
+                        </FormikForm>
+                    )}
+                </Formik>
+            </Layout>
+
+        </React.Fragment >
     );
 }
 
-export default OriginForm
+export default ProfileForm

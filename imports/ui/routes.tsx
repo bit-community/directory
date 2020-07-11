@@ -15,7 +15,6 @@ import Wizard from '/imports/ui/pages/wizard'
 import Onboarding from '/imports/ui/pages/onboarding'
 import Preview from '/imports/ui/pages/preview'
 // =============== Workspace Components ============
-import Remind from '/imports/ui/pages/workspace/remind'
 import Record from '/imports/ui/pages/workspace/record'
 import Recovery from '/imports/ui/pages/workspace/recovery'
 import Transaction from '/imports/ui/pages/workspace/transaction'
@@ -47,17 +46,11 @@ export default function AppRouter(this: any) {
                     <Route path={path.auth.signupRoute} component={Signup} />
                     <Route path={path.auth.logoutRoute} component={Logout} />
                     <Route path={path.auth.resetPasswordRoute} component={ResetPassword} />
-                    <Route path={path.workspace.transaction} component={Transaction} />
                     <Route path={path.workspace.customer} component={Customer} />
                     <Route path={`${path.workspace.customerView}/view/:id`} component={CustomerView} />
-                    <Route path={`${path.workspace.transactionView}/view/:id`} component={TransactionView} />
                     <Route path={path.workspace.createCustomer} component={CreateCustomer} />
                     <Route path={path.workspace.createTransaction} component={CreateTransaction} />
-                    <Route path={path.workspace.account} component={Account} />
-                    <Route path={path.workspace.remind} component={Remind} />
-                    <Route path={path.workspace.record} component={Record} />
-                    <Route path={path.workspace.recovery} component={Recovery} />
-                    <Route path={path.workspace.invoice} component={Invoice} />
+                    <Route path={path.profile} component={Account} />
                     <Route path={path.wizard} component={Wizard} />
                     <Route path={path.onboarding} component={Onboarding} />
                     <Route path={path.preview} component={Preview} />

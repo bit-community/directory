@@ -12,6 +12,7 @@ export interface IPath {
 	wizard: TPath;
 	onboarding: TPath;
 	preview: TPath;
+	profile: TPath;
 	auth: {
 		loginRoute: string;
 		signupRoute: string;
@@ -40,6 +41,7 @@ const path: IPath = {
 	wizard: '/wizard',
 	onboarding: '/onboarding',
 	preview: '/preview',
+	profile: '/profile',
 	auth: {
 		loginRoute: '/auth/login',
 		signupRoute: '/auth/signup',

@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import AccountSetup from './Account';
 import Profile from './Profile';
+import Complete from './Feedback'
 import * as Analytics from '/imports/ui/analytics'
 // import path from '/imports/ui/path'
 
@@ -40,6 +41,7 @@ export default class Onboarding extends Component {
 			<Switch>
 				<Route path="/onboarding" exact><AccountSetup data={this.state} updateState={this.updateState} /></Route>
 				<Route path="/onboarding/profile" exact><Profile data={this.state} updateState={this.updateState} onSubmit={this.onSubmit} /></Route>
+				<Route path="/onboarding/complete" exact><Complete data={this.state} updateState={this.updateState} onSubmit={this.onSubmit} /></Route>
 			</Switch>
 		);
 	}

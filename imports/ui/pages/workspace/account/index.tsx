@@ -32,11 +32,8 @@ export default function AccountPage(this: any) {
 
       <BreakLayout>
         <NavWrapper>
-          <DrawerLink><Link to="/">Wallet</Link></DrawerLink>
           <DrawerLink><Link to={path.onboarding}>Profile</Link> </DrawerLink>
-          <DrawerLink><Link to={path.onboarding}>Upgrade Account</Link> </DrawerLink>
-          <DrawerLink><Link to={path.workspace.transaction}>Transactions</Link></DrawerLink>
-          <DrawerLink><Link to={path.workspace.remind}>Reminders</Link></DrawerLink>
+          <DrawerLink><Link to={path.onboarding}>Update Account</Link> </DrawerLink>
 
           <Box mt="5" width="100%">
             <Heading as="h1" size="md" pl="4">User Account</Heading>
