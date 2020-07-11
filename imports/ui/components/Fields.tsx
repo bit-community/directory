@@ -11,6 +11,8 @@ import Downshift from "downshift";
 import { useField, Form, Field, FieldProps } from 'formik'
 import { FormControl, List, Textarea, ListItem, Checkbox, FormLabel, Select, RadioGroup, RadioButtonGroup, Icon, IconButton, FormErrorMessage, Input, Button, InputGroup, Radio, InputRightElement, CustomTheme, DefaultTheme, Box, CheckboxGroup } from '@chakra-ui/core'
 import * as Analytics from '/imports/ui/analytics'
+//@ts-ignore
+import FileInputComponent from 'react-file-input-previews-base64'
 
 
 
@@ -593,6 +595,82 @@ AutoCompleteField.propTypes = {
     validate: PropTypes.func,
     options: PropTypes.array.isRequired
 };
+
+
+
+interface UploadFileProps {
+    name: string;
+    type: string;
+    size: number;
+    base64: string;
+    file: Record<any, string>;
+}
+
+interface FileInputProps {
+    name: string;
+    label: string;
+    validate?: () => void;
+}
+// https://stackoverflow.com/questions/36280818/how-to-convert-file-to-base64-in-javascript Make this component better
+export const SingleFileInputField = (props: FileInputProps): JSX.Element => {
+    const { validate, name, label, ...rest } = props
+    //@ts-ignore
+    const [field, meta, helpers] = useField(props);
+    // console.log(field, meta, helpers);
+
+    // directly call meta in place of meta.touched to show all errors ::: FIX ISSUE with component not displaying error onDirty
+    return (
+        <FormControl isInvalid={meta['error'] && meta.touched || false} mt="5" position="relative">
+            {/* <FormLabel htmlFor={[name, 'radio-button'].join('__')} color="bluee.700">{label}</FormLabel> */}
+
+            <FileInputComponent
+                labelText={label}
+                id={[name, 'file-upload'].join('__')}
+                name={name}
+                {...rest}
+                {...field}
+                labelStyle={{ fontSize: 14 }}
+                textBoxVisible={true}
+                multiple={false}
+                inputName={name}
+                textFieldComponent={<FormikInput variant="outline" type="text" borderColor="blue.700" errorBorderColor="red.500" size="lg" />}
+                // onChange={(val: UploadFileProps) => console.log(val)}
+                callbackFunction={(val: UploadFileProps) => helpers.setTouched(true) && helpers.setValue(val.base64)}
+                accept="image/*"
+            />
+            <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
+        </FormControl>
+    )
+}
+export const MultipleFileInputField = (props: FileInputProps): JSX.Element => {
+    const { validate, name, label, ...rest } = props
+    const [field, meta, helpers] = useField(props);
+    // console.log(field, meta, helpers);
+
+    // directly call meta in place of meta.touched to show all errors ::: FIX ISSUE with component not displaying error onDirty
+    return (
+        <FormControl isInvalid={meta['error'] && meta.touched} mt="5" position="relative">
+            <FormLabel htmlFor={[name, 'radio-button'].join('__')} color="bluee.700">{label}</FormLabel>
+
+            <FileInputComponent
+                labelText=''
+                id={[name, 'file-upload'].join('__')}
+                name={name}
+                labelStyle={{ fontSize: 18 }}
+                buttonComponent={<IconButton icon="attachment" variant="solid" variantColor="pink" type="button">Attach</IconButton>}
+                {...rest}
+                {...field}
+                onChange={(val: UploadFileProps) => console.log(val)}
+                callbackFunction={(val: UploadFileProps) => helpers.setTouched(true) && helpers.setValue(val)}
+                accept="image/*"
+            />
+            <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
+        </FormControl>
+    )
+}
+
+
+
 
 
 

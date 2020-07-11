@@ -2,11 +2,14 @@ import React from 'react'
 import { useHistory } from 'react-router-dom';
 import path from '/imports/ui/path'
 
-import { Box, Accordion, AccordionItem, AccordionHeader, AccordionPanel, Icon } from '@chakra-ui/core'
+import { Box } from '@chakra-ui/core'
+// import { Box, Accordion, AccordionItem, AccordionHeader, AccordionPanel, Icon } from '@chakra-ui/core'
+//@ts-ignore
+import FileInputComponent from 'react-file-input-previews-base64'
 import * as Validator from '/imports/lib/validator'
-import { Formik, FormikProps } from 'formik'
+import { Formik, Field, FieldProps, FormikProps } from 'formik'
 
-import { InputField, DesktopLayout, PageHeader, FormikForm, SelectField, CheckField } from '/imports/ui/components'
+import { InputField, DesktopLayout, MultipleFileInputField, SingleFileInputField, TextAreaField, PageHeader, FormikForm, SelectField, CheckField } from '/imports/ui/components'
 import { Meteor } from 'meteor/meteor';
 import styled from '@emotion/styled'
 
@@ -35,7 +38,7 @@ interface IAuthInterface {
     instagramProfile: string,
     twitterProfile: string,
     facebookProfile: string,
-    projects: string[],
+    projects: any[],
     mentorshipConsent: boolean,
     waiverOfLiability: boolean
 }
@@ -71,8 +74,7 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
 
     const handleSubmit = async (value: IAuthInterface) => {
         await props.updateState(value)
-        console.log(value)
-        history.push(`${path.onboarding}/success`)
+        history.push(`${path.onboarding}/complete`)
     }
 
 
@@ -89,11 +91,11 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
 
                 <Formik
                     initialValues={authInit}
-                    onSubmit={(values, actions) => {
+                    onSubmit={async (values, actions) => {
                         setTimeout(() => {
-                            handleSubmit(values)
                             Meteor.call('profile.insert', values)
                             actions.setSubmitting(false);
+                            handleSubmit(values)
                         }, 300);
                     }}
                 >
@@ -101,20 +103,32 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
                         <FormikForm isLoading={props.isSubmitting} analyticName="Directory Application" formProps={props} withIcon buttonName="Create Profile">
                             <InputField label="Full Name" placeholder="Allie Tsahey" name="fullName" validate={Validator.isRequired} />
                             <InputField label="Email Address" type="email" placeholder="allie@baddiesintech.co" name="emailAddress" validate={Validator.isEmail} />
-                            <InputField label="Country of Residence" placeholder="Ghana" name="countryOfResidence" validate={Validator.isEmail} />
-                            <InputField label="City / State" placeholder="Accra" name="cityOrState" validate={Validator.isRequired} />
-                            <InputField label="Professional Title" placeholder="Accra" name="professionaTitle" validate={Validator.isRequired} />
-                            <InputField label="Professional Bio" placeholder="Accra" name="professionalBio" validate={Validator.isRequired} />
-                            <InputField label="Years of Experience" placeholder="Accra" name="yearsOfExperience" validate={Validator.isNumeric} />
-                            <SelectField label="Skills" placeholder="Accra" name="skills" options={["UX Designer", 'Frontend Developer']} validate={Validator.isRequired} />
+                            <InputField label="Country of Residence" placeholder="Ghana" name="countryOfResidence" validate={Validator.isRequired} />
+                            <InputField label="City /State" placeholder="Accra" name="cityOrState" validate={Validator.isRequired} />
+                            <SingleFileInputField
+                                name="profilePhoto"
+                                label="Upload Profile Photo"
+                            />
+                            <InputField label="Professional Title" placeholder="Network Engineer" name="professionaTitle" validate={Validator.isRequired} />
+                            <TextAreaField label="Professional Bio" placeholder="Network Engineer with 40+ years experience in ..." name="professionalBio" validate={Validator.isRequired} />
+                            <InputField label="Years of Experience" placeholder="4" name="yearsOfExperience" validate={Validator.isNumeric} />
+                            {/* // Move this skills to the first page of onboarding */}
+                            <SelectField label="Skills" placeholder="Your Skills" name=" skills" options={["UX Designer", 'Frontend Developer']} validate={Validator.isRequired} />
+
                             <InputField label="Website URL" type="url" placeholder="Link to portfolio" name="websiteUrl" validate={Validator.isRequired} />
                             <InputField label="Instagram Profile" type="url" placeholder="https://instagram.com/baddiesintech" name="instagramProfile" />
                             <InputField label="Twitter Profile" type="url" placeholder="https://twitter.com/baddiesintech" name="twitterProfile" />
                             <InputField label="Facebook Profile" type="url" placeholder="https://facebook.com/baddiesintech" name="facebookProfile" />
 
-                            <Box mt="6" fontWeight="bold">Others</Box>
-                            <InputField label="Profile Photo" type="file" placeholder="Accra" name="profilePhoto" />
-                            <InputField label="Project Attachments" type="file" placeholder="projects" name="projects" />
+                            <Box mt="6" fontWeight="bold">Other Information</Box>
+                            <MultipleFileInputField
+                                name="projects"
+                                label="Upload images of your portfolio (Up to 4 shots)"
+                            />
+
+
+
+                            {/* <InputField label="Project Attachments" type="file" placeholder="projects" name="projects" /> */}
                             <CheckField name="mentorshipConsent" boxLabel="Would you like to mentor other women in tech?" validate={Validator.isRequired} />
                             <CheckField name="waiverOfLiability" boxLabel="Accept our Waiver of Liability" validate={Validator.isRequired} />
 

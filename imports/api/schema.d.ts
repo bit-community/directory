@@ -58,6 +58,14 @@ export interface ICustomer {
 	guarantor: Array<IGuarantor>;
 }
 
+export interface UploadFileInterface {
+	name: string;
+	type: string;
+	size: number;
+	base64: string;
+	file: Record<any, string>;
+}
+
 export interface ProfileInterface {
 	fullName: string;
 	emailAddress: string;
