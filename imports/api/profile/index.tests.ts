@@ -2,7 +2,7 @@
 // import { Random } from 'meteor/random'
 // import { assert } from 'chai'
 
-// import { Customer } from "./index"
+// import { Profile } from "./index"
 
 // if (Meteor.isServer) {
 //     describe('Tasks', () => {

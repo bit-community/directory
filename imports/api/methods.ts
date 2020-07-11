@@ -8,7 +8,7 @@
 
 import { Meteor } from 'meteor/meteor';
 import { insertTask, removeTask, setChecked, setPrivate } from './template/tasks';
-import { insertCustomer, removeCustomer } from '/imports/api/customers';
+import { createProfile, removeProfile } from './profile';
 import { insertTransaction, removeTransaction } from '/imports/api/transactions';
 
 // Define Methods for managing tasks related logic
@@ -20,9 +20,9 @@ const tasks = {
 };
 
 // Methods for Customer Collection
-const customers = {
-	'customer.insert': insertCustomer,
-	'customer.remove': removeCustomer
+const profiles = {
+	'profile.insert': createProfile,
+	'profile.remove': removeProfile
 };
 
 //Methods for Transactions collection
@@ -34,6 +34,6 @@ const transactions = {
 // Destructure methods into the Meteor Method
 Meteor.methods({
 	...tasks,
-	...customers,
+	...profiles,
 	...transactions
 });

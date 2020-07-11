@@ -6,10 +6,11 @@
  * for Building out a multi tenant arch on top of Meteor & Meteor Mongo
  */
 
-import { ITask, ICustomer, IPaymentPlan, ITransaction } from 'imports/api/schema.d';
+import { ITask, ProfileInterface, ITransaction } from 'imports/api/schema.d';
 import { Mongo } from 'meteor/mongo';
 
+export const Profile = new Mongo.Collection<ProfileInterface>('profile');
+
+// == others ==
 export const Tasks = new Mongo.Collection<ITask>('tasks');
-export const Customers = new Mongo.Collection<ICustomer>('customer');
 export const Transactions = new Mongo.Collection<ITransaction>('transactions');
-export const PaymentPlans = new Mongo.Collection<IPaymentPlan>('paymentPlans');

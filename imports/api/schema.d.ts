@@ -58,6 +58,28 @@ export interface ICustomer {
 	guarantor: Array<IGuarantor>;
 }
 
+export interface ProfileInterface {
+	fullName: string;
+	emailAddress: string;
+	countryOfResidence: string;
+	cityOrState: string;
+	profilePhoto: string;
+	professionalTitle: string;
+	professionalBio: string;
+	yearsOfExperience: string;
+	skills: string[];
+	websiteUrl: string;
+	instagramProfile: string;
+	twitterProfile: string;
+	facebookProfile: string;
+	projects: string[];
+	mentorshipConsent: boolean;
+	waiverOfLiability: boolean;
+	createdAt: Date;
+	owner: string | undefined;
+	username: string | undefined;
+}
+
 /**
  * Interface for the Users Profile
  */
