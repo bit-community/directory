@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from '@emotion/styled'
-import path from '../../path'
 import { withTracker } from 'meteor/react-meteor-data'
 import { Flex, Stack, Box, Avatar, Stat, StatNumber, StatHelpText, StatGroup, Heading, Icon } from '@chakra-ui/core'
 import { ActionCard, ActionCardRow, StatusText, PageHeader, TransactionList } from '/imports/ui/components/'
-import { greeting, formatNumber } from '/imports/lib/formatter'
+// import { greeting, formatNumber } from '/imports/lib/formatter'
+// import path from '../../path'
 import { Accounts } from 'meteor/accounts-base'
-import { Transactions } from '/imports/api/collections'
+import { Profile } from '/imports/api/collections'
 import { Loader } from '/imports/lib/loader'
 
 
@@ -14,12 +14,6 @@ import { Loader } from '/imports/lib/loader'
 const Dashboard = styled.main`
   display: flex;
   flex-direction: column;
-`
-
-const DashboardStat = styled(StatGroup)`
-  display: flex;
-  justify-content: space-between;
-  text-align: center;
 `
 
 
@@ -36,36 +30,34 @@ const BreakLayout = styled.section<IBreakLayout>`
 
 
 
-class DashboardPage extends React.Component {
+export const DashboardPage = (props): JSX.Element => {
 
 
-  render() {
-    console.log(this.props)
-    const { earnings, user } = this.props
+  const { profiles } = props
 
-    if (!this.props.user) {
-      return (
-        <Flex align="center" justify="center" margin="auto">
-          <Loader />
-        </Flex>
-      )
-    }
+  if (!props.profiles) {
     return (
-      <Dashboard>
-
-        <PageHeader useHeader />
-        <div>Welcome Home</div>
-
-
-
-
-
-
-      </Dashboard>
-
-
+      <Flex align="center" justify="center" margin="auto">
+        <Loader />
+      </Flex>
     )
   }
+  return (
+    <Dashboard>
+
+      <PageHeader useHeader />
+      <div>Welcome Home</div>
+      <div>{JSON.stringify(profiles)}</div>
+
+
+
+
+
+
+    </Dashboard>
+
+
+  )
 }
 
 
@@ -75,8 +67,9 @@ export default withTracker(() => {
 
   return {
     user: Accounts.user(),
-    deals: Transactions.find().count(),
-    payments: Transactions.find({}, { fields: { amountPaid: 1, amountDue: 1 } }).fetch(),
+    profileCount: Profile.find().count(),
+    profiles: Profile.find({}).fetch(),
+    // payments: Profile.find({}, { fields: { amountPaid: 1, amountDue: 1 } }).fetch(),
 
   };
 })(DashboardPage);
