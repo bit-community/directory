@@ -34,6 +34,7 @@ const CardWrapper = styled(Flex)`
   :hover {
     opacity: 0.9;
     border-radius: 6px;
+    cursor: pointer;
     box-shadow: ${theme.custom.defaultShadow}
   }
 `
@@ -56,14 +57,14 @@ export const ProfileCard = (props: ProfileInterface): JSX.Element => {
   }
 
   return (
-    <CardWrapper flexDirection="column" position="relative" p={4}>
+    <CardWrapper flexDirection="column" onClick={() => viewProfile(_id)} justifyContent="space-between" position="relative" p={4}>
       <Flex justifyContent="flex-start" pb="3" alignItems="flex-start">
         <Avatar name={fullName} src={profilePhoto} size="md" />
         <Stack justifyContent="flex-start" pl={2}>
           <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px">{fullName}</Heading>
           <StatusText margin="0" fsize="13px" lineHeight="6px">{professionalTitle}</StatusText>
           <StatusText fsize="11px">{yearsOfExperience} +years Experience</StatusText>
-          <StatusText fsize="11px" textTransform="uppercase">{cityOrState}, {countryOfResidence}</StatusText>
+          <StatusText fsize="11px" textTransform="uppercase">{cityOrState + ", " + countryOfResidence}</StatusText>
         </Stack>
       </Flex>
 
@@ -136,7 +137,7 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
                 skills={val.skills}
                 _id={val._id}
                 cityOrState={val.cityOrState}
-              // countryOfResidence={val.countryOfResidence}
+                countryOfResidence={val.countryOfResidence}
               />
             )
           })}
