@@ -3,14 +3,16 @@ import * as Validator from '/imports/lib/validator'
 import { Link, useHistory } from 'react-router-dom'
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor'
+import { Box, useToast } from '@chakra-ui/core'
 import { Formik, FormikProps } from 'formik'
-import { InputField, FormikForm, PageHeader, PasswordField, } from '/imports/ui/components'
+import { InputField, FormikForm, PageHeader, BorderedDesktopLayout, PasswordField, } from '/imports/ui/components'
 import path from '../../path'
 
 
 
 const Signup: React.FC = () => {
     const history = useHistory()
+    const toast = useToast()
 
     interface AuthInterface {
         fullname: string,
@@ -39,7 +41,13 @@ const Signup: React.FC = () => {
                 return alert(error.message)
             }
             else {
-                alert(`SIGNUP WAS SUCCESSFUL FOR ${JSON.stringify(Meteor.user())}`)
+                toast({
+                    title: "Account created.",
+                    description: "We've created your account for you.",
+                    status: "success",
+                    duration: 5000,
+                    isClosable: true,
+                })
                 history.push(path.onboarding)
             }
         })
@@ -47,28 +55,31 @@ const Signup: React.FC = () => {
 
 
     return (
-        <React.Fragment>
+        <Box margin="auto" textAlign="center">
             <PageHeader useHeader useTitle title="Create an Account" subTitle="Fill the form below to create an account" />
-            <Formik
-                initialValues={authInit}
-                onSubmit={(values, actions) => {
-                    setTimeout(() => {
-                        handleFormSubmit(values)
-                        actions.setSubmitting(false);
-                    }, 300);
-                }}
-            >
-                {(props: FormikProps<any>) => (
-                    <FormikForm mb="2" withIcon isLoading={props.isSubmitting} analyticName="Signup Form" formProps={props} buttonName="Signup">
-                        <InputField label="Your Full Name" placeholder="enter your name" name="fullname" validate={Validator.isRequired} />
-                        <InputField label="Your Email" placeholder="enter an email address" name="username" validate={Validator.isEmail} />
-                        <PasswordField label="Your Password" placeholder="set a password" name="password" validate={Validator.isRequired} />
-                    </FormikForm>
-                )}
+            <BorderedDesktopLayout marTop="0" padTop="1rem">
 
-            </Formik>
-            <Link to={path.auth.loginRoute}>Already have an account, LogIn</Link>
-        </React.Fragment>
+                <Formik
+                    initialValues={authInit}
+                    onSubmit={(values, actions) => {
+                        setTimeout(() => {
+                            handleFormSubmit(values)
+                            actions.setSubmitting(false);
+                        }, 300);
+                    }}
+                >
+                    {(props: FormikProps<any>) => (
+                        <FormikForm mb="2" withIcon isLoading={props.isSubmitting} analyticName="Signup Form" formProps={props} buttonName="Signup">
+                            <InputField label="Your Full Name" placeholder="enter your name" name="fullname" validate={Validator.isRequired} />
+                            <InputField label="Your Email" placeholder="enter an email address" name="username" validate={Validator.isEmail} />
+                            <PasswordField label="Your Password" placeholder="set a password" name="password" validate={Validator.isRequired} />
+                        </FormikForm>
+                    )}
+
+                </Formik>
+                <Link to={path.auth.loginRoute}>Already have an account, LogIn</Link>
+            </BorderedDesktopLayout>
+        </Box>
     );
 }
 

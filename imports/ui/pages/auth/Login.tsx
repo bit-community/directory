@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { InputGroup, Stack, Input, Button, InputRightElement } from '@chakra-ui/core'
+import { InputGroup, Stack, Box, Input, Button, InputRightElement } from '@chakra-ui/core'
 import { Meteor } from 'meteor/meteor';
 import * as Analytics from '/imports/ui/analytics';
-import { PageHeader } from '/imports/ui/components'
+import { PageHeader, BorderedDesktopLayout } from '/imports/ui/components'
 import path from '../../path'
 import Path from '../../path';
 
@@ -59,37 +59,41 @@ const Login: React.FunctionComponent = (): JSX.Element => {
 
 
     return (
-        <React.Fragment>
+        <Box margin="auto" textAlign="center">
             <PageHeader useHeader useTitle title="Login to your Account" subTitle="Have an account fill the form to login" />
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <Stack spacing="6" >
-                    <Input
-                        size="lg"
-                        type={'email'}
-                        onChange={(e: any) => handleChange('username', e)}
-                        placeholder="Enter Username"
-                    />
-
-                    <InputGroup size="lg">
+            <BorderedDesktopLayout marTop="0" padTop="3rem">
+                <form onSubmit={(e) => handleSubmit(e)}>
+                    <Stack spacing="6" >
                         <Input
-                            pr="4.5rem"
+                            borderRadius="1px"
                             size="lg"
-                            onChange={(e: any) => handleChange('password', e)}
-                            type={show ? "text" : "password"}
-                            placeholder="Enter password"
+                            type={'email'}
+                            onChange={(e: any) => handleChange('username', e)}
+                            placeholder="Your Email Address"
                         />
-                        <InputRightElement width="4.5rem">
-                            <Button h="1.75rem" size="sm" onClick={handleClick}>
-                                {show ? "Hide" : "Show"}
-                            </Button>
-                        </InputRightElement>
-                    </InputGroup>
 
-                    <Button width="100%" variantColor="pink" variant="outline" type="submit" size='lg'>Login</Button>
-                    <Link to={path.auth.signupRoute}>Don't have an account, Create one</Link>
-                </Stack>
-            </form>
-        </React.Fragment>
+                        <InputGroup size="lg">
+                            <Input
+                                borderRadius="1px"
+                                pr="4.5rem"
+                                size="lg"
+                                onChange={(e: any) => handleChange('password', e)}
+                                type={show ? "text" : "password"}
+                                placeholder="Enter your password"
+                            />
+                            <InputRightElement width="4.5rem">
+                                <Button h="1.75rem" size="sm" onClick={handleClick}>
+                                    {show ? "Hide" : "Show"}
+                                </Button>
+                            </InputRightElement>
+                        </InputGroup>
+
+                        <Button width="100%" borderRadius="1px" variantColor="pink" variant="outline" type="submit" size='lg'>Login</Button>
+                        <Link to={path.auth.signupRoute}>Don't have an account, Create one</Link>
+                    </Stack>
+                </form>
+            </BorderedDesktopLayout>
+        </Box>
     );
 }
 

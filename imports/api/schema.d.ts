@@ -165,3 +165,12 @@ export interface IPaymentTemplate extends IPaymentPlan {
 	createdAt: Date;
 	lastUpdated: Date;
 }
+
+/**
+ * Style Props Interfaces
+ */
+
+export interface IBreakLayout {
+	marginT?: string;
+	theme?: { custom: { defaultBox: string } };
+}

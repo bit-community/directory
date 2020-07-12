@@ -1,5 +1,17 @@
 import styled from '@emotion/styled'
-import { Text } from '@chakra-ui/core'
+import { Text, Stack } from '@chakra-ui/core'
+import theme from '/imports/lib/theme'
+
+export const BorderedDesktopLayout = styled(Stack) <{ marTop: string, padTop: string }>`
+	max-width: 800px;
+	padding: ${theme.custom.paddingWrapper};
+	border: 2px solid;
+	margin: auto;
+	margin-top: ${(props) => (props.marTop ? props.marTop : '-100px')};
+	padding-top: ${(props) => (props.padTop ? props.padTop : '-100px')};
+    padding-bottom: 50px;
+	border-bottom: 4px solid
+`
 
 
 
