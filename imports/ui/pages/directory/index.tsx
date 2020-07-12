@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled'
 import { withTracker } from 'meteor/react-meteor-data'
-import { Flex, Stack, Box, Avatar, Stat, StatNumber, StatHelpText, StatGroup, Heading, Icon } from '@chakra-ui/core'
+import { Flex, Stack, Box, Text, Avatar, Tag, TagLabel, TagIcon, Heading, Icon } from '@chakra-ui/core'
 import { ActionCard, ActionCardRow, StatusText, PageHeader, BorderedDesktopLayout } from '/imports/ui/components/'
 // import { greeting, formatNumber } from '/imports/lib/formatter'
 // import path from '../../path'
@@ -12,7 +12,7 @@ import { ProfileInterface, IBreakLayout } from '/imports/api/schema'
 
 
 
-const Dashboard = styled.main`
+const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
 `
@@ -43,23 +43,37 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
     )
   }
   return (
-    <Dashboard>
+    <Wrapper>
 
       <PageHeader useHeader />
-      <BorderedDesktopLayout>
-        <Flex>
-          <Avatar name="Helen Mwangi" src="#" />
-          <Stack>
-            <Heading as="h5" size="xl">Helen Ofor</Heading>
-            {/* <Text>Software Engineer</Text> */}
+      <BorderedDesktopLayout marTop="0" padTop="1rem">
+        <Heading as="h1" size="lg">Find a woman of color to connect with, hire, or mentor</Heading>
+
+        <Flex flexDirection="column" maxHeight="100px" position="relative">
+          <Flex justifyContent="space-between">
+            <Avatar name="Helen Mwangi" src="#" size="sm" />
+            <Stack>
+              <Heading as="h5" size="sm" margin="0" lineHeight="100%">Helen Ofor</Heading>
+              <Text size="sm" margin="0" lineHeight="12px">Software Engineer</Text>
+            </Stack>
+          </Flex>
+
+          {/* ==Layout Skills Tag == */}
+          <Stack spacing={2} isInline>
+            <Tag variantColor="blue" border="1px solid">
+              <TagLabel>UX Designer</TagLabel>
+              <TagIcon icon="check" size="12px" />
+            </Tag>
           </Stack>
+          {/* ==Layout Skills Tag == */}
+
         </Flex>
 
         {/* <div>Welcome Home</div> */}
-        <div>{JSON.stringify(profiles)}</div>
+        {/* <div>{JSON.stringify(profiles)}</div> */}
 
       </BorderedDesktopLayout>
-    </Dashboard>
+    </Wrapper>
 
 
   )

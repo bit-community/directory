@@ -57,7 +57,7 @@ const Signup: React.FC = () => {
     return (
         <Box margin="auto" textAlign="center">
             <PageHeader useHeader useTitle title="Create an Account" subTitle="Fill the form below to create an account" />
-            <BorderedDesktopLayout marTop="0" padTop="1rem">
+            <BorderedDesktopLayout marTop="0" padTop="1rem" textAlign="left">
 
                 <Formik
                     initialValues={authInit}

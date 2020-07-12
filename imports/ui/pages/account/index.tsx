@@ -42,8 +42,8 @@ export default function AccountPage(this: any) {
       <Layout>
         <NavWrapper>
           <DrawerLink><Link to={path.root}>Home</Link> </DrawerLink>
-          <DrawerLink><Link to={path.onboarding}>Profile</Link> </DrawerLink>
-          <DrawerLink><Link to={path.onboarding}>Update Profile</Link> </DrawerLink>
+          {/* <DrawerLink><Link to={path.onboarding}>Profile</Link> </DrawerLink> */}
+          <DrawerLink><Link to={path.onboarding + '/profile'}>Update Profile</Link> </DrawerLink>
 
           <Box mt="5" width="100%">
             <Heading as="h1" size="md" pl="4">User Account</Heading>

@@ -1,10 +1,13 @@
 import React from 'react'
-import { Stack, Box, Icon, Flex, Heading } from '@chakra-ui/core'
+import { Stack, Box, Icon, Flex, Heading, IconButton } from '@chakra-ui/core'
 import { Link, useHistory } from 'react-router-dom'
 import Headroom from 'react-headroom'
 import styled from '@emotion/styled'
 import path from '../path'
-import { BreakLayout, AppIcon } from '/imports/ui/components'
+import { BreakLayout } from '/imports/ui/components'
+import theme from '/imports/lib/theme'
+import { Accounts } from 'meteor/accounts-base';
+
 
 const Navbar = styled.header`
     min-height: 48px;
@@ -14,8 +17,9 @@ const Navbar = styled.header`
     z-index: 95299999999239;
     vertical-align: middle;
     background: white;
-    padding: .70rem 1rem .75rem 1.1rem;
-    padding-right: calc(5% + 4px);
+    padding: ${theme.custom.paddingWrapper};
+    /* padding: .70rem 1rem .75rem 1.1rem; */
+    /* padding-right: calc(5% + 4px); */
 `
 
 const LinkList = styled.li`
@@ -29,6 +33,8 @@ const LinkList = styled.li`
 
 
 const LogoHeader: React.FC = (): JSX.Element => {
+    const isUserId = Accounts.userId()
+
     return (
         <BreakLayout marginT="-10px">
             <Headroom
@@ -42,13 +48,21 @@ const LogoHeader: React.FC = (): JSX.Element => {
                             <img alt="Baddies in Tech" width="40px" src="/img/bit.png" aria-label="header logo" />
                         </Link>
 
-                        <Link to={path.profile}>
-                            <LinkList>
-                                <Icon name="settings" />
-                                {/* <AppIcon src="/icons/nav/settings.svg" /> */}
-                                {/* <p>ACCOUNT</p> */}
-                            </LinkList>
-                        </Link>
+                        {isUserId &&
+                            <Flex>
+                                {/* <Link to={path.root}>
+                                <LinkList>
+                                    <IconButton icon="unlock" aria-label="Settings" variant="outline" variantColor="pink" border="2px solid" borderRadius="1px" />
+                                </LinkList>
+                            </Link> */}
+                                <Link to={path.profile}>
+                                    <LinkList>
+                                        <IconButton icon="drag-handle" aria-label="Settings" variant="outline" variantColor="pink" border="2px solid" borderRadius="1px" />
+                                        {/* Settings */}
+                                    </LinkList>
+                                </Link>
+                            </Flex>
+                        }
                     </Flex>
                 </Navbar >
             </Headroom >
