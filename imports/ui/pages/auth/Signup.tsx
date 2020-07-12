@@ -2,7 +2,6 @@ import React from 'react';
 import * as Validator from '/imports/lib/validator'
 import { Link, useHistory } from 'react-router-dom'
 import { Accounts } from 'meteor/accounts-base';
-import { Meteor } from 'meteor/meteor'
 import { Box, useToast } from '@chakra-ui/core'
 import { Formik, FormikProps } from 'formik'
 import { InputField, FormikForm, PageHeader, BorderedDesktopLayout, PasswordField, } from '/imports/ui/components'
@@ -56,7 +55,7 @@ const Signup: React.FC = () => {
 
     return (
         <Box margin="auto" textAlign="center">
-            <PageHeader useHeader useTitle title="Create an Account" subTitle="Fill the form below to create an account" />
+            <PageHeader useHeader useTitle title="BiT Directory" subTitle="We're in private Beta, Please fill the form below to begin creating your profile" />
             <BorderedDesktopLayout marTop="0" padTop="1rem" textAlign="left">
 
                 <Formik

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled'
 import { Link } from 'react-router-dom'
-import { Box as ChakraBox, Button } from '@chakra-ui/core';
+import { Box as ChakraBox, Button, ButtonProps, Link as HrefLink } from '@chakra-ui/core';
 import * as Analytics from '/imports/ui/analytics';
 
 
@@ -115,5 +115,46 @@ export const LinkButton: React.FC<ILinkButton> = (props) => {
                 <strong> {buttonName}</strong>
             </Box>
         </Link>
+    )
+}
+
+
+
+interface ActionButtonProps {
+    analyticName: string,
+    buttonName: string,
+    handleAction: Function,
+    buttonColor?: string,
+    color?: string,
+    border?: string,
+    borderColor?: string,
+    children?: any
+}
+
+export const ActionButton: React.FC<ActionButtonProps> = (props) => {
+    const { analyticName, handleAction, buttonName } = props
+
+    const handleClick = (): void => {
+        // we will write the handle analytics here
+        console.log("console me", analyticName, handleAction)
+        Analytics.track(analyticName, {
+            component: `Click LinkTo${buttonName}`
+        })
+        handleAction && handleAction()
+    }
+    return (
+        <Button
+            fontWeight="bold"
+            border="1px solid"
+            variant="solid"
+            bg="pink.200"
+            rounded="1px"
+            size="lg"
+            px={4} h={8}
+            onClick={() => handleClick()}
+            {...props}
+        >
+            {buttonName}
+        </Button>
     )
 }

@@ -13,26 +13,19 @@ export interface IPath {
 	onboarding: TPath;
 	preview: TPath;
 	profile: TPath;
+	baddie: TPath;
 	auth: {
 		loginRoute: string;
 		signupRoute: string;
 		logoutRoute: string;
 		resetPasswordRoute: string;
 	};
-	workspace: {
+	workspace?: {
 		transaction: string;
-		customer: string;
 		customerView: string;
-		transactionView: string;
-		reminder: string;
-		reminderView: string;
 		account: string;
-		remind: string;
-		recovery: string;
-		record: string;
 		createCustomer: string;
 		createTransaction: string;
-		invoice: string;
 	};
 }
 
@@ -42,27 +35,20 @@ const path: IPath = {
 	onboarding: '/onboarding',
 	preview: '/preview',
 	profile: '/profile',
+	baddie: '/baddie',
 	auth: {
 		loginRoute: '/auth/login',
 		signupRoute: '/auth/signup',
 		logoutRoute: '/auth/logout',
 		resetPasswordRoute: '/auth/reset-password'
-	},
-	workspace: {
-		transaction: '/transaction',
-		transactionView: '/transactions',
-		customer: '/customers',
-		customerView: '/customer',
-		reminder: '/reminders',
-		reminderView: '/reminder',
-		account: '/account',
-		recovery: '/recovery',
-		record: '/record',
-		remind: '/remind',
-		createCustomer: '/create-customer',
-		createTransaction: '/create-transaction',
-		invoice: '/invoice'
 	}
+	// workspace: {
+	// 	transaction: '/transaction',
+	// 	customerView: '/customer',
+	// 	account: '/account',
+	// 	createCustomer: '/create-customer',
+	// 	createTransaction: '/create-transaction'
+	// }
 };
 
 export default path;

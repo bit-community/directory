@@ -1,30 +1,90 @@
 import React from 'react';
 import styled from '@emotion/styled'
 import { withTracker } from 'meteor/react-meteor-data'
-import { Flex, Stack, Box, Text, Avatar, Tag, TagLabel, TagIcon, Heading, Icon } from '@chakra-ui/core'
-import { ActionCard, ActionCardRow, StatusText, PageHeader, BorderedDesktopLayout } from '/imports/ui/components/'
+import { Flex, Stack, Box, Input, Avatar, Tag, Text, TagLabel, TagIcon, InputGroup, InputLeftElement, Heading, Icon } from '@chakra-ui/core'
+import { ActionButton, PageHeader, BorderedDesktopLayout, InputField } from '/imports/ui/components/'
 // import { greeting, formatNumber } from '/imports/lib/formatter'
-// import path from '../../path'
+import path from '/imports/ui/path'
 import { Accounts } from 'meteor/accounts-base'
 import { Profile } from '/imports/api/collections'
 import { Loader } from '/imports/lib/loader'
-import { ProfileInterface, IBreakLayout } from '/imports/api/schema'
+import { ProfileInterface } from '/imports/api/schema'
+import theme from '/imports/lib/theme'
+import { useHistory } from 'react-router-dom';
 
 
 
 const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+`
+
+const CardWrapper = styled(Flex)`
+  border: 1px solid;
+  width: 100%;
+  max-width: 310px;
+  margin-bottom: 10px;
+  border-bottom-width: 4px;
+  border-radius: 4px;
+  transition: ease-in-out .2s;
+  :hover {
+    opacity: 0.9;
+    border-radius: 6px;
+    box-shadow: ${theme.custom.defaultShadow}
+  }
+`
+
+export const StatusText = styled(Text) <{ fsize?: string }>`
+    margin: 0;
+    padding: 0;
+    font-size: ${props => props.fsize ? props.fsize : '.65rem'};
+    line-height: 90%;
 `
 
 
 
-const BreakLayout = styled.section<IBreakLayout>`
-  padding: 0;
-  margin-top: ${props => props.marginT ? props.marginT : '1.5rem'};
-  margin-left: calc(-${ props => props.theme.custom.defaultBox});
-  margin-right: calc(-${ props => props.theme.custom.defaultBox});
-`
+export const ProfileCards = (): JSX.Element => {
+  const history = useHistory()
+
+  const viewProfile = (id: string) => {
+    history.push(path.baddie + '/' + id)
+  }
+  return (
+    <CardWrapper flexDirection="column" position="relative" p={4}>
+      <Flex justifyContent="flex-start" pb="3" alignItems="flex-start">
+        <Avatar name="Helen Mwangi" src="#" size="sm" />
+        <Stack justifyContent="flex-start" pl={2}>
+          <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px">Helen Ofor</Heading>
+          <StatusText margin="0" fsize="13px" lineHeight="6px">Software Engineer</StatusText>
+          <StatusText fsize="11px">+years Experience</StatusText>
+        </Stack>
+      </Flex>
+
+      {/* ==Layout Skills Tag == */}
+      <Stack spacing={2} isInline pt={2} mb={4}>
+        <Tag variantColor="blue" border="1px solid" size="sm">
+          <TagIcon icon="at-sign" size="12px" />
+          <TagLabel>UX Designer</TagLabel>
+        </Tag>
+
+        <Tag variantColor="blue" border="1px solid" size="sm">
+          <TagIcon icon="at-sign" size="12px" />
+          <TagLabel>Frontend Developer</TagLabel>
+        </Tag>
+      </Stack>
+      {/* ==Layout Skills Tag == */}
+      <ActionButton buttonName="View Profile" analyticName="Click View Profile" handleAction={(id: string) => viewProfile(id)} />
+
+    </CardWrapper >
+
+  )
+}
+
+
+
 
 interface DirectoryProps {
   profiles: ProfileInterface[]
@@ -43,37 +103,30 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
     )
   }
   return (
-    <Wrapper>
+    <Box>
+
 
       <PageHeader useHeader />
-      <BorderedDesktopLayout marTop="0" padTop="1rem">
-        <Heading as="h1" size="lg">Find a woman of color to connect with, hire, or mentor</Heading>
+      <Wrapper>
+        <Heading as="h1" size="xl">Find a woman of color to connect with, hire, or mentor</Heading>
+        <InputGroup color="blue.800" width="100%" maxWidth="600px" size="lg" my="5">
+          <InputLeftElement children={<Icon name="search" color="blue.800" />} />
+          <Input placeholder="Search by name or role" color="blue.800" borderRadius="1px" focusBorderColor="blue.800" borderColor="blue.800" />
+        </InputGroup>
 
-        <Flex flexDirection="column" maxHeight="100px" position="relative">
-          <Flex justifyContent="space-between">
-            <Avatar name="Helen Mwangi" src="#" size="sm" />
-            <Stack>
-              <Heading as="h5" size="sm" margin="0" lineHeight="100%">Helen Ofor</Heading>
-              <Text size="sm" margin="0" lineHeight="12px">Software Engineer</Text>
-            </Stack>
-          </Flex>
-
-          {/* ==Layout Skills Tag == */}
-          <Stack spacing={2} isInline>
-            <Tag variantColor="blue" border="1px solid">
-              <TagLabel>UX Designer</TagLabel>
-              <TagIcon icon="check" size="12px" />
-            </Tag>
-          </Stack>
-          {/* ==Layout Skills Tag == */}
-
+        <Flex width="100%" mt="10" justifyContent="space-around" flexWrap="wrap">
+          <ProfileCards />
+          <ProfileCards />
+          <ProfileCards />
+          <ProfileCards />
         </Flex>
+
 
         {/* <div>Welcome Home</div> */}
         {/* <div>{JSON.stringify(profiles)}</div> */}
 
-      </BorderedDesktopLayout>
-    </Wrapper>
+      </Wrapper>
+    </Box>
 
 
   )

@@ -60,7 +60,7 @@ const Login: React.FunctionComponent = (): JSX.Element => {
 
     return (
         <Box margin="auto" textAlign="center">
-            <PageHeader useHeader useTitle title="Login to your Account" subTitle="Have an account fill the form to login" />
+            <PageHeader useHeader useTitle title="Login to the BiT Directory" subTitle="Have an account? Fill the form to login" />
             <BorderedDesktopLayout marTop="0" padTop="3rem">
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <Stack spacing="6" >

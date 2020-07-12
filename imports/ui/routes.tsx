@@ -12,11 +12,11 @@ import App from '/imports/ui/App'
 // ************* All view Components Here *****************************************
 import { Login, Signup, ResetPassword, Logout } from '/imports/ui/pages/auth'
 import Wizard from '/imports/ui/pages/wizard'
-import Onboarding from '/imports/ui/pages/onboarding'
 import Preview from '/imports/ui/pages/preview'
-// =============== Workspace Components ============
+import Baddie from '/imports/ui/pages/baddie'
+// =============== Profile Components ============
 import Account from '/imports/ui/pages/account'
-import Directory from '/imports/ui/pages/workspace/create-customer'
+import Onboarding from '/imports/ui/pages/onboarding'
 
 
 
@@ -40,6 +40,7 @@ export default function AppRouter(this: any) {
                     <Route path={path.auth.resetPasswordRoute} component={ResetPassword} />
                     <Route path={path.onboarding} component={Onboarding} />
                     <Route path={path.profile} component={Account} />
+                    <Route path={path.baddie + '/:id'} component={Baddie} />
                     <Route path={path.wizard} component={Wizard} />
                     <Route path={path.preview} component={Preview} />
 

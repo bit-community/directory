@@ -17,7 +17,7 @@ const Navbar = styled.header`
     z-index: 95299999999239;
     vertical-align: middle;
     background: white;
-    padding: ${theme.custom.paddingWrapper};
+    padding: ${theme.custom.defaultWrapper};
     /* padding: .70rem 1rem .75rem 1.1rem; */
     /* padding-right: calc(5% + 4px); */
 `
