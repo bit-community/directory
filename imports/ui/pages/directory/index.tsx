@@ -26,7 +26,8 @@ const CardWrapper = styled(Flex)`
   border: 1px solid;
   width: 100%;
   max-width: 310px;
-  margin-bottom: 10px;
+  margin: 10px;
+  margin-right: 0;
   border-bottom-width: 4px;
   border-radius: 4px;
   transition: ease-in-out .2s;
@@ -46,37 +47,46 @@ export const StatusText = styled(Text) <{ fsize?: string }>`
 
 
 
-export const ProfileCards = (): JSX.Element => {
+export const ProfileCard = (props: ProfileInterface): JSX.Element => {
+  const { fullName, _id, skills, yearsOfExperience, cityOrState, countryOfResidence, professionalTitle, profilePhoto } = props
   const history = useHistory()
 
-  const viewProfile = (id: string) => {
+  const viewProfile = (id: string | undefined) => {
     history.push(path.baddie + '/' + id)
   }
+
   return (
     <CardWrapper flexDirection="column" position="relative" p={4}>
       <Flex justifyContent="flex-start" pb="3" alignItems="flex-start">
-        <Avatar name="Helen Mwangi" src="#" size="sm" />
+        <Avatar name={fullName} src={profilePhoto} size="md" />
         <Stack justifyContent="flex-start" pl={2}>
-          <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px">Helen Ofor</Heading>
-          <StatusText margin="0" fsize="13px" lineHeight="6px">Software Engineer</StatusText>
-          <StatusText fsize="11px">+years Experience</StatusText>
+          <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px">{fullName}</Heading>
+          <StatusText margin="0" fsize="13px" lineHeight="6px">{professionalTitle}</StatusText>
+          <StatusText fsize="11px">{yearsOfExperience} +years Experience</StatusText>
+          <StatusText fsize="11px" textTransform="uppercase">{cityOrState}, {countryOfResidence}</StatusText>
         </Stack>
       </Flex>
 
       {/* ==Layout Skills Tag == */}
       <Stack spacing={2} isInline pt={2} mb={4}>
-        <Tag variantColor="blue" border="1px solid" size="sm">
-          <TagIcon icon="at-sign" size="12px" />
-          <TagLabel>UX Designer</TagLabel>
-        </Tag>
+        {Array.isArray(skills) ? skills.map((val: string, index: number) => {
+          return (
+            <Tag key={[index, val].join('-')} variantColor="blue" border="1px solid" size="sm">
+              <TagIcon icon="at-sign" size="12px" />
+              <TagLabel>{val}</TagLabel>
+            </Tag>
 
-        <Tag variantColor="blue" border="1px solid" size="sm">
-          <TagIcon icon="at-sign" size="12px" />
-          <TagLabel>Frontend Developer</TagLabel>
-        </Tag>
+          )
+        }) :
+
+          <Tag variantColor="blue" border="1px solid" size="sm">
+            <TagIcon icon="at-sign" size="12px" />
+            <TagLabel>{skills}</TagLabel>
+          </Tag>
+        }
       </Stack>
       {/* ==Layout Skills Tag == */}
-      <ActionButton buttonName="View Profile" analyticName="Click View Profile" handleAction={(id: string) => viewProfile(id)} />
+      <ActionButton buttonName="View Profile" analyticName="Click View Profile" handleAction={() => viewProfile(_id)} />
 
     </CardWrapper >
 
@@ -114,11 +124,22 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
           <Input placeholder="Search by name or role" color="blue.800" borderRadius="1px" focusBorderColor="blue.800" borderColor="blue.800" />
         </InputGroup>
 
-        <Flex width="100%" mt="10" justifyContent="space-around" flexWrap="wrap">
-          <ProfileCards />
-          <ProfileCards />
-          <ProfileCards />
-          <ProfileCards />
+        <Flex width="100%" mt="10" justifyContent="flex-start" flexWrap="wrap">
+          {profiles && profiles.map((val, _index) => {
+            return (
+              <ProfileCard key={val._id}
+                fullName={val.fullName}
+                profilePhoto={val.profilePhoto}
+                professionalTitle={val.professionalTitle}
+                yearsOfExperience={val.yearsOfExperience}
+                professionalBio={val.professionalBio}
+                skills={val.skills}
+                _id={val._id}
+                cityOrState={val.cityOrState}
+              // countryOfResidence={val.countryOfResidence}
+              />
+            )
+          })}
         </Flex>
 
 
@@ -141,7 +162,7 @@ export default withTracker(() => {
     user: Accounts.user(),
     profileCount: Profile.find().count(),
     profiles: Profile.find({}).fetch(),
-    // payments: Profile.find({}, { fields: { amountPaid: 1, amountDue: 1 } }).fetch(), // select Query
+    payments: Profile.find({}, { fields: { amountPaid: 1, amountDue: 1 } }).fetch(), // select Query
 
   };
 })(DirectoryPage);

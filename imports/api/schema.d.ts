@@ -67,6 +67,7 @@ export interface UploadFileInterface {
 }
 
 export interface ProfileInterface {
+	_id?: string;
 	fullName: string;
 	emailAddress: string;
 	countryOfResidence: string;
@@ -75,7 +76,7 @@ export interface ProfileInterface {
 	professionalTitle: string;
 	professionalBio: string;
 	yearsOfExperience: string;
-	skills: string[];
+	skills: string[] | any[];
 	websiteUrl: string;
 	instagramProfile: string;
 	twitterProfile: string;
