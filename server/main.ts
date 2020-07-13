@@ -1,5 +1,5 @@
 /**
- * This is the Mount Point for Meteor Server. The only File that needs to be imported are 
+ * This is the Mount Point for Meteor Server. The only File that needs to be imported are
  * Meteor Methods required by the Client Service.
  */
 
@@ -14,5 +14,5 @@ import '/imports/api/methods';
 // }
 
 Meteor.startup(() => {
-	// If the Links collection is empty, add some data.
+  // If the Links collection is empty, add some data.
 });

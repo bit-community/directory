@@ -15,7 +15,7 @@ export default function Logout() {
         }
         logout();
         window && window.location.replace(Path.auth.loginRoute)
-    })
+    }, [])
 
     const returnHome = () => {
         window && window.location.replace(Path.auth.loginRoute)

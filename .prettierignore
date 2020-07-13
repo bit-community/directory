@@ -1,4 +1,7 @@
 ./node_modules
 .data
-/https
-/index.ts
+node_modules
+.next
+yarn.lock
+package-lock.json
+public
