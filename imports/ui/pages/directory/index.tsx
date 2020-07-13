@@ -151,7 +151,7 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
   useEffect(() => {
     profiles && localStorage.setItem('dir', JSON.stringify(profiles))
     return () => {
-      setResult([])
+      setResult(profiles)
     }
   }, [])
 
@@ -162,8 +162,6 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
       </Flex>
     )
   }
-
-  console.log(result)
 
   const useFuse = (value: string): React.SetStateAction<ISearchResult> => {
     const fuse = new Fuse(profiles, {
