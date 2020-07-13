@@ -1,6 +1,8 @@
+/* eslint-disable react/no-children-prop */
 import React from 'react'
 import styled from '@emotion/styled'
 import { withTracker } from 'meteor/react-meteor-data'
+import Fuse from 'fuse.js'
 import {
   Flex,
   Stack,
@@ -16,12 +18,7 @@ import {
   Heading,
   Icon,
 } from '@chakra-ui/core'
-import {
-  ActionButton,
-  PageHeader,
-  BorderedDesktopLayout,
-  InputField,
-} from '/imports/ui/components/'
+import { ActionButton, PageHeader } from '/imports/ui/components/'
 // import { greeting, formatNumber } from '/imports/lib/formatter'
 import path from '/imports/ui/path'
 import { Accounts } from 'meteor/accounts-base'
@@ -80,7 +77,6 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
   const viewProfile = (id: string | undefined) => {
     history.push(path.baddie + '/' + id)
   }
-  console.log(professionalTitle)
 
   return (
     <CardWrapper
@@ -120,7 +116,7 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
           })
         ) : (
             <Tag variantColor="blue" border="1px solid" size="sm">
-              <TagIcon icon="at-sign" size="12px" />
+              {/* <TagIcon icon="at-sign" size="12px" /> */}
               <TagLabel>{skills}</TagLabel>
             </Tag>
           )}
@@ -134,7 +130,6 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
     </CardWrapper>
   )
 }
-
 
 interface DirectoryProps {
   profiles: ProfileInterface[]
@@ -150,6 +145,16 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
       </Flex>
     )
   }
+
+  const fuse = new Fuse(profiles, {
+    keys: ['fullName', 'professionalTitle', 'skills', 'cityOrState', 'countryOfResidence'],
+    includeScore: true,
+  })
+
+  const useFuse = (e) => e
+
+  // const result: Fuse.FuseResult<ProfileInterface[]> | any = fuse.search(e)
+
   return (
     <Box>
       <PageHeader useHeader />
@@ -165,6 +170,7 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
             borderRadius="1px"
             focusBorderColor="blue.800"
             borderColor="blue.800"
+            onChange={(e) => useFuse(e)}
           />
         </InputGroup>
 
@@ -187,7 +193,6 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
               )
             })}
         </Flex>
-
       </Wrapper>
     </Box>
   )

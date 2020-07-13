@@ -7,93 +7,93 @@ import { Meteor } from 'meteor/meteor';
 // ========= SUB COLLECTIONS FOR SCHEMA DENORMALIZATION ===============================================
 
 export interface ICommsChannel {
-	_id: string;
-	name: string;
-	medium: string;
-	logo?: string;
-	createdAt: Date;
-	lastUpdated: Date;
-	gateway?: string; // This could be the api endpoint or any auth parameter for users, the question mark means it can be optional
+  _id: string;
+  name: string;
+  medium: string;
+  logo?: string;
+  createdAt: Date;
+  lastUpdated: Date;
+  gateway?: string; // This could be the api endpoint or any auth parameter for users, the question mark means it can be optional
 }
 
 export interface IGuarantor {
-	_id: string;
-	_pk: string;
-	email: string;
-	address: string;
-	phone: string;
-	createdAt: Date;
-	lastUpdated: Date;
+  _id: string;
+  _pk: string;
+  email: string;
+  address: string;
+  phone: string;
+  createdAt: Date;
+  lastUpdated: Date;
 }
 
 export interface ICurrency {
-	code: 'GHC' | 'NGN' | 'USD'; //can be Enum
-	symbol: string;
-	name: string;
+  code: 'GHC' | 'NGN' | 'USD'; //can be Enum
+  symbol: string;
+  name: string;
 }
 
 export interface ILocation {
-	country: string;
-	countryCode: string;
-	state: string;
-	stateCode: string;
-	address?: string;
-	currency: ICurrency;
+  country: string;
+  countryCode: string;
+  state: string;
+  stateCode: string;
+  address?: string;
+  currency: ICurrency;
 }
 
 // ========================================== END NORMALIZATION TABLE ================================
 
 export interface ICustomer {
-	_id: string;
-	_pk: string;
-	name: string;
-	email: string;
-	altEmail?: string;
-	phone: string;
-	altPhone?: number;
-	address: string;
-	inDebt: boolean;
-	createdAt: Date;
-	lastUpdated: Date;
-	guarantor: Array<IGuarantor>;
+  _id: string;
+  _pk: string;
+  name: string;
+  email: string;
+  altEmail?: string;
+  phone: string;
+  altPhone?: number;
+  address: string;
+  inDebt: boolean;
+  createdAt: Date;
+  lastUpdated: Date;
+  guarantor: Array<IGuarantor>;
 }
 
 export interface UploadFileInterface {
-	name: string;
-	type: string;
-	size: number;
-	base64: string;
-	file: Record<any, string>;
+  name: string;
+  type: string;
+  size: number;
+  base64: string;
+  file: Record<any, string>;
 }
 
 export interface IProjectsUpload {
-	base64: string;
-	name?: string;
-	size?: string;
-	type?: string;
+  base64: string;
+  name?: string;
+  size?: string;
+  type?: string;
 }
 
 export interface ProfileInterface {
-	_id?: string;
-	fullName: string;
-	emailAddress: string;
-	countryOfResidence: string;
-	cityOrState: string;
-	profilePhoto: string;
-	professionalTitle: string;
-	professionalBio: string;
-	yearsOfExperience: string;
-	skills: string[] | any[];
-	websiteUrl: string;
-	instagramProfile: string;
-	twitterProfile: string;
-	facebookProfile: string;
-	projects: IProjectsUpload[];
-	mentorshipConsent: boolean;
-	waiverOfLiability: boolean;
-	createdAt: Date;
-	owner: string | undefined;
-	username: string | undefined;
+  _id?: string;
+  fullName: string;
+  emailAddress: string;
+  countryOfResidence: string;
+  cityOrState: string;
+  profilePhoto: string;
+  professionalTitle: string;
+  professionalBio: string;
+  yearsOfExperience: string;
+  skills: string[] | any[];
+  websiteUrl: string;
+  instagramProfile: string;
+  twitterProfile: string;
+  facebookProfile: string;
+  projects: IProjectsUpload[];
+  mentorshipConsent: boolean;
+  waiverOfLiability: boolean;
+  createdAt: Date;
+  owner: string | undefined;
+  username: string | undefined;
 }
 
 /**
@@ -101,47 +101,47 @@ export interface ProfileInterface {
  */
 
 export interface IUser {
-	_id: string;
-	email: string;
-	phone: string;
-	name: string;
-	verified: boolean;
-	createdAt: Date;
-	lastUpdated: Date;
-	countryCode: string;
-	currencyCode: string;
-	profile: {
-		workspace: {
-			_id: string;
-			name: string;
-			type: 'organization' | 'individual';
-		};
-		location: ILocation;
-		organization: {
-			name: string;
-			country: string;
-			address: string;
-			state: string;
-			currency: ICurrency;
-		};
-		subscription: {
-			type: string; // preferably an ENUM will be used here
-			_pk: string; // the subscription PK is a unique identifier, we may stick to ID
-		};
-		wallet: {
-			balance: string;
-			cleared: boolean;
-			lastUpdated: Date;
-		};
-	};
+  _id: string;
+  email: string;
+  phone: string;
+  name: string;
+  verified: boolean;
+  createdAt: Date;
+  lastUpdated: Date;
+  countryCode: string;
+  currencyCode: string;
+  profile: {
+    workspace: {
+      _id: string;
+      name: string;
+      type: 'organization' | 'individual';
+    };
+    location: ILocation;
+    organization: {
+      name: string;
+      country: string;
+      address: string;
+      state: string;
+      currency: ICurrency;
+    };
+    subscription: {
+      type: string; // preferably an ENUM will be used here
+      _pk: string; // the subscription PK is a unique identifier, we may stick to ID
+    };
+    wallet: {
+      balance: string;
+      cleared: boolean;
+      lastUpdated: Date;
+    };
+  };
 }
 
 export interface ITask {
-	_id?: string;
-	text: string;
-	createdAt: Date;
-	owner: string;
-	ownerName: string;
+  _id?: string;
+  text: string;
+  createdAt: Date;
+  owner: string;
+  ownerName: string;
 }
 
 /**
@@ -149,29 +149,29 @@ export interface ITask {
  */
 
 export interface ITransaction {
-	_id: string;
-	currency: ICurrency;
-	createdAt: Date;
-	owner: Meteor.User | undefined;
-	customerId: string;
-	userId: string;
+  _id: string;
+  currency: ICurrency;
+  createdAt: Date;
+  owner: Meteor.User | undefined;
+  customerId: string;
+  userId: string;
 }
 
 export interface IPaymentPlan {
-	_id: string;
+  _id: string;
 }
 export interface IAgreementPlan {
-	_id: string;
+  _id: string;
 }
 
 export interface IAgreementTemplate extends IAgreementPlan {
-	createdAt: Date;
-	lastUpdated: Date;
+  createdAt: Date;
+  lastUpdated: Date;
 }
 
 export interface IPaymentTemplate extends IPaymentPlan {
-	createdAt: Date;
-	lastUpdated: Date;
+  createdAt: Date;
+  lastUpdated: Date;
 }
 
 /**
@@ -179,6 +179,6 @@ export interface IPaymentTemplate extends IPaymentPlan {
  */
 
 export interface IBreakLayout {
-	marginT?: string;
-	theme?: { custom: { defaultBox: string } };
+  marginT?: string;
+  theme?: { custom: { defaultBox: string } };
 }

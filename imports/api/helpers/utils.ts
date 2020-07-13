@@ -11,12 +11,12 @@ export const isUserId = (userId: string) => (userId !== null || '' ? userId : fa
 
 // function to evaluate a condition and throw an error
 export const evaluateAndExecute = (condition: any, _error: any) => {
-	try {
-		condition;
-		console.log('PROCESS WAS SUCCESSFUL EXECUTE/EVALUATE');
-	} catch (_error) {
-		console.error(_error.error);
-	}
+  try {
+    condition;
+    console.log('PROCESS WAS SUCCESSFUL EXECUTE/EVALUATE');
+  } catch (_error) {
+    console.error(_error.error);
+  }
 };
 
 //In order to finish up our private task feature, we need to add checks to our deleteTask and setChecked methods
