@@ -148,12 +148,12 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
   const { profiles } = props
   const [result, setResult] = useState<ISearchResult[]>([])
 
-  useEffect(() => {
-    profiles && localStorage.setItem('dir', JSON.stringify(profiles))
-    return () => {
-      setResult(profiles)
-    }
-  }, [])
+  // useEffect(() => {
+  //   // profiles && localStorage.setItem('dir', JSON.stringify(profiles))
+  //   return () => {
+  //     setResult(profiles)
+  //   }
+  // }, [])
 
   if (!props.profiles || props.profiles.length === 0) {
     return (
