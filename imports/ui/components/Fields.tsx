@@ -175,7 +175,7 @@ interface IFormikForm {
 
 const FormikForm = (props: IFormikForm): JSX.Element => {
     const { children, withIcon, buttonName, isLoading, formProps: { errors, values }, analyticName, ...rest } = props;
-    console.log("HERE ARE FORMIK FORM ON SUBMISSION", props.formProps);
+    // console.log("HERE ARE FORMIK FORM ON SUBMISSION", props.formProps);
 
     // Call Analytics on all Form Submissions
     Analytics.track(analyticName, {

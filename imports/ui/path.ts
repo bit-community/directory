@@ -5,7 +5,7 @@
 
 // To create a route 1. Create a Path here - 2. Link this path to a component in routes.tsx and use the path name everywhere
 
-type TPath = string;
+export type TPath = string;
 
 export interface IPath {
 	root: TPath;

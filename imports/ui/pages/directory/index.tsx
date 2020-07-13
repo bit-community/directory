@@ -56,14 +56,15 @@ const CardWrapper = styled(Flex)`
   }
 `
 
-export const StatusText = styled(Text)<{ fsize?: string }>`
+export const StatusText = styled(Text) <{ fsize?: string }>`
   margin: 0;
   padding: 0;
   font-size: ${(props) => (props.fsize ? props.fsize : '.65rem')};
   line-height: 90%;
 `
+type TProfileProps = Partial<ProfileInterface>
 
-export const ProfileCard = (props: ProfileInterface): JSX.Element => {
+export const ProfileCard = (props: TProfileProps): JSX.Element => {
   const {
     fullName,
     _id,
@@ -118,11 +119,11 @@ export const ProfileCard = (props: ProfileInterface): JSX.Element => {
             )
           })
         ) : (
-          <Tag variantColor="blue" border="1px solid" size="sm">
-            <TagIcon icon="at-sign" size="12px" />
-            <TagLabel>{skills}</TagLabel>
-          </Tag>
-        )}
+            <Tag variantColor="blue" border="1px solid" size="sm">
+              <TagIcon icon="at-sign" size="12px" />
+              <TagLabel>{skills}</TagLabel>
+            </Tag>
+          )}
       </Stack>
       {/* ==Layout Skills Tag == */}
       <ActionButton
@@ -133,6 +134,7 @@ export const ProfileCard = (props: ProfileInterface): JSX.Element => {
     </CardWrapper>
   )
 }
+
 
 interface DirectoryProps {
   profiles: ProfileInterface[]
@@ -186,8 +188,6 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
             })}
         </Flex>
 
-        {/* <div>Welcome Home</div> */}
-        {/* <div>{JSON.stringify(profiles)}</div> */}
       </Wrapper>
     </Box>
   )
@@ -200,6 +200,5 @@ export default withTracker(() => {
     user: Accounts.user(),
     profileCount: Profile.find().count(),
     profiles: Profile.find({}).fetch(),
-    payments: Profile.find({}, { fields: { amountPaid: 1, amountDue: 1 } }).fetch(), // select Query
   }
 })(DirectoryPage)
