@@ -8,24 +8,24 @@
 
 // declare global type definitions
 declare global {
-	interface Window {
-		analytics: SegmentAnalytics.AnalyticsJS;
-	}
+  interface Window {
+    analytics: SegmentAnalytics.AnalyticsJS;
+  }
 }
 
 export const load = () => {
-	window.analytics.load('NWKqq2W8V3cTrwF3ScnaLK3H7CDKSRSS');
+  window.analytics.load('NWKqq2W8V3cTrwF3ScnaLK3H7CDKSRSS');
 };
 
 export const page = () => {
-	window.analytics.page();
+  window.analytics.page();
 };
 export const track = (name: string, properties: any) => {
-	window.analytics.track(name, properties);
+  window.analytics.track(name, properties);
 };
 
 export const identify = (name: string, ...rest: any) => {
-	/**SPEC
+  /**SPEC
  * 	analytics.identify("97980cfea0067", {
 		name: "Peter Gibbons",
 		email: "peter@initech.com",
@@ -37,5 +37,5 @@ export const identify = (name: string, ...rest: any) => {
 // }
 	  
  */
-	window.analytics.identify(name, { ...rest });
+  window.analytics.identify(name, { ...rest });
 };

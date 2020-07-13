@@ -1,8 +1,11 @@
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/bit-community/directory)
 
 # Baddies in Tech Directory
+Find and connect with women in tech
 
-Deploy with Gitpod Link []
+### Installation Guide
+- This project runs on top of meteor
+- To install new npm packages always use `meteor npm install` so that meteor can bundle these packages in the builds
 
 
 ### Meteor Tools
