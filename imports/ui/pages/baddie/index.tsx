@@ -158,11 +158,11 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
 };
 
 interface BaddieProps {
-  profile: ProfileInterface;
+  profile: ProfileInterface
 }
 
 const BaddieProfile: React.FC<BaddieProps> = (props): JSX.Element => {
-  const { profile } = props;
+  const { profile } = props
   return (
     <Box>
       <PageHeader useHeader />

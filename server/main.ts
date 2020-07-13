@@ -5,8 +5,8 @@
 
 //  Refer to Meteor Guide for ideal project structure https://guide.meteor.com/structure.html
 
-import { Meteor } from 'meteor/meteor'
-import '/imports/api/methods'
+import { Meteor } from 'meteor/meteor';
+import '/imports/api/methods';
 
 // import { Links } from '/imports/api/links';
 // function insertLink(title: string, url: string) {
@@ -15,4 +15,4 @@ import '/imports/api/methods'
 
 Meteor.startup(() => {
   // If the Links collection is empty, add some data.
-})
+});

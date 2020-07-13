@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-import React from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import styled from '@emotion/styled'
 import { withTracker } from 'meteor/react-meteor-data'
 import Fuse from 'fuse.js'
@@ -40,8 +40,7 @@ const CardWrapper = styled(Flex)`
   border: 1px solid;
   width: 100%;
   max-width: 310px;
-  margin: 10px;
-  margin-right: 0;
+  margin: 7px;
   border-bottom-width: 4px;
   border-radius: 4px;
   transition: ease-in-out 0.2s;
@@ -53,7 +52,7 @@ const CardWrapper = styled(Flex)`
   }
 `
 
-export const StatusText = styled(Text) <{ fsize?: string }>`
+export const StatusText = styled(Text)<{ fsize?: string }>`
   margin: 0;
   padding: 0;
   font-size: ${(props) => (props.fsize ? props.fsize : '.65rem')};
@@ -115,11 +114,11 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
             )
           })
         ) : (
-            <Tag variantColor="blue" border="1px solid" size="sm">
-              {/* <TagIcon icon="at-sign" size="12px" /> */}
-              <TagLabel>{skills}</TagLabel>
-            </Tag>
-          )}
+          <Tag variantColor="blue" border="1px solid" size="sm">
+            {/* <TagIcon icon="at-sign" size="12px" /> */}
+            <TagLabel>{skills}</TagLabel>
+          </Tag>
+        )}
       </Stack>
       {/* ==Layout Skills Tag == */}
       <ActionButton
@@ -131,12 +130,30 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
   )
 }
 
+/**===========================================================
+ * The section below renders the directory profiles
+ **===========================================================*/
+
 interface DirectoryProps {
   profiles: ProfileInterface[]
 }
 
+interface ISearchResult {
+  item: ProfileInterface
+  refIndex?: number
+  score?: number
+}
+
 export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
   const { profiles } = props
+  const [result, setResult] = useState<ISearchResult[]>([])
+
+  useEffect(() => {
+    profiles && localStorage.setItem('dir', JSON.stringify(profiles))
+    return () => {
+      setResult([])
+    }
+  }, [])
 
   if (!props.profiles || props.profiles.length === 0) {
     return (
@@ -146,14 +163,25 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
     )
   }
 
-  const fuse = new Fuse(profiles, {
-    keys: ['fullName', 'professionalTitle', 'skills', 'cityOrState', 'countryOfResidence'],
-    includeScore: true,
-  })
+  console.log(result)
 
-  const useFuse = (e) => e
+  const useFuse = (value: string): React.SetStateAction<ISearchResult> => {
+    const fuse = new Fuse(profiles, {
+      keys: ['fullName', 'professionalTitle', 'skills', 'cityOrState', 'countryOfResidence'],
+      includeScore: true,
+    })
 
-  // const result: Fuse.FuseResult<ProfileInterface[]> | any = fuse.search(e)
+    const result: Fuse.FuseResult<ISearchResult[]> | any = fuse.search(value)
+    setTimeout(() => {
+      setResult(result)
+    }, 200)
+    return result
+  }
+
+  const handleSearch = (e: ChangeEvent<HTMLInputElement>): void => {
+    // Fix this later and use a debounce [lodash]
+    useFuse(e.target.value)
+  }
 
   return (
     <Box>
@@ -170,28 +198,45 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
             borderRadius="1px"
             focusBorderColor="blue.800"
             borderColor="blue.800"
-            onChange={(e) => useFuse(e)}
+            onChange={(e: React.ChangeEvent) => handleSearch(e)}
           />
         </InputGroup>
 
-        <Flex width="100%" mt="10" justifyContent="flex-start" flexWrap="wrap">
-          {profiles &&
-            profiles.map((val, _index) => {
-              return (
-                <ProfileCard
-                  key={val._id}
-                  fullName={val.fullName}
-                  profilePhoto={val.profilePhoto}
-                  professionalTitle={val.professionalTitle || ''}
-                  yearsOfExperience={val.yearsOfExperience}
-                  professionalBio={val.professionalBio}
-                  skills={val.skills}
-                  _id={val._id}
-                  cityOrState={val.cityOrState}
-                  countryOfResidence={val.countryOfResidence}
-                />
-              )
-            })}
+        <Flex width="100%" mt="10" justifyContent={['center', 'flex-start']} flexWrap="wrap">
+          {result.length >= 1
+            ? result.map((res, _index) => {
+                const { item }: ISearchResult = res
+                return (
+                  <ProfileCard
+                    key={[item._id, _index].join('-')}
+                    fullName={item.fullName}
+                    profilePhoto={item.profilePhoto}
+                    professionalTitle={item.professionalTitle || ''}
+                    yearsOfExperience={item.yearsOfExperience}
+                    professionalBio={item.professionalBio}
+                    skills={item.skills}
+                    _id={item._id}
+                    cityOrState={item.cityOrState}
+                    countryOfResidence={item.countryOfResidence}
+                  />
+                )
+              })
+            : profiles.map((val, _index) => {
+                return (
+                  <ProfileCard
+                    key={[val._id, _index].join('-')}
+                    fullName={val.fullName}
+                    profilePhoto={val.profilePhoto}
+                    professionalTitle={val.professionalTitle || ''}
+                    yearsOfExperience={val.yearsOfExperience}
+                    professionalBio={val.professionalBio}
+                    skills={val.skills}
+                    _id={val._id}
+                    cityOrState={val.cityOrState}
+                    countryOfResidence={val.countryOfResidence}
+                  />
+                )
+              })}
         </Flex>
       </Wrapper>
     </Box>
