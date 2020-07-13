@@ -16,6 +16,7 @@ import Baddie from '/imports/ui/pages/baddie'
 // =============== Profile Components ============
 import Account from '/imports/ui/pages/account'
 import Onboarding from '/imports/ui/pages/onboarding'
+import Profile from '/imports/ui/pages/profile'
 
 
 
@@ -38,7 +39,7 @@ export default function AppRouter(this: any) {
                     <Route path={path.auth.logoutRoute} component={Logout} />
                     <Route path={path.auth.resetPasswordRoute} component={ResetPassword} />
                     <Route path={path.onboarding} component={Onboarding} />
-                    <Route path={path.profile} component={Account} />
+                    <Route path={path.profile} component={Profile} />
                     <Route path={path.account} component={Account} />
                     <Route path={path.baddie + '/:id'} component={Baddie} />
                     <Route path={path.preview} component={Preview} />
