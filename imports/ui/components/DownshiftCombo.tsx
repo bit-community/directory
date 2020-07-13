@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useCombobox } from 'downshift';
+import React, { useState } from 'react'
+import { useCombobox } from 'downshift'
 
 const menuStyles = {
   maxHeight: '180px',
@@ -13,7 +13,7 @@ const menuStyles = {
   listStyle: 'none',
   padding: 0,
   left: '135px',
-};
+}
 
 const items = [
   'Neptunium',
@@ -42,12 +42,12 @@ const items = [
   'Livermorium',
   'Tennessine',
   'Oganesson',
-];
+]
 
 // https://dev.to/aromanarguello/how-to-build-an-autocomplete-dropdown-in-react-using-downshift-1c3o
 // https://www.merrickchristensen.com/articles/headless-user-interface-components/
 function DropdownCombobox() {
-  const [inputItems, setInputItems] = useState(items);
+  const [inputItems, setInputItems] = useState(items)
   const {
     isOpen,
     getToggleButtonProps,
@@ -60,15 +60,15 @@ function DropdownCombobox() {
   } = useCombobox({
     items: inputItems,
     onInputValueChange: ({ inputValue }) => {
-      setInputItems(items.filter((item) => item.toLowerCase().startsWith(inputValue.toLowerCase())));
+      setInputItems(items.filter((item) => item.toLowerCase().startsWith(inputValue.toLowerCase())))
     },
-  });
-  console.log(getToggleButtonProps());
+  })
+  console.log(getToggleButtonProps())
   const triggerList = () => {
-    getToggleButtonProps();
+    getToggleButtonProps()
     // console.log(!isOpen);
-    return !isOpen;
-  };
+    return !isOpen
+  }
 
   return (
     <>
@@ -92,7 +92,7 @@ function DropdownCombobox() {
           ))}
       </ul>
     </>
-  );
+  )
 }
 
-export default DropdownCombobox;
+export default DropdownCombobox

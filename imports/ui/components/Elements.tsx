@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
-import { Text, Stack } from '@chakra-ui/core';
-import theme from '/imports/lib/theme';
+import styled from '@emotion/styled'
+import { Text, Stack } from '@chakra-ui/core'
+import theme from '/imports/lib/theme'
 
 export const BorderedDesktopLayout = styled(Stack)<{ marTop: string; padTop: string }>`
   max-width: 800px;
@@ -11,7 +11,7 @@ export const BorderedDesktopLayout = styled(Stack)<{ marTop: string; padTop: str
   padding-top: ${(props) => (props.padTop ? props.padTop : '-100px')};
   padding-bottom: 50px;
   border-bottom: 4px solid;
-`;
+`
 
 // export const OverflowText = styled.div`
 // 	width: 11rem;
@@ -47,16 +47,16 @@ export const AppIcon = styled.div<{ src: string; theme?: { custom: { green: stri
     fill-opacity: 0.8;
     opacity: 0.8;
   }
-`;
+`
 
 interface IIconBox extends JSX.Element {
-  width: string;
-  height: string;
-  borderRadius: string;
-  margin: string;
-  backgroundColor: string;
-  backgroundSize: string;
-  src: string;
+  width: string
+  height: string
+  borderRadius: string
+  margin: string
+  backgroundColor: string
+  backgroundSize: string
+  src: string
 }
 
 export const IconBox = styled.div<IIconBox>`
@@ -74,12 +74,12 @@ export const IconBox = styled.div<IIconBox>`
   background-position: center;
   background-size: ${(props) => (props.backgroundSize ? props.backgroundSize : 'cover')};
   background-image: ${(props) => (props.src ? `url(${props.src})` : 'none')};
-`;
+`
 
 interface IBreakLayout {
-  marginT?: string;
-  bg?: string;
-  theme?: { custom: { defaultBox: string } };
+  marginT?: string
+  bg?: string
+  theme?: { custom: { defaultBox: string } }
 }
 export const BreakLayout = styled.section<IBreakLayout>`
   padding: 0;
@@ -87,10 +87,10 @@ export const BreakLayout = styled.section<IBreakLayout>`
   margin-top: ${(props) => (props.marginT ? props.marginT : '1.5rem')};
   margin-left: calc(-${(props) => props.theme.custom.defaultBox});
   margin-right: calc(-${(props) => props.theme.custom.defaultBox});
-`;
+`
 
 interface ILineDivider {
-  theme?: { custom: { defaultBox: string } };
+  theme?: { custom: { defaultBox: string } }
 }
 export const LineDivider = styled.div<ILineDivider>`
   height: 0.8px;
@@ -99,7 +99,7 @@ export const LineDivider = styled.div<ILineDivider>`
   margin-left: calc(-${(props) => props.theme.custom.defaultBox});
   margin-right: calc(-${(props) => props.theme.custom.defaultBox});
   background: #eee;
-`;
+`
 
 export const StatusText = styled(Text)<{ fsize?: string }>`
   margin: 0;
@@ -107,4 +107,4 @@ export const StatusText = styled(Text)<{ fsize?: string }>`
   font-size: ${(props) => (props.fsize ? props.fsize : '.65rem')};
   line-height: 6px;
   text-transform: uppercase;
-`;
+`

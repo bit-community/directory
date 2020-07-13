@@ -1,24 +1,24 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Flex, Box, Icon, Text } from '@chakra-ui/core';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Flex, Box, Icon, Text } from '@chakra-ui/core'
 
 const SummaryRow = styled.main`
   display: flex;
   flex-direction: column;
   margin-top: 5px;
-`;
+`
 
 interface ISummaryList {
-  name: string;
-  phone: any;
-  email: any;
-  location: any;
-  iconName: string;
-  iconSize: any;
+  name: string
+  phone: any
+  email: any
+  location: any
+  iconName: string
+  iconSize: any
 }
 
 const SummaryList: React.FC<ISummaryList> = (props) => {
-  const { name, phone, email, location, iconName, iconSize } = props;
+  const { name, phone, email, location, iconName, iconSize } = props
 
   return (
     <SummaryRow>
@@ -58,7 +58,7 @@ const SummaryList: React.FC<ISummaryList> = (props) => {
         </Box>
       </Flex>
     </SummaryRow>
-  );
-};
+  )
+}
 
-export { SummaryList, SummaryRow };
+export { SummaryList, SummaryRow }

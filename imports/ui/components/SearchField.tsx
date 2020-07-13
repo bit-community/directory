@@ -3,10 +3,10 @@
  * https://dev.to/aromanarguello/how-to-build-an-autocomplete-dropdown-in-react-using-downshift-1c3o
  */
 
-import React from 'react';
-import styled from '@emotion/styled';
-import Downshift from 'downshift';
-import { useField } from 'formik';
+import React from 'react'
+import styled from '@emotion/styled'
+import Downshift from 'downshift'
+import { useField } from 'formik'
 import {
   FormControl,
   List,
@@ -17,10 +17,10 @@ import {
   InputGroup,
   InputRightElement,
   Box,
-} from '@chakra-ui/core';
-import { CustomerSearch } from '/imports/ui/components/CustomerList';
-import { TransactionSearch } from '/imports/ui/components/List';
-import { ICustomer, ITransaction } from '/imports/api/schema';
+} from '@chakra-ui/core'
+import { CustomerSearch } from '/imports/ui/components/CustomerList'
+import { TransactionSearch } from '/imports/ui/components/List'
+import { ICustomer, ITransaction } from '/imports/api/schema'
 
 const FormikInput = styled(Input)`
   border-width: 1.1px;
@@ -37,7 +37,7 @@ const FormikInput = styled(Input)`
     font-size: ${(props: any) => props.theme.custom.inputPlaceHolder};
     vertical-align: middle;
   }
-`;
+`
 const FormikLabel = styled(FormLabel)<{ fsize?: string }>`
   font-size: ${(props) => (props.fsize ? props.fsize : '11px')};
   position: absolute;
@@ -47,20 +47,20 @@ const FormikLabel = styled(FormLabel)<{ fsize?: string }>`
   padding: 0.1rem;
   padding-left: 1rem;
   padding-right: 10px;
-`;
+`
 
 interface ICustomerSearchField {
-  validate: Function;
-  name: string;
-  label?: string;
-  placeholder: string;
-  options: Array<ICustomer>;
-  [key: string]: any;
+  validate: Function
+  name: string
+  label?: string
+  placeholder: string
+  options: Array<ICustomer>
+  [key: string]: any
 }
 
 export const CustomerSearchField: React.FC<ICustomerSearchField> = (props): JSX.Element => {
-  const { validate, placeholder, name, options, label, ...rest } = props;
-  const [field, meta, helpers] = useField<ICustomerSearchField>(props);
+  const { validate, placeholder, name, options, label, ...rest } = props
+  const [field, meta, helpers] = useField<ICustomerSearchField>(props)
 
   return (
     <FormControl isInvalid={meta['error'] && meta.touched ? true : false} mt="5" position="relative">
@@ -84,9 +84,9 @@ export const CustomerSearchField: React.FC<ICustomerSearchField> = (props): JSX.
           getRootProps,
         }) => {
           const triggerList = () => {
-            getToggleButtonProps();
-            return !!isOpen;
-          };
+            getToggleButtonProps()
+            return !!isOpen
+          }
           return (
             <div>
               <FormikLabel {...getToggleButtonProps()} {...getLabelProps()} color="gray.600">
@@ -148,26 +148,26 @@ export const CustomerSearchField: React.FC<ICustomerSearchField> = (props): JSX.
                   : null}
               </List>
             </div>
-          );
+          )
         }}
       </Downshift>
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}
 
 interface ITransactionSearchField {
-  validate: Function;
-  name: string;
-  label?: string;
-  placeholder: string;
-  options: Array<ITransaction>;
-  [key: string]: any;
+  validate: Function
+  name: string
+  label?: string
+  placeholder: string
+  options: Array<ITransaction>
+  [key: string]: any
 }
 
 export const TransactionSearchField: React.FC<ITransactionSearchField> = (props): JSX.Element => {
-  const { validate, placeholder, name, options, label, ...rest } = props;
-  const [field, meta, helpers] = useField<ITransactionSearchField>(props);
+  const { validate, placeholder, name, options, label, ...rest } = props
+  const [field, meta, helpers] = useField<ITransactionSearchField>(props)
 
   return (
     <FormControl isInvalid={meta['error'] && meta.touched ? true : false} mt="5" position="relative">
@@ -191,9 +191,9 @@ export const TransactionSearchField: React.FC<ITransactionSearchField> = (props)
           getRootProps,
         }) => {
           const triggerList = () => {
-            getToggleButtonProps();
-            return !!isOpen;
-          };
+            getToggleButtonProps()
+            return !!isOpen
+          }
           return (
             <div>
               <FormikLabel {...getToggleButtonProps()} {...getLabelProps()} color="gray.600">
@@ -260,10 +260,10 @@ export const TransactionSearchField: React.FC<ITransactionSearchField> = (props)
                   : null}
               </List>
             </div>
-          );
+          )
         }}
       </Downshift>
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}

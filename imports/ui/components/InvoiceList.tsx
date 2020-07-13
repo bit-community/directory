@@ -1,31 +1,31 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
-import { Flex, Box, Heading, Text, StatNumber, Icon } from '@chakra-ui/core';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
+import { Flex, Box, Heading, Text, StatNumber, Icon } from '@chakra-ui/core'
 
 const InvoiceRow = styled.main`
   display: flex;
   flex-direction: column;
-`;
+`
 const StatusText = styled(Text)`
   margin: 0;
   padding: 0;
   font-size: 0.65rem;
   line-height: 19px;
   text-transform: uppercase;
-`;
+`
 
 interface IInvoiceList {
   //   analyticName: string,
-  customerName: string;
-  date: any;
-  amount: any;
-  link: string;
-  children?: any;
+  customerName: string
+  date: any
+  amount: any
+  link: string
+  children?: any
 }
 
 const InvoiceList: React.FC<IInvoiceList> = (props) => {
-  const { customerName, date, amount, link } = props;
+  const { customerName, date, amount, link } = props
 
   // const handleClick = (analyticName: string): any => {
   //     // we will write the handle analytics here
@@ -50,8 +50,8 @@ const InvoiceList: React.FC<IInvoiceList> = (props) => {
         <Icon name="chevron-right" size="19px" />
       </Link>
     </Flex>
-  );
-};
+  )
+}
 
 //  export the components as modules to be resuable by other component
-export { InvoiceList, InvoiceRow };
+export { InvoiceList, InvoiceRow }

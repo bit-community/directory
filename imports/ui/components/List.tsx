@@ -1,8 +1,8 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
-import { Box, Stack, Avatar, Heading, Text, Icon, Flex as ChFlex } from '@chakra-ui/core';
-import * as Analytics from '/imports/ui/analytics';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
+import { Box, Stack, Avatar, Heading, Text, Icon, Flex as ChFlex } from '@chakra-ui/core'
+import * as Analytics from '/imports/ui/analytics'
 
 // const CustomerList = styled.section`
 // flex-direction: row;
@@ -10,17 +10,17 @@ import * as Analytics from '/imports/ui/analytics';
 // `
 
 interface ITransactionList {
-  analyticName: string;
-  customerName: string;
-  customerStatus: string;
-  itemName?: string;
-  amount: any;
-  paymentStatus: string;
-  overdueAmount: string;
-  overdueStatus: string;
-  cardLink: string;
-  iconName: string | any;
-  iconSize: any;
+  analyticName: string
+  customerName: string
+  customerStatus: string
+  itemName?: string
+  amount: any
+  paymentStatus: string
+  overdueAmount: string
+  overdueStatus: string
+  cardLink: string
+  iconName: string | any
+  iconSize: any
 }
 
 const Flex = styled(ChFlex)`
@@ -33,14 +33,14 @@ const Flex = styled(ChFlex)`
     cursor: pointer;
     opacity: 0.7;
   }
-`;
+`
 const StatusText = styled(Text)`
   margin: 0;
   padding: 0;
   font-size: 0.65rem;
   line-height: 6px;
   text-transform: uppercase;
-`;
+`
 
 const LineDivider = styled.div`
   height: 0.8px;
@@ -49,7 +49,7 @@ const LineDivider = styled.div`
   margin-left: calc(-${(props) => props.theme.custom.defaultBox});
   margin-right: calc(-${(props) => props.theme.custom.defaultBox});
   background: #eee;
-`;
+`
 
 const TransactionList: React.FC<ITransactionList> = (props) => {
   const {
@@ -63,14 +63,14 @@ const TransactionList: React.FC<ITransactionList> = (props) => {
     iconName,
     iconSize,
     cardLink,
-  } = props;
+  } = props
 
   const handleClick = (analyticName: string): any => {
     // /we will write the handle analytics here
     Analytics.track(analyticName, {
       comp: 'Transactions List Card',
-    });
-  };
+    })
+  }
 
   return (
     <Link to={cardLink} onClick={handleClick(analyticName)}>
@@ -112,28 +112,28 @@ const TransactionList: React.FC<ITransactionList> = (props) => {
       </Flex>
       <LineDivider />
     </Link>
-  );
-};
+  )
+}
 
 /**
  * Component for Transactions List
  */
 
 interface ITransactionSearch extends ITransactionList {
-  itemName?: string;
-  amountPaid: string;
-  amountDue: string;
+  itemName?: string
+  amountPaid: string
+  amountDue: string
 }
 
 const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
-  const { analyticName, customerName, itemName, amountPaid, paymentStatus, amountDue, overdueStatus } = props;
+  const { analyticName, customerName, itemName, amountPaid, paymentStatus, amountDue, overdueStatus } = props
 
   const handleClick = (analyticName: string): any => {
     // /we will write the handle analytics here
     Analytics.track(analyticName, {
       comp: 'Transactions Search Card',
-    });
-  };
+    })
+  }
 
   return (
     <>
@@ -171,9 +171,9 @@ const TransactionSearch: React.FC<ITransactionSearch> = (props) => {
       </Flex>
       <LineDivider />
     </>
-  );
-};
+  )
+}
 
 // export the components as modules to be resuable by other component
 // export default CustomerList
-export { TransactionList, TransactionSearch };
+export { TransactionList, TransactionSearch }

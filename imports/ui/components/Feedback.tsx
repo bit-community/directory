@@ -1,22 +1,22 @@
-import React from 'react';
-import { LinkButton, PageHeader, BorderedDesktopLayout } from '/imports/ui/components';
+import React from 'react'
+import { LinkButton, PageHeader, BorderedDesktopLayout } from '/imports/ui/components'
 
-import { Box, Icon, Heading, Stack } from '@chakra-ui/core';
-import { FormButton } from '/imports/ui/components';
-import PropTypes from 'prop-types';
+import { Box, Icon, Heading, Stack } from '@chakra-ui/core'
+import { FormButton } from '/imports/ui/components'
+import PropTypes from 'prop-types'
 
 interface IFeedback {
-  children?: any;
-  message: string;
-  color?: string;
-  buttonName: string;
-  iconName: string | any;
-  buttonLink: string;
-  iconSize?: string;
+  children?: any
+  message: string
+  color?: string
+  buttonName: string
+  iconName: string | any
+  buttonLink: string
+  iconSize?: string
 }
 
 export const PositiveFeedback: React.FC<IFeedback> = (props) => {
-  const { iconName, message, color, buttonLink, iconSize, buttonName, ...rest } = props;
+  const { iconName, message, color, buttonLink, iconSize, buttonName, ...rest } = props
   return (
     <>
       <PageHeader useHeader />
@@ -49,8 +49,8 @@ export const PositiveFeedback: React.FC<IFeedback> = (props) => {
         </Box>
       </BorderedDesktopLayout>
     </>
-  );
-};
+  )
+}
 
 PositiveFeedback.propTypes = {
   children: PropTypes.element,
@@ -59,4 +59,4 @@ PositiveFeedback.propTypes = {
   buttonLink: PropTypes.string.isRequired,
   iconName: PropTypes.oneOfType([PropTypes.string, PropTypes.any]),
   iconSize: PropTypes.any,
-};
+}

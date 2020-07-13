@@ -1,17 +1,17 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Box, Heading, Text, Flex as ChFlex } from '@chakra-ui/core';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Box, Heading, Text, Flex as ChFlex } from '@chakra-ui/core'
 
 const Item = styled.section`
   flex-direction: row;
   align-items: center;
-`;
+`
 
 interface IItem {
-  analyticName: string;
-  customerName: string;
-  customerItem: string;
-  amount: any;
+  analyticName: string
+  customerName: string
+  customerItem: string
+  amount: any
 }
 
 const Flex = styled(ChFlex)`
@@ -25,7 +25,7 @@ const Flex = styled(ChFlex)`
     cursor: pointer;
     opacity: 0.7;
   }
-`;
+`
 
 const StatusText = styled(Text)`
   margin: 0;
@@ -33,7 +33,7 @@ const StatusText = styled(Text)`
   font-size: 0.65rem;
   line-height: 6px;
   text-transform: uppercase;
-`;
+`
 
 const LineDivider = styled.div`
   height: 0.8px;
@@ -42,10 +42,10 @@ const LineDivider = styled.div`
   margin-left: calc(-${(props) => props.theme.custom.defaultBox});
   margin-right: calc(-${(props) => props.theme.custom.defaultBox});
   background: #eee;
-`;
+`
 
 const ItemList = (props: IItem) => {
-  const { customerName, customerItem, amount } = props;
+  const { customerName, customerItem, amount } = props
 
   return (
     <Item>
@@ -66,9 +66,9 @@ const ItemList = (props: IItem) => {
       </Flex>
       <LineDivider />
     </Item>
-  );
-};
+  )
+}
 
 // export the components as modules to be resuable by other component
 // export default CustomerList
-export { ItemList, Item };
+export { ItemList, Item }

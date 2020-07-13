@@ -1,23 +1,23 @@
 /**
  * Utility functions to be used with the API Backend. PS:: Don;t laugh at me :)
  */
-import { Meteor } from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor'
 
-export const noAuthError = new Meteor.Error('NOT AUTHORIZED TO DO THIS');
-export const isUser = (userId: string) => userId !== null || '';
+export const noAuthError = new Meteor.Error('NOT AUTHORIZED TO DO THIS')
+export const isUser = (userId: string) => userId !== null || ''
 
 // return a user ID when called - ideally using Typescript where values are defined in args and return values are defined in one function
-export const isUserId = (userId: string) => (userId !== null || '' ? userId : false);
+export const isUserId = (userId: string) => (userId !== null || '' ? userId : false)
 
 // function to evaluate a condition and throw an error
 export const evaluateAndExecute = (condition: any, _error: any) => {
   try {
-    condition;
-    console.log('PROCESS WAS SUCCESSFUL EXECUTE/EVALUATE');
+    condition
+    console.log('PROCESS WAS SUCCESSFUL EXECUTE/EVALUATE')
   } catch (_error) {
-    console.error(_error.error);
+    console.error(_error.error)
   }
-};
+}
 
 //In order to finish up our private task feature, we need to add checks to our deleteTask and setChecked methods
 // to make sure only the task owner can delete or check off a private task:

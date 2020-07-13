@@ -1,12 +1,12 @@
-import React from 'react';
-import { Stack, Box, Icon, Flex, Heading, IconButton } from '@chakra-ui/core';
-import { Link, useHistory } from 'react-router-dom';
-import Headroom from 'react-headroom';
-import styled from '@emotion/styled';
-import path from '../path';
-import { BreakLayout } from '/imports/ui/components';
-import theme from '/imports/lib/theme';
-import { Accounts } from 'meteor/accounts-base';
+import React from 'react'
+import { Stack, Box, Icon, Flex, Heading, IconButton } from '@chakra-ui/core'
+import { Link, useHistory } from 'react-router-dom'
+import Headroom from 'react-headroom'
+import styled from '@emotion/styled'
+import path from '../path'
+import { BreakLayout } from '/imports/ui/components'
+import theme from '/imports/lib/theme'
+import { Accounts } from 'meteor/accounts-base'
 
 const Navbar = styled.header`
   min-height: 48px;
@@ -19,7 +19,7 @@ const Navbar = styled.header`
   padding: ${theme.custom.defaultWrapper};
   /* padding: .70rem 1rem .75rem 1.1rem; */
   /* padding-right: calc(5% + 4px); */
-`;
+`
 
 const LinkList = styled.li`
   display: flex;
@@ -27,10 +27,10 @@ const LinkList = styled.li`
   align-items: center;
   text-align: center;
   list-style: none;
-`;
+`
 
 const LogoHeader: React.FC = (): JSX.Element => {
-  const isUserId = Accounts.userId();
+  const isUserId = Accounts.userId()
 
   return (
     <BreakLayout marginT="-10px">
@@ -70,18 +70,18 @@ const LogoHeader: React.FC = (): JSX.Element => {
         </Navbar>
       </Headroom>
     </BreakLayout>
-  );
-};
+  )
+}
 
 interface IPageHeader {
-  useHeader?: boolean;
-  title?: string;
-  subTitle?: string;
-  useTitle?: boolean;
+  useHeader?: boolean
+  title?: string
+  subTitle?: string
+  useTitle?: boolean
 }
 export const PageHeader: React.FC<IPageHeader> = (props): JSX.Element => {
-  const { useHeader, title, useTitle, subTitle } = props;
-  const history = useHistory();
+  const { useHeader, title, useTitle, subTitle } = props
+  const history = useHistory()
   return (
     <React.Fragment>
       {useHeader ? (
@@ -113,13 +113,13 @@ export const PageHeader: React.FC<IPageHeader> = (props): JSX.Element => {
         </Box>
       )}
     </React.Fragment>
-  );
-};
+  )
+}
 
 export const DesktopLayout: React.FC<any> = (props): JSX.Element => {
   return (
     <Stack maxWidth="800px" margin="auto" px={[3, 4, 6, 8]} {...props}>
       {props.children}
     </Stack>
-  );
-};
+  )
+}

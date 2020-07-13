@@ -1,18 +1,18 @@
 // import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
-import { Profile } from '../collections';
-import { ProfileInterface } from '/imports/api/schema';
-import { noAuthError, evaluateAndExecute, isUser } from '../helpers/utils';
+import { check } from 'meteor/check'
+import { Profile } from '../collections'
+import { ProfileInterface } from '/imports/api/schema'
+import { noAuthError, evaluateAndExecute, isUser } from '../helpers/utils'
 
 export function removeProfile(this: any, id: string): void {
-  check(id, String);
-  evaluateAndExecute(isUser(this.userId) && Profile.remove(id), noAuthError);
+  check(id, String)
+  evaluateAndExecute(isUser(this.userId) && Profile.remove(id), noAuthError)
 }
 
 export function createProfile(this: any, obj: ProfileInterface) {
-  check(obj, Object);
-  let skillsArr = [];
-  skillsArr.push(obj.skills);
+  check(obj, Object)
+  let skillsArr = []
+  skillsArr.push(obj.skills)
 
   // Make sure the user is logged in before inserting a task
   evaluateAndExecute(
@@ -24,5 +24,5 @@ export function createProfile(this: any, obj: ProfileInterface) {
         createdAt: new Date(),
       }),
     noAuthError
-  );
+  )
 }

@@ -1,26 +1,26 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Link } from 'react-router-dom';
-import { Avatar, Text, Icon, Flex, StatHelpText, Box, Heading } from '@chakra-ui/core';
-import { StatusText } from '/imports/ui/components';
+import React from 'react'
+import styled from '@emotion/styled'
+import { Link } from 'react-router-dom'
+import { Avatar, Text, Icon, Flex, StatHelpText, Box, Heading } from '@chakra-ui/core'
+import { StatusText } from '/imports/ui/components'
 
 const CustomerStyle = styled.section`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-`;
+`
 
 interface ICustomerList {
-  customerName: string;
-  iconName: string | any;
-  date?: Date;
-  LinkCard: string;
-  PhoneNumber?: number;
-  [key: string]: any;
+  customerName: string
+  iconName: string | any
+  date?: Date
+  LinkCard: string
+  PhoneNumber?: number
+  [key: string]: any
 }
 
 const CustomerList = (props: ICustomerList) => {
-  const { customerName, iconName, date, LinkCard, PhoneNumber } = props;
+  const { customerName, iconName, date, LinkCard, PhoneNumber } = props
 
   return (
     <Link to={LinkCard}>
@@ -45,17 +45,17 @@ const CustomerList = (props: ICustomerList) => {
         <Icon name={iconName} size="1rem" color="blue.500" {...props} />
       </Flex>
     </Link>
-  );
-};
+  )
+}
 
 type ICustomerSearch = {
-  customerName: string;
-  phoneNumber: string;
-  onClick?: any;
-};
+  customerName: string
+  phoneNumber: string
+  onClick?: any
+}
 
 const CustomerSearch = (props: ICustomerSearch) => {
-  const { customerName, phoneNumber } = props;
+  const { customerName, phoneNumber } = props
 
   return (
     <Flex
@@ -79,7 +79,7 @@ const CustomerSearch = (props: ICustomerSearch) => {
       </Box>
       <Icon name="chevron-right" size="1rem" color="blue.500" />
     </Flex>
-  );
-};
+  )
+}
 
-export { CustomerStyle, CustomerList, CustomerSearch };
+export { CustomerStyle, CustomerList, CustomerSearch }

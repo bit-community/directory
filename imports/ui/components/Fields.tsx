@@ -3,11 +3,11 @@
  * This will be the Formik Fields Hook that extends formik functionality into chakra form fields
  */
 
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from '@emotion/styled';
-import Downshift from 'downshift';
-import { useField, Form, Field, FieldProps } from 'formik';
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled from '@emotion/styled'
+import Downshift from 'downshift'
+import { useField, Form, Field, FieldProps } from 'formik'
 import {
   FormControl,
   List,
@@ -30,17 +30,17 @@ import {
   DefaultTheme,
   Box,
   CheckboxGroup,
-} from '@chakra-ui/core';
-import * as Analytics from '/imports/ui/analytics';
+} from '@chakra-ui/core'
+import * as Analytics from '/imports/ui/analytics'
 //@ts-ignore
-import FileInputComponent from 'react-file-input-previews-base64';
+import FileInputComponent from 'react-file-input-previews-base64'
 
 const FormikButton = styled(Button)<{ withIcon: boolean | undefined }>`
   border-radius: 1px;
   min-height: 56px;
   justify-content: ${(props) => (props.withIcon ? 'space-between' : 'center')};
   align-content: center;
-`;
+`
 
 const FormikTextArea = styled(Textarea)`
   border-radius: 1px;
@@ -52,7 +52,7 @@ const FormikTextArea = styled(Textarea)`
     font-size: ${(props: any) => props.theme.custom.inputPlaceHolder};
     /* vertical-align: middle; */
   }
-`;
+`
 
 const FormikInput = styled(Input)`
   border-width: 1.1px;
@@ -69,7 +69,7 @@ const FormikInput = styled(Input)`
     font-size: ${(props: any) => props.theme.custom.inputPlaceHolder};
     vertical-align: middle;
   }
-`;
+`
 const FormikSelect = styled(Select)`
   border-radius: 1px;
   border-width: 1.1px;
@@ -80,7 +80,7 @@ const FormikSelect = styled(Select)`
   ::-webkit-input-placeholder {
     font-size: ${(props: any) => props.theme.custom.inputPlaceHolder};
   }
-`;
+`
 const FormikLabel = styled(FormLabel)<{ fsize?: string }>`
   font-size: ${(props) => (props.fsize ? props.fsize : '11px')};
   /* position: absolute; */
@@ -90,7 +90,7 @@ const FormikLabel = styled(FormLabel)<{ fsize?: string }>`
   /* padding: .1rem; */
   /* padding-left: 1rem; */
   /* padding-right: 10px; */
-`;
+`
 
 /**
  * This component extends a chakra input field and ties it up with the formik utility while exposing a few props to utilize across other pages
@@ -98,14 +98,14 @@ const FormikLabel = styled(FormLabel)<{ fsize?: string }>`
  */
 
 interface TextAreaFieldProps {
-  name: string;
-  placeholder: string;
-  label: string;
-  validate?: Function;
+  name: string
+  placeholder: string
+  label: string
+  validate?: Function
 }
 
 const TextAreaField = (props: TextAreaFieldProps): JSX.Element => {
-  const { validate, placeholder, name, label } = props;
+  const { validate, placeholder, name, label } = props
 
   return (
     <Field name={name} validate={validate} {...props}>
@@ -139,25 +139,25 @@ const TextAreaField = (props: TextAreaFieldProps): JSX.Element => {
         </FormControl>
       )}
     </Field>
-  );
-};
+  )
+}
 
 TextAreaField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   validate: PropTypes.func,
-};
+}
 
 interface InputFieldProps {
-  name: string;
-  label: string;
-  placeholder: string;
-  type?: string;
-  validate?: Function;
-  trackInput?: Function;
+  name: string
+  label: string
+  placeholder: string
+  type?: string
+  validate?: Function
+  trackInput?: Function
 }
 
 const InputField = (props: InputFieldProps): JSX.Element => {
-  const { validate, type, name, placeholder, trackInput, label } = props;
+  const { validate, type, name, placeholder, trackInput, label } = props
 
   /**
      * Formik Field Props to be aware of
@@ -197,14 +197,14 @@ const InputField = (props: InputFieldProps): JSX.Element => {
         </FormControl>
       )}
     </Field>
-  );
-};
+  )
+}
 InputField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   validate: PropTypes.func,
-};
+}
 
 // ++ ============================================= END SECTION =====================================================
 
@@ -213,16 +213,16 @@ InputField.propTypes = {
  */
 
 interface IFormikForm {
-  analyticName: string;
-  children: any;
-  isLoading: boolean;
-  buttonName: string;
-  withIcon?: boolean | undefined;
+  analyticName: string
+  children: any
+  isLoading: boolean
+  buttonName: string
+  withIcon?: boolean | undefined
   formProps: {
-    errors: object;
-    values: object;
-    [key: string]: any;
-  };
+    errors: object
+    values: object
+    [key: string]: any
+  }
 }
 
 const FormikForm = (props: IFormikForm): JSX.Element => {
@@ -234,14 +234,14 @@ const FormikForm = (props: IFormikForm): JSX.Element => {
     formProps: { errors, values },
     analyticName,
     ...rest
-  } = props;
+  } = props
   // console.log("HERE ARE FORMIK FORM ON SUBMISSION", props.formProps);
 
   // Call Analytics on all Form Submissions
   Analytics.track(analyticName, {
     errors: errors,
     value: values,
-  });
+  })
 
   return (
     <Form {...rest}>
@@ -261,8 +261,8 @@ const FormikForm = (props: IFormikForm): JSX.Element => {
         {buttonName}
       </FormikButton>
     </Form>
-  );
-};
+  )
+}
 
 FormikForm.propTypes = {
   children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]).isRequired,
@@ -270,16 +270,16 @@ FormikForm.propTypes = {
   isLoading: PropTypes.bool,
   buttonName: PropTypes.string.isRequired,
   formProps: PropTypes.object,
-};
+}
 // ++ ================================= END SECTION =================================================================++
 
 /**
  * Formik Field for Password Inputs
  */
 const PasswordField = (props: InputFieldProps): JSX.Element => {
-  const { validate, name, placeholder, label } = props;
-  const [show, setShow] = React.useState(false);
-  const handleClick = () => setShow(!show);
+  const { validate, name, placeholder, label } = props
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
 
   return (
     <Field name={name} validate={validate} {...props}>
@@ -319,14 +319,14 @@ const PasswordField = (props: InputFieldProps): JSX.Element => {
         </FormControl>
       )}
     </Field>
-  );
-};
+  )
+}
 PasswordField.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   validate: PropTypes.func,
-};
+}
 
 // ++ ================================= END SECTION =================================================================++
 
@@ -335,15 +335,15 @@ PasswordField.propTypes = {
  */
 
 interface RadioFieldProps {
-  validate: Function;
-  name: string;
-  label: string;
-  defaultValue?: string;
-  options: Array<string>;
+  validate: Function
+  name: string
+  label: string
+  defaultValue?: string
+  options: Array<string>
 }
 
 const RadioField = (props: RadioFieldProps): JSX.Element => {
-  const { validate, name, defaultValue, options, label } = props;
+  const { validate, name, defaultValue, options, label } = props
 
   return (
     <Field name={name} validate={validate} {...props}>
@@ -360,15 +360,15 @@ const RadioField = (props: RadioFieldProps): JSX.Element => {
                   <Radio key={`${val}-${idx}`} value={val.toLowerCase()}>
                     {val}
                   </Radio>
-                );
+                )
               })}
           </RadioGroup>
           <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
         </FormControl>
       )}
     </Field>
-  );
-};
+  )
+}
 
 RadioField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -376,20 +376,20 @@ RadioField.propTypes = {
   validate: PropTypes.func,
   defaultValue: PropTypes.string,
   options: PropTypes.array.isRequired,
-};
+}
 
 interface ICustomRadio {
-  isChecked: boolean;
-  isDisabled: boolean;
-  name: string;
-  value: string;
-  children: any;
-  [key: string]: any;
+  isChecked: boolean
+  isDisabled: boolean
+  name: string
+  value: string
+  children: any
+  [key: string]: any
 }
 
 const ButtonComponent = React.forwardRef((props: ICustomRadio, ref) => {
   // Step 1: Create a component that accepts `isChecked` and `isDisabled` prop
-  const { isChecked, children, isDisabled, value, ...rest } = props;
+  const { isChecked, children, isDisabled, value, ...rest } = props
   return (
     <Button
       ref={ref}
@@ -405,13 +405,13 @@ const ButtonComponent = React.forwardRef((props: ICustomRadio, ref) => {
     >
       {children}
     </Button>
-  );
-});
+  )
+})
 
 const RadioButtonField = (props: RadioFieldProps): JSX.Element => {
-  const { validate, name, defaultValue, options, label, ...rest } = props;
+  const { validate, name, defaultValue, options, label, ...rest } = props
   //@ts-ignore
-  const [field, meta, helpers] = useField(props);
+  const [field, meta, helpers] = useField(props)
   // console.log(field, meta, helpers);
 
   // directly call meta in place of meta.touched to show all errors ::: FIX ISSUE with component not displaying error onDirty
@@ -434,13 +434,13 @@ const RadioButtonField = (props: RadioFieldProps): JSX.Element => {
               <ButtonComponent name={val} key={[val, idx].join('--')} value={val} {...rest}>
                 {val}
               </ButtonComponent>
-            );
+            )
           })}
       </RadioButtonGroup>
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}
 
 RadioButtonField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -448,14 +448,14 @@ RadioButtonField.propTypes = {
   validate: PropTypes.func,
   defaultValue: PropTypes.string,
   options: PropTypes.array.isRequired,
-};
+}
 
 // ++ ================================= END SECTION =================================================================++
 
 const CheckButtonField = (props: RadioFieldProps): JSX.Element => {
-  const { validate, name, defaultValue, options, label, ...rest } = props;
+  const { validate, name, defaultValue, options, label, ...rest } = props
   //@ts-ignore
-  const [field, meta, helpers] = useField(props);
+  const [field, meta, helpers] = useField(props)
   // console.log(field, meta, helpers);
 
   // directly call meta in place of meta.touched to show all errors ::: FIX ISSUE with component not displaying error onDirty
@@ -479,28 +479,28 @@ const CheckButtonField = (props: RadioFieldProps): JSX.Element => {
               >
                 {val}
               </ButtonComponent>
-            );
+            )
           })}
       </CheckboxGroup>
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}
 
 /**
  * Formik Field for Checkbox Selections
  */
 
 interface CheckFieldProps {
-  name: string;
-  boxLabel: string;
-  validate?: Function;
-  label?: string;
-  isChecked?: boolean;
+  name: string
+  boxLabel: string
+  validate?: Function
+  label?: string
+  isChecked?: boolean
 }
 
 const CheckField = (props: CheckFieldProps): JSX.Element => {
-  const { validate, boxLabel, isChecked, name, label } = props;
+  const { validate, boxLabel, isChecked, name, label } = props
   return (
     <Field name={name} validate={validate} {...props}>
       {({ field, form }: FieldProps) => (
@@ -525,8 +525,8 @@ const CheckField = (props: CheckFieldProps): JSX.Element => {
         </FormControl>
       )}
     </Field>
-  );
-};
+  )
+}
 
 CheckField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -534,7 +534,7 @@ CheckField.propTypes = {
   label: PropTypes.string,
   validate: PropTypes.func,
   isChecked: PropTypes.bool,
-};
+}
 
 // ++ ================================= END SECTION =================================================================++
 
@@ -543,17 +543,17 @@ CheckField.propTypes = {
  */
 
 interface SelectFieldProps {
-  validate: Function;
-  name: string;
-  label?: string;
-  mt?: string;
-  placeholder?: string;
-  defaultValue?: string;
-  options: Array<string>;
+  validate: Function
+  name: string
+  label?: string
+  mt?: string
+  placeholder?: string
+  defaultValue?: string
+  options: Array<string>
 }
 
 const SelectField = (props: SelectFieldProps): JSX.Element => {
-  const { validate, placeholder, name, mt, defaultValue, options, label } = props;
+  const { validate, placeholder, name, mt, defaultValue, options, label } = props
 
   return (
     <Field name={name} validate={validate} {...props}>
@@ -585,15 +585,15 @@ const SelectField = (props: SelectFieldProps): JSX.Element => {
                   <option key={`${val}-${idx}`} value={val.toLowerCase()}>
                     {val}
                   </option>
-                );
+                )
               })}
           </FormikSelect>
           <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
         </FormControl>
       )}
     </Field>
-  );
-};
+  )
+}
 
 SelectField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -601,7 +601,7 @@ SelectField.propTypes = {
   validate: PropTypes.func,
   defaultValue: PropTypes.string,
   options: PropTypes.array.isRequired,
-};
+}
 
 // ++ ================================= END SECTION =================================================================++
 
@@ -611,17 +611,17 @@ SelectField.propTypes = {
  */
 
 interface AutoCompleteProps {
-  validate: Function;
-  name: string;
-  label?: string;
-  placeholder: string;
-  options: Array<{ value: string }>;
-  [key: string]: any;
+  validate: Function
+  name: string
+  label?: string
+  placeholder: string
+  options: Array<{ value: string }>
+  [key: string]: any
 }
 
 const AutoCompleteField = (props: AutoCompleteProps): JSX.Element => {
-  const { validate, placeholder, name, options, label, ...rest } = props;
-  const [field, meta, helpers] = useField(props);
+  const { validate, placeholder, name, options, label, ...rest } = props
+  const [field, meta, helpers] = useField(props)
 
   // const items = ;
 
@@ -692,8 +692,8 @@ const AutoCompleteField = (props: AutoCompleteProps): JSX.Element => {
       </Downshift>
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}
 
 AutoCompleteField.propTypes = {
   name: PropTypes.string.isRequired,
@@ -701,26 +701,26 @@ AutoCompleteField.propTypes = {
   placeholder: PropTypes.string,
   validate: PropTypes.func,
   options: PropTypes.array.isRequired,
-};
+}
 
 interface UploadFileProps {
-  name: string;
-  type: string;
-  size: number;
-  base64: string;
-  file: Record<any, string>;
+  name: string
+  type: string
+  size: number
+  base64: string
+  file: Record<any, string>
 }
 
 interface FileInputProps {
-  name: string;
-  label: string;
-  validate?: () => void;
+  name: string
+  label: string
+  validate?: () => void
 }
 // https://stackoverflow.com/questions/36280818/how-to-convert-file-to-base64-in-javascript Make this component better
 export const SingleFileInputField = (props: FileInputProps): JSX.Element => {
-  const { validate, name, label, ...rest } = props;
+  const { validate, name, label, ...rest } = props
   //@ts-ignore
-  const [field, meta, helpers] = useField(props);
+  const [field, meta, helpers] = useField(props)
   // console.log(field, meta, helpers);
 
   // directly call meta in place of meta.touched to show all errors ::: FIX ISSUE with component not displaying error onDirty
@@ -753,11 +753,11 @@ export const SingleFileInputField = (props: FileInputProps): JSX.Element => {
       />
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}
 export const MultipleFileInputField = (props: FileInputProps): JSX.Element => {
-  const { validate, name, label, ...rest } = props;
-  const [field, meta, helpers] = useField(props);
+  const { validate, name, label, ...rest } = props
+  const [field, meta, helpers] = useField(props)
   // console.log(field, meta, helpers);
 
   // directly call meta in place of meta.touched to show all errors ::: FIX ISSUE with component not displaying error onDirty
@@ -785,8 +785,8 @@ export const MultipleFileInputField = (props: FileInputProps): JSX.Element => {
       />
       <FormErrorMessage>{meta.error && meta.error}</FormErrorMessage>
     </FormControl>
-  );
-};
+  )
+}
 
 // ====== Export Field Components here ===========
 export {
@@ -800,4 +800,4 @@ export {
   RadioButtonField,
   SelectField,
   FormikForm,
-};
+}
