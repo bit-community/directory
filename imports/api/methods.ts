@@ -7,17 +7,7 @@
  */
 
 import { Meteor } from 'meteor/meteor';
-import { insertTask, removeTask, setChecked, setPrivate } from './template/tasks';
 import { createProfile, removeProfile } from './profile';
-import { insertTransaction, removeTransaction } from '/imports/api/transactions';
-
-// Define Methods for managing tasks related logic
-const tasks = {
-	'task.insert': insertTask,
-	'task.remove': removeTask,
-	'task.setChecked': setChecked,
-	'task.setPrivate': setPrivate
-};
 
 // Methods for Customer Collection
 const profiles = {
@@ -25,15 +15,7 @@ const profiles = {
 	'profile.remove': removeProfile
 };
 
-//Methods for Transactions collection
-const transactions = {
-	'transaction.insert': insertTransaction,
-	'transaction.remove': removeTransaction
-};
-
 // Destructure methods into the Meteor Method
 Meteor.methods({
-	...tasks,
-	...profiles,
-	...transactions
+	...profiles
 });

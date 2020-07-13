@@ -2,7 +2,6 @@
  * Utility functions to be used with the API Backend. PS:: Don;t laugh at me :)
  */
 import { Meteor } from 'meteor/meteor';
-import { Tasks } from '../collections';
 
 export const noAuthError = new Meteor.Error('NOT AUTHORIZED TO DO THIS');
 export const isUser = (userId: string) => userId !== null || '';
@@ -22,17 +21,17 @@ export const evaluateAndExecute = (condition: any, _error: any) => {
 
 //In order to finish up our private task feature, we need to add checks to our deleteTask and setChecked methods
 // to make sure only the task owner can delete or check off a private task:
-export const isTaskOwner = (taskId: string) => (isUserFunc: Function) => {
-	const task = Tasks.findOne(taskId);
-	let isOwner = task.owner;
-	switch (task.private) {
-		case true:
-			isOwner = task.private && task.owner;
-			break;
-		default:
-			isOwner = task.owner;
-			break;
-	}
-	// isUserFunc is actually checking the userID
-	return isOwner === isUserId(isUserFunc);
-};
+// export const isTaskOwner = (taskId: string) => (isUserFunc: Function) => {
+// 	const task = Tasks.findOne(taskId);
+// 	let isOwner = task.owner;
+// 	switch (task.private) {
+// 		case true:
+// 			isOwner = task.private && task.owner;
+// 			break;
+// 		default:
+// 			isOwner = task.owner;
+// 			break;
+// 	}
+// 	// isUserFunc is actually checking the userID
+// 	return isOwner === isUserId(isUserFunc);
+// };
