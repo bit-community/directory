@@ -11,7 +11,7 @@ interface IPageWrapper {
 
 const PageWrapper = styled.section<IPageWrapper>`
     padding: ${props => props.layoutWrapper ? props.layoutWrapper : props.theme.custom.defaultWrapper};
-    padding-bottom: calc(${props => props.theme.custom.tabNavHeight} + 1.7rem);
+    /* padding-bottom: calc(${props => props.theme.custom.tabNavHeight} + 1.7rem); */
 	
 `
 

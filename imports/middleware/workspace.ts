@@ -1,3 +1,8 @@
+/**
+ * Workspace middleware copied from the wekan repository
+ * methods like (hasAdmin) look like hooks in a Mongo Collection. Check back at the repository for reference
+ */
+
 export const allowIsWorkspaceAdmin = function(userId, workspace) {
 	return workspace && workspace.hasAdmin(userId);
 };

@@ -66,6 +66,13 @@ export interface UploadFileInterface {
 	file: Record<any, string>;
 }
 
+export interface IProjectsUpload {
+	base64: string;
+	name?: string;
+	size?: string;
+	type?: string;
+}
+
 export interface ProfileInterface {
 	_id?: string;
 	fullName: string;
@@ -81,7 +88,7 @@ export interface ProfileInterface {
 	instagramProfile: string;
 	twitterProfile: string;
 	facebookProfile: string;
-	projects: string[];
+	projects: IProjectsUpload[];
 	mentorshipConsent: boolean;
 	waiverOfLiability: boolean;
 	createdAt: Date;

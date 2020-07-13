@@ -1,3 +1,8 @@
+/**
+ * A More robust Authentication middleware that should replace (evaluateAndExecute)
+ * Would require a new sprint and more user roles on the platform
+ */
+
 import { Accounts } from 'meteor/accounts-base';
 
 Meteor.startup(() => {

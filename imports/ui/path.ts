@@ -14,6 +14,7 @@ export interface IPath {
 	preview: TPath;
 	profile: TPath;
 	baddie: TPath;
+	account: TPath;
 	auth: {
 		loginRoute: string;
 		signupRoute: string;
@@ -23,7 +24,6 @@ export interface IPath {
 	workspace?: {
 		transaction: string;
 		customerView: string;
-		account: string;
 		createCustomer: string;
 		createTransaction: string;
 	};
@@ -35,6 +35,7 @@ const path: IPath = {
 	onboarding: '/onboarding',
 	preview: '/preview',
 	profile: '/profile',
+	account: '/account',
 	baddie: '/baddie',
 	auth: {
 		loginRoute: '/auth/login',
@@ -45,7 +46,6 @@ const path: IPath = {
 	// workspace: {
 	// 	transaction: '/transaction',
 	// 	customerView: '/customer',
-	// 	account: '/account',
 	// 	createCustomer: '/create-customer',
 	// 	createTransaction: '/create-transaction'
 	// }
