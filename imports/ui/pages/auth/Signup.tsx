@@ -41,13 +41,13 @@ const Signup: React.FC = () => {
             }
             else {
                 toast({
-                    title: "Account created.",
-                    description: "We've created your account for you.",
+                    title: "Signup successful.",
+                    description: "We've created your account now add a profile.",
                     status: "success",
                     duration: 5000,
                     isClosable: true,
                 })
-                history.push(path.onboarding)
+                history.push(path.onboarding + '/profile')
             }
         })
     }

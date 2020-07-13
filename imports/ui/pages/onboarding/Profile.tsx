@@ -77,6 +77,8 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
         history.push(`${path.onboarding}/complete`)
     }
 
+    const skillsOption: string[] = ['Front-End', 'Full Stack', 'Sales', 'Data Analysis', 'Back-End', 'Branding', 'Graphic Design', 'Mobile Development', 'Product Management', 'Social Media Marketing', 'Systems Administration', 'UI Design', 'UX Design', 'Web Development', 'Wordpress Development', 'Branding', 'Motion Graphics/Animation', 'IT Support', 'Cybersecurity', 'Quality Assurance', 'Project Management', 'AWS', 'Email Marketing', 'SEO']
+
 
 
 
@@ -112,8 +114,8 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
                             <InputField label="Professional Title" placeholder="Network Engineer" name="professionalTitle" validate={Validator.isRequired} />
                             <TextAreaField label="Professional Bio" placeholder="Network Engineer with 40+ years experience in ..." name="professionalBio" validate={Validator.isRequired} />
                             <InputField label="Years of Experience" placeholder="4" name="yearsOfExperience" validate={Validator.isNumeric} />
-                            {/* // Move this skills to the first page of onboarding */}
-                            <SelectField label="Skills" placeholder="Your Skills" name="skills" options={["UX Designer", 'Frontend Developer']} validate={Validator.isRequired} />
+                            {/* // Move this skills to the first page of onboarding enhancement */}
+                            <SelectField label="Skills" placeholder="Your Skills" name="skills" options={skillsOption} validate={Validator.isRequired} />
 
                             <InputField label="Website URL" type="url" placeholder="Link to portfolio" name="websiteUrl" validate={Validator.isRequired} />
                             <InputField label="Instagram Profile" type="url" placeholder="https://instagram.com/baddiesintech" name="instagramProfile" />
@@ -129,33 +131,12 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
 
 
                             {/* <InputField label="Project Attachments" type="file" placeholder="projects" name="projects" /> */}
-                            <CheckField name="mentorshipConsent" boxLabel="Would you like to mentor other women in tech?" validate={Validator.isRequired} />
+                            <CheckField name="mentorshipConsent" boxLabel="Would you like to mentor other women in tech?" />
                             <CheckField name="waiverOfLiability" boxLabel="Accept our Waiver of Liability" validate={Validator.isRequired} />
 
 
 
                             <Box height="2rem"></Box>
-
-                            {/* Add Accordion Section for Optional Guarantor Form */}
-                            {/* <Accordion defaultIndex={3} allowToggle>
-                                <AccordionItem>
-                                {({ isExpanded }) => (
-                                    <>
-                                    <AccordionHeader>
-                                    <Box flex="1" textAlign="left">Add a Guarantor</Box>
-                                    <Icon size="12px" name={isExpanded ? "minus" : "add"} />
-                                    </AccordionHeader>
-                                    <AccordionPanel pb={8}>
-                                    <InputField label="Name" placeholder="Benjamin Kwame" name="name" />
-                                    <InputField label="Address" placeholder="12 Aluguntugui street" name="address" />
-                                    <InputField label="Phone Number" placeholder="0244-973-237" name="phonenumber" />
-                                    <InputField label="Email" placeholder="benj@getBaddies in Tech.co" name="email" />
-                                    
-                                    </AccordionPanel>
-                                    </>
-                                    )}
-                                    </AccordionItem>
-                                </Accordion> */}
                         </FormikForm>
                     )}
                 </Formik>
