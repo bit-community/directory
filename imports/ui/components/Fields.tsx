@@ -26,14 +26,8 @@ const FormikButton = styled(Button) <{ withIcon: boolean | undefined }>`
 
 const FormikTextArea = styled(Textarea)`
     border-radius: 1px;
-    padding-top: 2.5rem;
-    padding-bottom: 1rem;
-    border: 1.1px solid #979797;
     font-size: ${(props: any) => props.theme.custom.inputFontSize};
     border-bottom: 1.4px solid #979797;
-    /* border-right: none; */
-    /* border-top: none; */
-    /* border-left: none; */
 
     ::placeholder, ::-moz-placeholder {
         font-size: ${(props: any) => props.theme.custom.inputPlaceHolder};
@@ -62,9 +56,6 @@ const FormikSelect = styled(Select)`
     border-width: 1.1px;
     border: 1.1px solid;
     height: 55px;
-    /* border-right: none; */
-    /* border-top: none; */
-    /* border-left: none; */
     font-size: ${(props: any) => props.theme.custom.inputFontSize};
     ::placeholder,
     ::-webkit-input-placeholder {

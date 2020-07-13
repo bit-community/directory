@@ -1,17 +1,12 @@
-# How does the Honey Meteor
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/bit-community/directory)
 
-We tried NextJS and the Fancy `GraphQL` and discovered none of them could take us to the stars
+# Baddies in Tech Directory
 
-## MLAB
+Deploy with Gitpod Link []
 
-```bash
-mongodb://heroku_f28jh6q9:vabfsmo4t3sp6scf1hs1gofkfj@ds015403.mlab.com:15403/heroku_f28jh6q9
 
-```
+### Meteor Tools
 
-### Todo
-
-- [x] Add react signature pad wrapper `npm i react-signature-pad-wrapper`
 - [ ] Add Schema Validation - [Meteor Schema Validation](https://guide.meteor.com/collections.html#schemas)
 - [ ] Helpers for Mongo - [Collection Helpers](https://guide.meteor.com/collections.html#collection-helpers)
 - [ ] Hooks to extend `Mongo.Collection` to add own logic [Hooks](https://guide.meteor.com/collections.html#hooks)

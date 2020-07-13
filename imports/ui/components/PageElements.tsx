@@ -1,13 +1,12 @@
-import React from 'react'
-import { Stack, Box, Icon, Flex, Heading, IconButton } from '@chakra-ui/core'
-import { Link, useHistory } from 'react-router-dom'
-import Headroom from 'react-headroom'
-import styled from '@emotion/styled'
-import path from '../path'
-import { BreakLayout } from '/imports/ui/components'
-import theme from '/imports/lib/theme'
-import { Accounts } from 'meteor/accounts-base';
-
+import React from "react"
+import { Stack, Box, Icon, Flex, Heading, IconButton } from "@chakra-ui/core"
+import { Link, useHistory } from "react-router-dom"
+import Headroom from "react-headroom"
+import styled from "@emotion/styled"
+import path from "../path"
+import { BreakLayout } from "/imports/ui/components"
+import theme from "/imports/lib/theme"
+import { Accounts } from "meteor/accounts-base"
 
 const Navbar = styled.header`
     min-height: 48px;
@@ -28,9 +27,7 @@ const LinkList = styled.li`
     align-items: center;
     text-align: center;
     list-style: none;
-
 `
-
 
 const LogoHeader: React.FC = (): JSX.Element => {
     const isUserId = Accounts.userId()
@@ -38,17 +35,21 @@ const LogoHeader: React.FC = (): JSX.Element => {
     return (
         <BreakLayout marginT="-10px">
             <Headroom
-                wrapperStyle={{ marginBottom: '2.5rem' }}
-                style={{ zIndex: 9999999999999, borderBottom: '1px solid #ddd' }}
+                wrapperStyle={{ marginBottom: "2.5rem" }}
+                style={{ zIndex: 9999999999999, borderBottom: "1px solid #ddd" }}
             >
                 <Navbar>
                     <Flex justifyContent="space-between" alignItems="center">
-
                         <Link to={path.root}>
-                            <img alt="Baddies in Tech" width="40px" src="/img/bit.png" aria-label="header logo" />
+                            <img
+                                alt="Baddies in Tech"
+                                width="50px"
+                                src="/img/bit.png"
+                                aria-label="header logo"
+                            />
                         </Link>
 
-                        {isUserId &&
+                        {isUserId && (
                             <Flex>
                                 {/* <Link to={path.root}>
                                 <LinkList>
@@ -57,24 +58,30 @@ const LogoHeader: React.FC = (): JSX.Element => {
                             </Link> */}
                                 <Link to={path.account}>
                                     <LinkList>
-                                        <IconButton icon="drag-handle" aria-label="Settings" variant="outline" variantColor="pink" border="2px solid" borderRadius="1px" />
+                                        <IconButton
+                                            icon="drag-handle"
+                                            aria-label="Settings"
+                                            variant="outline"
+                                            variantColor="pink"
+                                            border="2px solid"
+                                            borderRadius="1px"
+                                        />
                                         {/* Settings */}
                                     </LinkList>
                                 </Link>
                             </Flex>
-                        }
+                        )}
                     </Flex>
-                </Navbar >
-            </Headroom >
+                </Navbar>
+            </Headroom>
         </BreakLayout>
     )
 }
 
-
 interface IPageHeader {
-    useHeader?: boolean,
-    title?: string,
-    subTitle?: string,
+    useHeader?: boolean
+    title?: string
+    subTitle?: string
     useTitle?: boolean
 }
 export const PageHeader: React.FC<IPageHeader> = (props): JSX.Element => {
@@ -82,29 +89,37 @@ export const PageHeader: React.FC<IPageHeader> = (props): JSX.Element => {
     const history = useHistory()
     return (
         <React.Fragment>
-            {
-                useHeader ? <LogoHeader /> :
-                    <Box my="4" bg="inherit">
-                        <Box my="2" width="100px" onClick={() => history.goBack()}>
-                            <Icon name="arrow-back" size="28px" />
-                        </Box>
-                        <Stack spacing={3}>
-                            <Heading color="blue.700" as="h1" size="lg">{title}</Heading>
-                            <Heading as="h6" size="sm">{subTitle}</Heading>
-                        </Stack>
+            {useHeader ? (
+                <LogoHeader />
+            ) : (
+                <Box my="4" bg="inherit">
+                    <Box my="2" width="100px" onClick={() => history.goBack()}>
+                        <Icon name="arrow-back" size="28px" />
                     </Box>
-            }
+                    <Stack spacing={3}>
+                        <Heading color="blue.700" as="h1" size="lg">
+                            {title}
+                        </Heading>
+                        <Heading as="h6" size="sm">
+                            {subTitle}
+                        </Heading>
+                    </Stack>
+                </Box>
+            )}
 
             {useTitle && (
                 <Box my="4" mb="10">
-                    <Heading color="blue.700" as="h1" size="lg">{title}</Heading>
-                    <Heading as="h6" fontWeight="normal" size="sm">{subTitle}</Heading>
+                    <Heading color="blue.700" as="h1" size="lg">
+                        {title}
+                    </Heading>
+                    <Heading as="h6" fontWeight="normal" size="sm">
+                        {subTitle}
+                    </Heading>
                 </Box>
             )}
         </React.Fragment>
     )
 }
-
 
 export const DesktopLayout: React.FC<any> = (props): JSX.Element => {
     return (
