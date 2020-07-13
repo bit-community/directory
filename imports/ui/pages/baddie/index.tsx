@@ -73,7 +73,7 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
             </Heading>
 
               {/* ==Layout Skills Tag == */}
-              {skills &&
+              {skills.length !== 0 &&
                 <Stack spacing={2} isInline pt={2} mb={4}>
                   {Array.isArray(skills) ? (
                     skills.map((val: string, index: number) => {

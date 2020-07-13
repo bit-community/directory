@@ -41,16 +41,17 @@ export default function AccountPage(this: any) {
 
       <Layout>
         <NavWrapper>
-          <DrawerLink><Link to={path.root}>Home</Link> </DrawerLink>
-          <DrawerLink><Link to={path.onboarding + '/profile'}>Create Profile</Link> </DrawerLink>
-          <DrawerLink><Link to={path.profile}>Manage your Profile</Link> </DrawerLink>
+          {/* <DrawerLink><Link to={path.root}>Home</Link> </DrawerLink> */}
+          <Heading as="h4" size="md">Profile Manager is currently in progress</Heading>
+          {/* <DrawerLink><Link to={path.onboarding}>Profile</Link> </DrawerLink> */}
+          {/* <DrawerLink><Link to={path.onboarding + '/profile'}>Add Profile</Link> </DrawerLink> */}
 
           <Box mt="5" width="100%">
-            <Heading as="h1" size="md" pl="4">User Account</Heading>
-            <DrawerLink><Link to={path.auth.loginRoute}>Login</Link></DrawerLink>
+            {/* <Heading as="h1" size="md" pl="4">User Account</Heading> */}
+            {/* <DrawerLink><Link to={path.auth.loginRoute}>Login</Link></DrawerLink> */}
             {/* <DrawerLink><Link to={path.auth.signupRoute}>Signup<Icon name="external-link" mx="2px" /></Link></DrawerLink> */}
-            <DrawerLink><Link to={path.auth.resetPasswordRoute}>Reset Password <Icon name="external-link" mx="2px" /></Link></DrawerLink>
-            <DrawerLink><Link to={path.auth.logoutRoute}>Logout</Link></DrawerLink>
+            {/* <DrawerLink><Link to={path.auth.resetPasswordRoute}>Reset Password <Icon name="external-link" mx="2px" /></Link></DrawerLink> */}
+            {/* <DrawerLink><Link to={path.auth.logoutRoute}>Logout</Link></DrawerLink> */}
           </Box>
         </NavWrapper>
       </Layout>
