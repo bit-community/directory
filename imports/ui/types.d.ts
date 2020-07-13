@@ -6,12 +6,10 @@ declare module 'styled' {
 	interface DefaultTheme extends ThemeInterface {}
 }
 
-// declare module 'react-signature-pad-wrapper'
 declare module 'react-file-input-previews-base64';
 
 declare module 'money';
 declare module 'number-counter';
-// declare module 'raf';
 
 interface IColors {
 	black: string;
