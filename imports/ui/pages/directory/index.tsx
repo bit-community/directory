@@ -132,7 +132,7 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
               <ProfileCard key={val._id}
                 fullName={val.fullName}
                 profilePhoto={val.profilePhoto}
-                professionalTitle={val.professionalTitle || val.professionaTitle}
+                professionalTitle={val.professionalTitle || ''}
                 yearsOfExperience={val.yearsOfExperience}
                 professionalBio={val.professionalBio}
                 skills={val.skills}
