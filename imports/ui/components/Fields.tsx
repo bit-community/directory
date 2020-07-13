@@ -428,9 +428,9 @@ const CheckButtonField = (props: RadioFieldProps): JSX.Element => {
  */
 
 interface CheckFieldProps {
-    validate: Function,
     name: string
     boxLabel: string
+    validate?: Function,
     label?: string,
     isChecked?: boolean
 }

@@ -4,16 +4,13 @@ import Path from '/imports/ui/path';
 
 
 
-const Success: React.FunctionComponent = () => {
-
-
+const Success: React.FunctionComponent = (): JSX.Element => {
     return (
         <PositiveFeedback
             message="Profile Application successful and in review."
             iconName="check-circle"
-            // iconSize="6rem"
-            buttonLink={Path.profile}
-            buttonName="View Profile"
+            buttonLink={Path.root}
+            buttonName="Visit Directory"
         />
 
 

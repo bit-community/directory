@@ -42,7 +42,7 @@ box-shadow: ${theme.custom.lightShadow};
 `
 
 export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
-  const { profilePhoto, professionaTitle, websiteUrl, countryOfResidence, yearsOfExperience, mentorshipConsent, cityOrState, instagramProfile, twitterProfile, facebookProfile, fullName, professionalBio, professionalTitle, projects, skills } = props;
+  const { profilePhoto, websiteUrl, countryOfResidence, yearsOfExperience, mentorshipConsent, cityOrState, instagramProfile, twitterProfile, facebookProfile, fullName, professionalBio, professionalTitle, projects, skills } = props;
   return (
     <Box marginTop={'-' + theme.custom.fixedMarginTop} >
       <BreakLayout>
@@ -69,7 +69,7 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
                 {fullName}
               </Heading>
               <Heading as="h4" size="sm">
-                {professionaTitle || professionalTitle}, with {yearsOfExperience} years of experience
+                {professionalTitle}, with {yearsOfExperience} years of experience
             </Heading>
 
               {/* ==Layout Skills Tag == */}

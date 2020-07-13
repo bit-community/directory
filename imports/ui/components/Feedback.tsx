@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Icon } from '@chakra-ui/core';
-import { LinkButton } from '/imports/ui/components'
+import { LinkButton, PageHeader, BorderedDesktopLayout } from '/imports/ui/components'
+
+import { Box, Icon, Heading, Stack } from '@chakra-ui/core'
+import { FormButton, } from '/imports/ui/components';
 import PropTypes from 'prop-types'
 
 
@@ -9,6 +11,7 @@ import PropTypes from 'prop-types'
 interface IFeedback {
     children?: any,
     message: string,
+    color?: string;
     buttonName: string,
     iconName: string | any,
     buttonLink: string,
@@ -17,19 +20,25 @@ interface IFeedback {
 }
 
 export const PositiveFeedback: React.FC<IFeedback> = (props) => {
-    const { iconName, message, buttonLink, iconSize, buttonName, ...rest } = props
+    const { iconName, message, color, buttonLink, iconSize, buttonName, ...rest } = props
     return (
-        <Box p={4}>
+        <>
+            <PageHeader useHeader />
+            <BorderedDesktopLayout marTop="0" padTop="0">
 
-            <Box height="6rem"></Box>
+                <Box display="flex" justifyContent="center" alignItems="center" flexDirection="column">
+                    <Stack spacing="8" alignItems="center">
+                        <Box py="6" display="flex" justifyContent="center" alignItems="center">
+                            <Icon textAlign="center" margin="auto" name={iconName} size="6rem" color={color || 'green.500'} />
+                        </Box>
+                        <Heading as="h1" size="md">{message}</Heading>
+                        <LinkButton buttonLink={buttonLink} buttonName={buttonName} analyticName="Complete Funnel" buttonColor="green.500" color="#FFF" {...rest} {...props} />
+                        {/* <small onClick={returnHome}>Click the button below if you're not redirected in 10 seconds</small> */}
+                    </Stack>
+                </Box>
+            </BorderedDesktopLayout>
+        </>
 
-            <Box mb="20" marginLeft="10%" alignItems="center">
-                <Icon mb="10" name={iconName} marginLeft="25%" size={'6rem'} color="green.500" />
-                <strong><h1>{message}</h1>
-                </strong>
-            </Box>
-            <LinkButton buttonLink={buttonLink} buttonName={buttonName} analyticName="Complete Funnel" buttonColor="green.500" color="#FFF" {...rest} {...props} />
-        </Box>
 
     )
 };

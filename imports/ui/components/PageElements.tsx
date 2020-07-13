@@ -55,7 +55,7 @@ const LogoHeader: React.FC = (): JSX.Element => {
                                     <IconButton icon="unlock" aria-label="Settings" variant="outline" variantColor="pink" border="2px solid" borderRadius="1px" />
                                 </LinkList>
                             </Link> */}
-                                <Link to={path.profile}>
+                                <Link to={path.account}>
                                     <LinkList>
                                         <IconButton icon="drag-handle" aria-label="Settings" variant="outline" variantColor="pink" border="2px solid" borderRadius="1px" />
                                         {/* Settings */}
