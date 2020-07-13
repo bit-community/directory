@@ -1,7 +1,7 @@
-import React from 'react';
-import Directory from '/imports/ui/pages/directory';
+import React from 'react'
+import Directory from '/imports/ui/pages/directory'
 import { Login } from '/imports/ui/pages/auth'
-import { Accounts } from 'meteor/accounts-base';
+import { Accounts } from 'meteor/accounts-base'
 
 // import Layout from './Layout'
 type AppProps = {
@@ -31,7 +31,6 @@ export default class App extends React.Component<{}, AppProps> {
       <div>
         <this.isLoggedIn />
       </div>
-
     )
   }
 }
