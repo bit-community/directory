@@ -11,7 +11,6 @@ import App from '/imports/ui/App'
 
 // ************* All view Components Here *****************************************
 import { Login, Signup, ResetPassword, Logout } from '/imports/ui/pages/auth'
-import Wizard from '/imports/ui/pages/wizard'
 import Preview from '/imports/ui/pages/preview'
 import Baddie from '/imports/ui/pages/baddie'
 // =============== Profile Components ============
@@ -41,7 +40,6 @@ export default function AppRouter(this: any) {
                     <Route path={path.onboarding} component={Onboarding} />
                     <Route path={path.profile} component={Account} />
                     <Route path={path.baddie + '/:id'} component={Baddie} />
-                    <Route path={path.wizard} component={Wizard} />
                     <Route path={path.preview} component={Preview} />
 
                     {/* ========= Implement your Authentication Logic below  this section ======= */}

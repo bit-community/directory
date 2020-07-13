@@ -14,12 +14,6 @@ import { Meteor } from 'meteor/meteor'
 import { Profile } from '/imports/api/collections'
 import path from '/imports/ui/path'
 
-
-const StyledCustomers = styled.main`
-  display: flex;
-  flex-direction: column;
-`
-
 const LineDivider = styled.div`
     height: .8px;
     padding: 0px;
@@ -29,13 +23,12 @@ const LineDivider = styled.div`
     background: #eee;
 `
 
+// const Baddie = () => {
+
+// }
 
 const BaddieProfile: React.FC = (props: any) => {
-  const params = useParams()
-
-
-
-  console.log(props.customer, params);
+  console.log(props);
   return (
     <Box>
 
@@ -45,10 +38,6 @@ const BaddieProfile: React.FC = (props: any) => {
       <Stack spacing={3}>
         <p>{JSON.stringify(props.customer)}</p>
 
-        {/* <Text fontSize="md"><strong>NAME: </strong>{props.customer ? props.customer.customerName : ''}</Text>
-        <Text fontSize="md"><strong>ADDRESS: </strong>{props.customer ? props.customer.customerAddress : ''}</Text>
-        <Text fontSize="md"><strong>EMAIL: </strong>{props.customer ? props.customer.customerEmail : ''}</Text>
-      <Text fontSize="md"><strong>PHONE: </strong>{props.customer ? props.customer.customerNumber : ''}</Text> */}
       </Stack>
       <LineDivider />
 
@@ -78,6 +67,6 @@ const BaddieProfile: React.FC = (props: any) => {
 export default withTracker((props: any) => {
   const id = props.match.params.id;
   return {
-    customer: Profile.findOne({ _id: id }),
+    customer: Profile.findOne({ _id: id })
   };
 })(BaddieProfile);

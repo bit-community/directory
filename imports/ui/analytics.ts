@@ -1,3 +1,9 @@
+/**
+ * Analytics is good, I love them, they help you understand your products even beter
+ * This Analytics wrapper utilizes Segment, and have been bound to all Click Elements (Form, Inputs, Buttons, Links)
+ * The Goal would be to make sense of most user actions and route them through the destinations feature in segment
+ */
+
 /// <reference types="@types/segment-analytics" />
 
 // declare global type definitions

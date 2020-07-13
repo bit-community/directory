@@ -55,6 +55,7 @@ export const ProfileCard = (props: ProfileInterface): JSX.Element => {
   const viewProfile = (id: string | undefined) => {
     history.push(path.baddie + '/' + id)
   }
+  console.log(professionalTitle)
 
   return (
     <CardWrapper flexDirection="column" onClick={() => viewProfile(_id)} justifyContent="space-between" position="relative" p={4}>
@@ -62,7 +63,7 @@ export const ProfileCard = (props: ProfileInterface): JSX.Element => {
         <Avatar name={fullName} src={profilePhoto} size="md" />
         <Stack justifyContent="flex-start" pl={2}>
           <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px">{fullName}</Heading>
-          <StatusText margin="0" fsize="13px" lineHeight="6px">{professionalTitle}</StatusText>
+          <StatusText margin="0" fsize="13px" lineHeight="6px"> {professionalTitle} </StatusText>
           <StatusText fsize="11px">{yearsOfExperience} +years Experience</StatusText>
           <StatusText fsize="11px" textTransform="uppercase">{cityOrState + ", " + countryOfResidence}</StatusText>
         </Stack>
@@ -131,7 +132,7 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
               <ProfileCard key={val._id}
                 fullName={val.fullName}
                 profilePhoto={val.profilePhoto}
-                professionalTitle={val.professionalTitle}
+                professionalTitle={val.professionalTitle || val.professionaTitle}
                 yearsOfExperience={val.yearsOfExperience}
                 professionalBio={val.professionalBio}
                 skills={val.skills}
