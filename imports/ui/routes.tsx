@@ -1,46 +1,50 @@
-import React, { Component, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import * as Analytics from './analytics';
-import path, { IPath } from './path';
-import { Accounts } from 'meteor/accounts-base';
+import React, { Component, useEffect } from 'react'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import * as Analytics from './analytics'
+import path, { IPath } from './path'
+import { Accounts } from 'meteor/accounts-base'
 
 // Context Management Components
-import Layout from '/imports/ui/Layout';
-import App from '/imports/ui/App';
+import Layout from '/imports/ui/Layout'
+import App from '/imports/ui/App'
 // --------------------------- End Context Management Components
 
 // ************* All view Components Here *****************************************
-import { Login, Signup, ResetPassword, Logout } from '/imports/ui/pages/auth';
-import Preview from '/imports/ui/pages/preview';
-import Baddie from '/imports/ui/pages/baddie';
+import { Login, Signup, ResetPassword, Logout } from '/imports/ui/pages/auth'
+import Preview from '/imports/ui/pages/preview'
+import Baddie from '/imports/ui/pages/baddie'
 // =============== Profile Components ============
-import Account from '/imports/ui/pages/account';
-import Onboarding from '/imports/ui/pages/onboarding';
-import Profile from '/imports/ui/pages/profile';
+import Account from '/imports/ui/pages/account'
+import Onboarding from '/imports/ui/pages/onboarding'
+import Profile from '/imports/ui/pages/profile'
 
 interface IPrivateRoute {
-  component: JSX.Element | Component | undefined | any;
-  isLoggedIn: boolean;
-  path: IPath | any;
+  component: JSX.Element | Component | undefined | any
+  isLoggedIn: boolean
+  path: IPath | any
 }
 
-const PrivateRoute: React.FC<IPrivateRoute> = ({ component: Component, isLoggedIn, path, ...rest }): JSX.Element => {
+const PrivateRoute: React.FC<IPrivateRoute> = ({
+  component: Component,
+  isLoggedIn,
+  ...rest
+}): JSX.Element => {
   return (
     <Route
       {...rest}
       render={(props) => (isLoggedIn ? <Component {...props} /> : <Redirect to={path.auth.loginRoute} />)}
     />
-  );
-};
+  )
+}
 
 export default function AppRouter(this: any) {
   useEffect((): void => {
-    this.window && Analytics.page();
-    this.window && window.analytics.identify();
-    console.log('ALL AVAILABLE ROUTESS', path);
-  }, []);
+    this.window && Analytics.page()
+    this.window && window.analytics.identify()
+    console.log('ALL AVAILABLE ROUTESS', path)
+  }, [])
 
-  const isLoggedIn = Accounts.userId() !== null;
+  const isLoggedIn = Accounts.userId() !== null
   return (
     <Router>
       {/* A <Switch> looks through its children <Route>s and
@@ -65,5 +69,5 @@ export default function AppRouter(this: any) {
         </Switch>
       </Layout>
     </Router>
-  );
+  )
 }

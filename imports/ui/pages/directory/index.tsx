@@ -19,7 +19,6 @@ import {
   Icon,
 } from '@chakra-ui/core'
 import { ActionButton, PageHeader } from '/imports/ui/components/'
-// import { greeting, formatNumber } from '/imports/lib/formatter'
 import path from '/imports/ui/path'
 import { Accounts } from 'meteor/accounts-base'
 import { Profile } from '/imports/api/collections'
@@ -27,6 +26,8 @@ import { Loader } from '/imports/lib/loader'
 import { ProfileInterface } from '/imports/api/schema'
 import theme from '/imports/lib/theme'
 import { useHistory } from 'react-router-dom'
+import FlagIcon from '../../components/FlagIcon'
+import { getCode } from '../../../lib/countriesList'
 
 const Wrapper = styled.main`
   display: flex;
@@ -41,9 +42,10 @@ const CardWrapper = styled(Flex)`
   width: 100%;
   max-width: 310px;
   margin: 7px;
-  border-bottom-width: 4px;
   border-radius: 4px;
   transition: ease-in-out 0.2s;
+  border: 1px solid rgba(41, 63, 88, 0.6);
+  background-color: #f2f3fc;
   :hover {
     opacity: 0.9;
     border-radius: 6px;
@@ -52,8 +54,8 @@ const CardWrapper = styled(Flex)`
   }
 `
 
-export const StatusText = styled(Text)<{ fsize?: string }>`
-  margin: 0;
+export const StatusText = styled(Text)<{ fsize?: string; noMargin?: boolean }>`
+  margin: ${(props) => !props.noMargin && 0};
   padding: 0;
   font-size: ${(props) => (props.fsize ? props.fsize : '.65rem')};
   line-height: 90%;
@@ -66,7 +68,6 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
     _id,
     skills,
     yearsOfExperience,
-    cityOrState,
     countryOfResidence,
     professionalTitle,
     profilePhoto,
@@ -85,21 +86,20 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
       position="relative"
       p={4}
     >
-      <Flex justifyContent="flex-start" pb="3" alignItems="flex-start">
+      <Flex justifyContent="flex-start" pb="3" alignItems="center">
         <Avatar name={fullName} src={profilePhoto} size="md" />
         <Stack justifyContent="flex-start" pl={2}>
-          <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px">
+          <Heading as="h5" size="sm" margin="0" mb="0" lineHeight="10px" fontWeight={400}>
             {fullName}
           </Heading>
-          <StatusText margin="0" fsize="13px" lineHeight="6px">
-            {' '}
-            {professionalTitle}{' '}
+          <StatusText fsize="13px" lineHeight="6px" fontWeight={600} pb="3">
+            {professionalTitle}
           </StatusText>
-          <StatusText fsize="11px">{yearsOfExperience} +years Experience</StatusText>
-          <StatusText fsize="11px" textTransform="uppercase">
-            {cityOrState + ', ' + countryOfResidence}
+          <StatusText mt="8px" fsize="12px" noMargin>
+            {yearsOfExperience}+years experience
           </StatusText>
         </Stack>
+        <FlagIcon country={getCode(countryOfResidence)} size={38} style={{ marginLeft: 'auto' }} />
       </Flex>
 
       {/* ==Layout Skills Tag == */}
@@ -107,7 +107,7 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
         {Array.isArray(skills) ? (
           skills.map((val: string, index: number) => {
             return (
-              <Tag key={[index, val].join('-')} variantColor="blue" border="1px solid" size="sm">
+              <Tag key={[index, val].join('-')} rounded="full" size="sm" bg="#E4E7F9">
                 <TagIcon icon="at-sign" size="12px" />
                 <TagLabel>{val}</TagLabel>
               </Tag>
@@ -185,17 +185,17 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
     <Box>
       <PageHeader useHeader />
       <Wrapper>
-        <Heading as="h1" size="xl">
+        <Heading as="h1" size="xl" maxW="600px" textAlign="center">
           Find a woman of color to connect with, hire, or mentor
         </Heading>
         <InputGroup color="blue.800" width="100%" maxWidth="600px" size="lg" my="5">
           <InputLeftElement children={<Icon name="search" color="blue.800" />} />
           <Input
+            variant="outline"
             placeholder="Search by name or role"
             color="blue.800"
-            borderRadius="1px"
+            borderRadius="5px"
             focusBorderColor="blue.800"
-            borderColor="blue.800"
             onChange={(e: React.ChangeEvent) => handleSearch(e)}
           />
         </InputGroup>

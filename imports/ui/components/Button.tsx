@@ -162,12 +162,11 @@ export const ActionButton: React.FC<ActionButtonProps> = (props) => {
   }
   return (
     <Button
-      fontWeight="bold"
-      border="1px solid"
+      fontWeight="normal"
       variant="solid"
-      bg="pink.200"
-      rounded="1px"
-      size="lg"
+      bg="#E06594"
+      rounded="5px"
+      size="md"
       px={4}
       h={8}
       onClick={() => handleClick()}
