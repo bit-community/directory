@@ -18,7 +18,7 @@ import {
   Heading,
   Icon,
 } from '@chakra-ui/core'
-import { ActionButton, PageHeader } from '/imports/ui/components/'
+import { ActionButton, PageHeader, FlagIcon } from '/imports/ui/components/'
 import path from '/imports/ui/path'
 import { Accounts } from 'meteor/accounts-base'
 import { Profile } from '/imports/api/collections'
@@ -26,7 +26,6 @@ import { Loader } from '/imports/lib/loader'
 import { ProfileInterface } from '/imports/api/schema'
 import theme from '/imports/lib/theme'
 import { useHistory } from 'react-router-dom'
-import FlagIcon from '/imports/ui/components/FlagIcon'
 import { getCode } from '/imports/lib/countriesList'
 
 const Wrapper = styled.main`

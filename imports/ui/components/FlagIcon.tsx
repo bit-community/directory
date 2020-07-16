@@ -1,13 +1,14 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Image, ImageProps } from '@chakra-ui/core'
 
 interface IFlagIconProps extends ImageProps {
   country: string
-  style: React.CSSProperties
+  role?: string
+  size?: number
+  style?: React.CSSProperties
 }
 
-export default function Flag(props: IFlagIconProps): JSX.Element {
+export const FlagIcon: React.FC<IFlagIconProps> = (props): JSX.Element => {
   const { country, role, size, style, ...otherProps } = props
   return (
     <div style={style}>
@@ -23,14 +24,7 @@ export default function Flag(props: IFlagIconProps): JSX.Element {
   )
 }
 
-Flag.propTypes = {
-  country: PropTypes.string.isRequired,
-  role: PropTypes.string,
-  size: PropTypes.number,
-  style: PropTypes.object,
-}
-
-Flag.defaultProps = {
+FlagIcon.defaultProps = {
   role: 'img',
   size: 24,
 }
