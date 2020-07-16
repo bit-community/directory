@@ -1,24 +1,37 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { Stack, Text, Avatar, Box, Flex, Image, Tag, TagIcon, TagLabel, Heading, Divider } from '@chakra-ui/core';
-import { Loader } from '/imports/lib/loader';
+import React from 'react'
+import styled from '@emotion/styled'
+import {
+  Stack,
+  Text,
+  Avatar,
+  Box,
+  Flex,
+  Image,
+  Tag,
+  TagIcon,
+  TagLabel,
+  Heading,
+  Divider,
+  Link,
+} from '@chakra-ui/core'
+import { Loader } from '/imports/lib/loader'
 
-import { withTracker } from 'meteor/react-meteor-data';
-import { PageHeader, BreakLayout } from '/imports/ui/components';
+import { withTracker } from 'meteor/react-meteor-data'
+import { PageHeader, BreakLayout } from '/imports/ui/components'
 
 //imports for API call
-import { Profile } from '/imports/api/collections';
-import { ProfileInterface } from '/imports/api/schema';
-import theme from '/imports/lib/theme';
+import { Profile } from '/imports/api/collections'
+import { ProfileInterface } from '/imports/api/schema'
+import theme from '/imports/lib/theme'
 
-const RowText = styled(Text)`
+const RowText = styled(Link)`
   margin: 0;
   line-height: 100%;
   border: 1px solid #eee;
   cursor: pointer;
   padding: 5px 12px;
   margin-bottom: 5px;
-`;
+`
 
 const ProfileWrapper = styled(Flex)`
   flex-wrap: wrap;
@@ -26,7 +39,7 @@ const ProfileWrapper = styled(Flex)`
   @media (max-width: 486px) {
     flex-direction: column;
   }
-`;
+`
 const ProjectsWrapper = styled(Flex)`
   flex-wrap: wrap;
   border: 1px solid #ddd;
@@ -39,7 +52,7 @@ const ProjectsWrapper = styled(Flex)`
     justify-content: center;
     max-width: 100%;
   }
-`;
+`
 
 export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
   const {
@@ -57,21 +70,41 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
     professionalTitle,
     projects,
     skills,
-  } = props;
+  } = props
   return (
     <Box marginTop={'-' + theme.custom.fixedMarginTop}>
       <BreakLayout>
         <ProfileWrapper flexWrap="wrap">
           {/* ==== Left Side Profile === */}
-          <Stack width={['100%', '100%', '25%', '25%']} bg="gray.50" p={6} paddingTop={theme.custom.fixedMarginTop}>
+          <Stack
+            width={['100%', '100%', '25%', '25%']}
+            bg="gray.50"
+            p={6}
+            paddingTop={theme.custom.fixedMarginTop}
+          >
             <Box mb={6}>
               <Avatar alignItems="center" name={fullName} size="2xl" src={profilePhoto} />
             </Box>
-            <RowText>{websiteUrl}</RowText>
-            <RowText>{instagramProfile}</RowText>
-            <RowText>{twitterProfile}</RowText>
-            <RowText>{facebookProfile}</RowText>
-            <Divider />
+            {websiteUrl && (
+              <RowText isExternal href={websiteUrl}>
+                {websiteUrl}
+              </RowText>
+            )}
+            {instagramProfile && (
+              <RowText isExternal href={instagramProfile}>
+                {instagramProfile}
+              </RowText>
+            )}
+            {twitterProfile && (
+              <RowText isExternal href={twitterProfile}>
+                {twitterProfile}
+              </RowText>
+            )}
+            {facebookProfile && (
+              <RowText isExternal href={facebookProfile}>
+                {facebookProfile}
+              </RowText>
+            )}
             {mentorshipConsent && (
               <Box bg="green.600" color="white" width="max-content" p="1" px="3" fontStyle="italic">
                 Available for mentorship
@@ -106,14 +139,14 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
                           <TagIcon icon="at-sign" size="12px" />
                           <TagLabel>{val}</TagLabel>
                         </Tag>
-                      );
+                      )
                     })
                   ) : (
-                      <Tag variantColor="blue" border="1px solid" size="sm">
-                        <TagIcon icon="at-sign" size="12px" />
-                        <TagLabel>{skills}</TagLabel>
-                      </Tag>
-                    )}
+                    <Tag variantColor="blue" border="1px solid" size="sm">
+                      <TagIcon icon="at-sign" size="12px" />
+                      <TagLabel>{skills}</TagLabel>
+                    </Tag>
+                  )}
                 </Stack>
               )}
               {/* ==Layout Skills Tag == */}
@@ -144,7 +177,7 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
                       <ProjectsWrapper m="2" p="2" key={[index, val.name].join('-')}>
                         <Image size="200px" width="100%" objectFit="cover" src={val.base64} />
                       </ProjectsWrapper>
-                    );
+                    )
                   })}
               </Flex>
               {/* ======= projects and portfolio image wrap ======== */}
@@ -154,8 +187,8 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
         </ProfileWrapper>
       </BreakLayout>
     </Box>
-  );
-};
+  )
+}
 
 interface BaddieProps {
   profile: ProfileInterface
@@ -171,15 +204,15 @@ const BaddieProfile: React.FC<BaddieProps> = (props): JSX.Element => {
           <Loader />
         </Flex>
       ) : (
-          <Baddie {...profile} />
-        )}
+        <Baddie {...profile} />
+      )}
     </Box>
-  );
-};
+  )
+}
 
 export default withTracker((props: any) => {
-  const id = props.match.params.id;
+  const id = props.match.params.id
   return {
     profile: Profile.findOne({ _id: id }),
-  };
-})(BaddieProfile);
+  }
+})(BaddieProfile)
