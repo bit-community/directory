@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Karla:ital,wght@0,400;0,700;1,400&display=swap');
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Karla', "Segoe UI", "Cantarell", "Oxygen", "Ubuntu", "Roboto", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Glacial Indifference', 'Segoe UI', 'Cantarell', 'Oxygen',
+    'Ubuntu', 'Roboto', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 /* @media (min-width: 620px) {
@@ -15,14 +15,15 @@ body {
 }
 
 html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Karla', "Segoe UI", "Cantarell", "Oxygen", "Ubuntu", "Roboto", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Glacial Indifference', 'Segoe UI', 'Cantarell', 'Oxygen',
+    'Ubuntu', 'Roboto', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
-  font-family: 'Karla', sans-serif;
+  font-family: 'Glacial Indifference', sans-serif;
   height: 100%;
   font-size: 16px;
-  background-color: #FCFDFF;
+  background-color: #fcfdff;
   line-height: 1.5;
   /* margin: 0 auto; */
 }
@@ -33,13 +34,29 @@ section#drawer-1 {
 
 /* Chrome, Safari, Edge, Opera */
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
 
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
+}
+
+/******* FONTS ******/
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('/fonts/GlacialIndifference-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference Bold';
+  src: url('/fonts/GlacialIndifference-Bold.otf');
+  font-weight: normal;
+  font-style: normal;
 }

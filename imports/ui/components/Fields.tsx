@@ -310,9 +310,7 @@ const PasswordField = (props: InputFieldProps): JSX.Element => {
                 aria-label="Reveal Password"
                 icon={show ? 'view' : 'view-off'}
                 onClick={handleClick}
-              >
-                >
-              </IconButton>
+              />
             </InputRightElement>
           </InputGroup>
           <FormErrorMessage>{form.errors[name]}</FormErrorMessage>
