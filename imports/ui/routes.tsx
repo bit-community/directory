@@ -70,5 +70,5 @@ export default function AppRouter(this: Window): JSX.Element {
         </Switch>
       </Layout>
     </Router>
-  );
+  )
 }

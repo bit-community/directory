@@ -4,48 +4,48 @@
  * across the entire project
  */
 
-import { theme as chakraTheme, DefaultTheme } from '@chakra-ui/core';
+import { theme as chakraTheme, DefaultTheme } from '@chakra-ui/core'
 
 // interface IFonts extends CustomTheme
 interface ICustom {
-  buttonHeight: string;
-  inputMinHeight: string;
-  inputFontSize: string;
-  inputPlaceHolder: string;
-  blue: string;
-  green: string;
-  tabNavHeight: string;
-  defaultBox: string;
-  paddingWrapper: string;
-  fixedMarginTop: string;
-  defaultWrapper: string;
-  fixedpadding: string;
-  lightShadow: string;
-  background: string;
-  defaultRadius: string;
-  defaultShadow: string;
-  defaultBorder: string;
-  [key: string]: string;
+  buttonHeight: string
+  inputMinHeight: string
+  inputFontSize: string
+  inputPlaceHolder: string
+  blue: string
+  green: string
+  tabNavHeight: string
+  defaultBox: string
+  paddingWrapper: string
+  fixedMarginTop: string
+  defaultWrapper: string
+  fixedpadding: string
+  lightShadow: string
+  background: string
+  defaultRadius: string
+  defaultShadow: string
+  defaultBorder: string
+  [key: string]: string
 }
 
 // interface IColor extends
 
 interface IThemeProps extends DefaultTheme {
   fonts: {
-    mono: string;
-    heading: string;
-    body: string;
-  };
-  custom: ICustom;
+    mono: string
+    heading: string
+    body: string
+  }
+  custom: ICustom
 }
-type TBreakPoint = Array<string>;
+type TBreakPoint = Array<string>
 
 const fonts = {
   ...chakraTheme.fonts,
   mono: `'Menlo', Monaco, Fira Code, Ubuntu Mono, monospace`,
-  heading: `"Karla", Cantarell, Oxygen, Ubuntu, sans-serif`,
-  body: `"Karla", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Helvetica Neue, sans-serif;`,
-};
+  heading: `"Glacial Indifference", Cantarell, Oxygen, Ubuntu, sans-serif`,
+  body: `"Glacial Indifference", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Helvetica Neue, sans-serif;`,
+}
 // const fontSizes = {
 // 	xs: '0.65rem',
 // 	sm: '0.875rem',
@@ -76,7 +76,7 @@ const custom = {
   lightShadow: '6px 5px 10px rgba(0,50,30,0.03)',
   defaultBorder: '1px solid #38a169',
   background: '#fcfcff',
-};
+}
 const colors: any = {
   ...chakraTheme.colors,
   black: '#40474e',
@@ -85,8 +85,8 @@ const colors: any = {
   heading: '#293f58',
   text: '#293F58',
   background: '#fcfcff',
-};
-const breakpoints: TBreakPoint = ['40em', '52em', '64em'];
+}
+const breakpoints: TBreakPoint = ['40em', '52em', '64em']
 
 const theme: IThemeProps = {
   ...chakraTheme,
@@ -97,6 +97,6 @@ const theme: IThemeProps = {
   icons: {
     ...chakraTheme.icons,
   },
-};
+}
 
-export default theme;
+export default theme
