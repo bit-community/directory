@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect, RouteProps } from 'react-router-dom'
 import * as Analytics from './analytics'
-import path, { IPath } from './path'
+import path from './path'
 import { Accounts } from 'meteor/accounts-base'
+import { getUrlParameters } from '/imports/lib/url'
 
 // Context Management Components
 import Layout from '/imports/ui/Layout'
@@ -10,7 +11,7 @@ import App from '/imports/ui/App'
 // --------------------------- End Context Management Components
 
 // ************* All view Components Here *****************************************
-import { Login, Signup, ResetPassword, Logout } from '/imports/ui/pages/auth';
+import { Login, Signup, ResetPassword, Logout } from '/imports/ui/pages/auth'
 import Preview from '/imports/ui/pages/preview'
 import Baddie from '/imports/ui/pages/baddie'
 // =============== Profile Components ===========
@@ -21,24 +22,30 @@ import Profile from '/imports/ui/pages/profile'
 interface IPrivateRoute extends RouteProps {
   component: React.FC | typeof React.Component
   isLoggedIn: boolean
-  path: IPath | string | undefined | any
 }
 
 const PrivateRoute: React.FC<IPrivateRoute> = ({
   component: Component,
   isLoggedIn,
-  path,
   ...rest
 }): JSX.Element => {
   return (
     <Route
       {...rest}
-      render={(props) => (isLoggedIn ? <Component {...props} /> : <Redirect to={path.auth.loginRoute} />)}
+      render={(props) =>
+        isLoggedIn ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to={path.auth.loginRoute + '?return=' + window.location} />
+        )
+      }
     />
   )
 }
 
 export default function AppRouter(this: Window): JSX.Element {
+  this.console.log(getUrlParameters())
+
   useEffect((): void => {
     this.window && Analytics.page()
     this.window && window.analytics.identify()
