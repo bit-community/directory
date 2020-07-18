@@ -147,20 +147,13 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
   const { profiles } = props
   const [result, setResult] = useState<ISearchResult[]>([])
 
-  // useEffect(() => {
-  //   // profiles && localStorage.setItem('dir', JSON.stringify(profiles))
-  //   return () => {
-  //     setResult(profiles)
-  //   }
-  // }, [])
-
-  if (!props.profiles || props.profiles.length === 0) {
-    return (
-      <Flex align="center" justify="center" margin="auto">
-        <Loader />
-      </Flex>
-    )
-  }
+  // if (!props.profiles || props.profiles.length === 0) {
+  //   return (
+  //     <Flex align="center" justify="center" margin="auto">
+  //       <Loader />
+  //     </Flex>
+  //   )
+  // }
 
   const useFuse = (value: string): React.SetStateAction<ISearchResult> => {
     const fuse = new Fuse(profiles, {
@@ -187,54 +180,63 @@ export const DirectoryPage: React.FC<DirectoryProps> = (props): JSX.Element => {
         <Heading as="h1" size="xl" maxW="600px" textAlign="center">
           Find a woman of color to connect with, hire, or mentor
         </Heading>
-        <InputGroup color="blue.800" width="100%" maxWidth="600px" size="lg" my="5">
-          <InputLeftElement children={<Icon name="search" color="blue.800" />} />
-          <Input
-            variant="outline"
-            placeholder="Search by name or role"
-            color="blue.800"
-            borderRadius="5px"
-            focusBorderColor="blue.800"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e)}
-          />
-        </InputGroup>
 
-        <Flex width="100%" mt="10" justifyContent={['center', 'flex-start']} flexWrap="wrap">
-          {result.length >= 1
-            ? result.map((res, _index) => {
-                const { item }: ISearchResult = res
-                return (
-                  <ProfileCard
-                    key={[item._id, _index].join('-')}
-                    fullName={item.fullName}
-                    profilePhoto={item.profilePhoto}
-                    professionalTitle={item.professionalTitle || ''}
-                    yearsOfExperience={item.yearsOfExperience}
-                    professionalBio={item.professionalBio}
-                    skills={item.skills}
-                    _id={item._id}
-                    cityOrState={item.cityOrState}
-                    countryOfResidence={item.countryOfResidence}
-                  />
-                )
-              })
-            : profiles.map((val, _index) => {
-                return (
-                  <ProfileCard
-                    key={[val._id, _index].join('-')}
-                    fullName={val.fullName}
-                    profilePhoto={val.profilePhoto}
-                    professionalTitle={val.professionalTitle || ''}
-                    yearsOfExperience={val.yearsOfExperience}
-                    professionalBio={val.professionalBio}
-                    skills={val.skills}
-                    _id={val._id}
-                    cityOrState={val.cityOrState}
-                    countryOfResidence={val.countryOfResidence}
-                  />
-                )
-              })}
-        </Flex>
+        {!props.profiles || props.profiles.length === 0 ? (
+          <Flex align="center" justify="center" margin="auto">
+            <Loader />
+          </Flex>
+        ) : (
+          <React.Fragment>
+            <InputGroup color="blue.800" width="100%" maxWidth="600px" size="lg" my="5">
+              <InputLeftElement children={<Icon name="search" color="blue.800" />} />
+              <Input
+                variant="outline"
+                placeholder="Search by name or role"
+                color="blue.800"
+                borderRadius="5px"
+                focusBorderColor="blue.800"
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleSearch(e)}
+              />
+            </InputGroup>
+
+            <Flex width="100%" mt="10" justifyContent={['center', 'flex-start']} flexWrap="wrap">
+              {result.length >= 1
+                ? result.map((res, _index) => {
+                    const { item }: ISearchResult = res
+                    return (
+                      <ProfileCard
+                        key={[item._id, _index].join('-')}
+                        fullName={item.fullName}
+                        profilePhoto={item.profilePhoto}
+                        professionalTitle={item.professionalTitle || ''}
+                        yearsOfExperience={item.yearsOfExperience}
+                        professionalBio={item.professionalBio}
+                        skills={item.skills}
+                        _id={item._id}
+                        cityOrState={item.cityOrState}
+                        countryOfResidence={item.countryOfResidence}
+                      />
+                    )
+                  })
+                : profiles.map((val, _index) => {
+                    return (
+                      <ProfileCard
+                        key={[val._id, _index].join('-')}
+                        fullName={val.fullName}
+                        profilePhoto={val.profilePhoto}
+                        professionalTitle={val.professionalTitle || ''}
+                        yearsOfExperience={val.yearsOfExperience}
+                        professionalBio={val.professionalBio}
+                        skills={val.skills}
+                        _id={val._id}
+                        cityOrState={val.cityOrState}
+                        countryOfResidence={val.countryOfResidence}
+                      />
+                    )
+                  })}
+            </Flex>
+          </React.Fragment>
+        )}
       </Wrapper>
     </Box>
   )
