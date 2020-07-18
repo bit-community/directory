@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect, RouteProps } from 're
 import * as Analytics from './analytics'
 import path from './path'
 import { Accounts } from 'meteor/accounts-base'
-import { getUrlParameters } from '/imports/lib/url'
 
 // Context Management Components
 import Layout from '/imports/ui/Layout'
@@ -36,7 +35,7 @@ const PrivateRoute: React.FC<IPrivateRoute> = ({
         isLoggedIn ? (
           <Component {...props} />
         ) : (
-          <Redirect to={path.auth.loginRoute + '?return=' + window.location} />
+          <Redirect to={path.auth.loginRoute + '?callback=' + window.location} />
         )
       }
     />
@@ -44,7 +43,6 @@ const PrivateRoute: React.FC<IPrivateRoute> = ({
 }
 
 export default function AppRouter(this: Window): JSX.Element {
-  this.console.log(getUrlParameters())
 
   useEffect((): void => {
     this.window && Analytics.page()
