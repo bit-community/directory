@@ -1,6 +1,6 @@
-import React from 'react';
-import { Spinner, ISpinnerProps } from '@chakra-ui/core';
-import styled from '@emotion/styled';
+import React from 'react'
+import { Spinner, ISpinnerProps } from '@chakra-ui/core'
+import styled from '@emotion/styled'
 
 const SpinWrapper = styled.section`
   margin: auto;
@@ -14,10 +14,10 @@ const SpinWrapper = styled.section`
   position: fixed;
   top: -5%;
   left: 0%;
-`;
+`
 
 export const Loader: React.FC<ISpinnerProps> = (props) => {
-  const { size, thickness } = props;
+  const { size, thickness } = props
   return (
     <SpinWrapper>
       <Spinner
@@ -29,11 +29,11 @@ export const Loader: React.FC<ISpinnerProps> = (props) => {
         {...props}
       />
     </SpinWrapper>
-  );
-};
+  )
+}
 
 export default function useLoader(status: boolean, Component?: React.Component) {
   if (status === true) {
-    return Component ? Component : Loader;
+    return Component ? Component : Loader
   }
 }

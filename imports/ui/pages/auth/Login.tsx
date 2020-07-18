@@ -4,6 +4,8 @@ import { InputGroup, Stack, Box, Input, Button, InputRightElement } from '@chakr
 import { Meteor } from 'meteor/meteor'
 import * as Analytics from '/imports/ui/analytics'
 import { PageHeader, BorderedDesktopLayout } from '/imports/ui/components'
+import { getUrlParameters } from '/imports/lib/url'
+
 import path from '../../path'
 import Path from '../../path'
 
@@ -25,7 +27,7 @@ const Login: React.FunctionComponent = (): JSX.Element => {
 
   const [value, setValue] = React.useState<AuthInterface>(authInit)
 
-  const handleChange = (input: string, event: any) => {
+  const handleChange = (input: string, event: React.ChangeEvent<HTMLInputElement>) => {
     let updatedValue: AuthInterface = value
     switch (input) {
       case 'password':
@@ -39,10 +41,9 @@ const Login: React.FunctionComponent = (): JSX.Element => {
         break
     }
     setValue(Object.assign(value, updatedValue))
-    console.log(value)
   }
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true)
     e.preventDefault()
     Analytics.identify(value.username)
@@ -53,8 +54,7 @@ const Login: React.FunctionComponent = (): JSX.Element => {
         console.log(error.message)
         return alert(error.message)
       } else {
-        // alert(`LOGIN WAS SUCCESSFUL FOR ${JSON.stringify(Meteor.user())}`)
-        window.location.replace(Path.root)
+        window.location.replace(getUrlParameters().callback || Path.root)
       }
     })
   }
@@ -74,7 +74,7 @@ const Login: React.FunctionComponent = (): JSX.Element => {
               borderRadius="1px"
               size="lg"
               type={'email'}
-              onChange={(e: any) => handleChange('username', e)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('username', e)}
               placeholder="Your Email Address"
             />
 
@@ -83,7 +83,7 @@ const Login: React.FunctionComponent = (): JSX.Element => {
                 borderRadius="1px"
                 pr="4.5rem"
                 size="lg"
-                onChange={(e: any) => handleChange('password', e)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange('password', e)}
                 type={show ? 'text' : 'password'}
                 placeholder="Enter your password"
               />
@@ -105,7 +105,7 @@ const Login: React.FunctionComponent = (): JSX.Element => {
             >
               Login
             </Button>
-            <Link to={path.auth.signupRoute}>Don't have an account, Create one</Link>
+            <Link to={path.auth.signupRoute}>Dont have an account, Create one</Link>
           </Stack>
         </form>
       </BorderedDesktopLayout>
