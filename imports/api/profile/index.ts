@@ -11,15 +11,12 @@ export function removeProfile(this: any, id: string): void {
 
 export function createProfile(this: any, obj: ProfileInterface) {
   check(obj, Object)
-  let skillsArr = []
-  skillsArr.push(obj.skills)
 
   // Make sure the user is logged in before inserting a task
   evaluateAndExecute(
     isUser(this.userId) &&
       Profile.insert({
         ...obj,
-        skills: skillsArr,
         owner: this.userId,
         createdAt: new Date(),
       }),

@@ -18,7 +18,6 @@ import {
   Select,
   RadioGroup,
   RadioButtonGroup,
-  Icon,
   IconButton,
   FormErrorMessage,
   Input,
@@ -26,14 +25,12 @@ import {
   InputGroup,
   Radio,
   InputRightElement,
-  CustomTheme,
-  DefaultTheme,
-  Box,
   CheckboxGroup,
 } from '@chakra-ui/core'
 import * as Analytics from '/imports/ui/analytics'
 //@ts-ignore
 import FileInputComponent from 'react-file-input-previews-base64'
+import CreatableSelect from 'react-select/creatable'
 
 const FormikButton = styled(Button)<{ withIcon: boolean | undefined }>`
   border-radius: 1px;
@@ -604,6 +601,66 @@ SelectField.propTypes = {
 // ++ ================================= END SECTION =================================================================++
 
 /**
+ * Multi select with React Select
+ */
+interface IMutliSelectProps {
+  validate: Function
+  name: string
+  label?: string
+  mt?: string
+  placeholder?: string
+  defaultValue?: string
+  options: Array<{ value: string; label: string }>
+}
+
+const MultiSelect = (props: IMutliSelectProps): JSX.Element => {
+  const { name, label, options, validate, placeholder } = props
+
+  return (
+    <Field name={name} validate={validate} {...props}>
+      {({ form }: FieldProps) => {
+        return (
+          <>
+            {label && (
+              <FormikLabel htmlFor={[name, 'select'].join('-')} color="gray.600">
+                {label}
+              </FormikLabel>
+            )}
+            <CreatableSelect
+              name={name}
+              isMulti
+              onChange={(newValue: any) => {
+                form.setFieldValue('skills', newValue)
+              }}
+              options={options}
+              placeholder={placeholder}
+              styles={customStyles}
+            />
+          </>
+        )
+      }}
+    </Field>
+  )
+}
+
+const customStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    borderColor: '#153e75',
+    height: '3rem',
+    borderRadius: 'none',
+  }),
+  placeholder: (provided: any) => ({
+    ...provided,
+    color: 'A0AFC0',
+  }),
+  indicatorSeparator: (provided: any) => ({
+    ...provided,
+    display: 'none',
+  }),
+}
+
+/**
  * Formik Field for Autcomplete with DropShift options
  * https://dev.to/aromanarguello/how-to-build-an-autocomplete-dropdown-in-react-using-downshift-1c3o
  */
@@ -798,4 +855,5 @@ export {
   RadioButtonField,
   SelectField,
   FormikForm,
+  MultiSelect,
 }

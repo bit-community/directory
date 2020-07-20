@@ -102,12 +102,18 @@ export const ProfileCard = (props: TProfileProps): JSX.Element => {
       </Flex>
 
       {/* ==Layout Skills Tag == */}
-      <Stack spacing={2} isInline pt={2} mb={4}>
+      <Stack spacing={2} isInline pt={2} mb={4} flexWrap="wrap">
         {Array.isArray(skills) ? (
           skills.map((val: string, index: number) => {
             return (
-              <Tag key={[index, val].join('-')} rounded="full" size="sm" bg="#E4E7F9">
-                <TagIcon icon="at-sign" size="12px" />
+              <Tag
+                key={[index, val].join('-')}
+                rounded="full"
+                size="sm"
+                bg="#E4E7F9"
+                minWidth="none"
+                marginBottom="5px"
+              >
                 <TagLabel>{val}</TagLabel>
               </Tag>
             )
