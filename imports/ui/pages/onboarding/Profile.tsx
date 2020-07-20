@@ -153,45 +153,45 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
                 label="Full Name"
                 placeholder="Allie Tsahey"
                 name="fullName"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
               <InputField
                 label="Email Address"
                 type="email"
                 placeholder="allie@baddiesintech.co"
                 name="emailAddress"
-                // validate={Validator.isEmail}
+                validate={Validator.isEmail}
               />
               <InputField
                 label="Country of Residence"
                 placeholder="Ghana"
                 name="countryOfResidence"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
               <InputField
                 label="City /State"
                 placeholder="Accra"
                 name="cityOrState"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
               <SingleFileInputField name="profilePhoto" label="Upload Profile Photo" />
               <InputField
                 label="Professional Title"
                 placeholder="Network Engineer"
                 name="professionalTitle"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
               <TextAreaField
                 label="Professional Bio"
                 placeholder="Network Engineer with 40+ years experience in ..."
                 name="professionalBio"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
               <InputField
                 label="Years of Experience"
                 placeholder="4"
                 name="yearsOfExperience"
-                // validate={Validator.isNumeric}
+                validate={Validator.isNumeric}
               />
               {/* // Move this skills to the first page of onboarding enhancement */}
               <MultiSelect
@@ -207,7 +207,7 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
                 type="url"
                 placeholder="Link to portfolio"
                 name="websiteUrl"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
               <InputField
                 label="Instagram Profile"
@@ -241,7 +241,7 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
               <CheckField
                 name="waiverOfLiability"
                 boxLabel="Accept our Waiver of Liability"
-                // validate={Validator.isRequired}
+                validate={Validator.isRequired}
               />
 
               <Box height="2rem"></Box>
