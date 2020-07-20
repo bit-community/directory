@@ -17,8 +17,8 @@ import {
   TextAreaField,
   PageHeader,
   FormikForm,
-  SelectField,
   CheckField,
+  MultiSelect,
 } from '/imports/ui/components'
 import { Meteor } from 'meteor/meteor'
 import styled from '@emotion/styled'
@@ -81,32 +81,39 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
     history.push(`${path.onboarding}/complete`)
   }
 
-  const skillsOption: string[] = [
-    'Front-End',
-    'Full Stack',
-    'Sales',
-    'Data Analysis',
-    'Back-End',
-    'Branding',
-    'Graphic Design',
-    'Mobile Development',
-    'Product Management',
-    'Social Media Marketing',
-    'Systems Administration',
-    'UI Design',
-    'UX Design',
-    'Web Development',
-    'Wordpress Development',
-    'Branding',
-    'Motion Graphics/Animation',
-    'IT Support',
-    'Cybersecurity',
-    'Quality Assurance',
-    'Project Management',
-    'AWS',
-    'Email Marketing',
-    'SEO',
+  const skillsOption: [{ value: string; label: string }] = [
+    { value: 'Front-End', label: 'Front-End' },
+    { value: 'Full Stack', label: 'Full Stack' },
+    { value: 'Sales', label: 'Sales' },
+    { value: 'Data Analysis', label: 'Data Analysis' },
+    { value: 'Back-End', label: 'Back-End' },
+    { value: 'Branding', label: 'Branding' },
+    { value: 'Graphic Design', label: 'Graphic Design' },
+    { value: 'Mobile Development', label: 'Mobile Development' },
+    { value: 'Product Management', label: 'Product Management' },
+    { value: 'Social Media Marketing', label: 'Social Media Marketing' },
+    { value: 'Systems Administration', label: 'Systems Administration' },
+    { value: 'UI Design', label: 'UI Design' },
+    { value: 'UX Design', label: 'UX Design' },
+    { value: 'Web Development', label: 'Web Development' },
+    { value: 'Wordpress Development', label: 'Wordpress Development' },
+    { value: 'Branding', label: 'Branding' },
+    { value: 'Motion Graphics/Animation', label: 'Motion Graphics/Animation' },
+    { value: 'IT Support', label: 'IT Support' },
+    { value: 'Cybersecurity', label: 'Cybersecurity' },
+    { value: 'Quality Assurance', label: 'Quality Assurance' },
+    { value: 'Project Management', label: 'Project Management' },
+    { value: 'AWS', label: 'AWS' },
+    { value: 'Email Marketing', label: 'Email Marketing' },
+    { value: 'SEO', label: 'SEO' },
   ]
+
+  function transformValues(values: any) {
+    // change skills from array of objects to array of strings
+    const skills = values && values.skills.map((skill: { value: string; label: string }) => skill.value)
+    values['skills'] = skills
+    return values
+  }
 
   return (
     <React.Fragment>
@@ -118,18 +125,19 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
       <Layout>
         <Box mb="5">
           <p>
-            Please carefully fill out the form below to apply to join the BiT Directory. You will
-            receive an email with your access link once your profile has been approved!
+            Please carefully fill out the form below to apply to join the BiT Directory. You will receive an
+            email with your access link once your profile has been approved!
           </p>
         </Box>
 
         <Formik
           initialValues={authInit}
           onSubmit={async (values, actions) => {
+            const transformedValues = transformValues(values)
             setTimeout(() => {
-              Meteor.call('profile.insert', values)
+              Meteor.call('profile.insert', transformedValues)
               actions.setSubmitting(false)
-              handleSubmit(values)
+              handleSubmit(transformedValues)
             }, 300)
           }}
         >
@@ -186,7 +194,7 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
                 validate={Validator.isNumeric}
               />
               {/* // Move this skills to the first page of onboarding enhancement */}
-              <SelectField
+              <MultiSelect
                 label="Skills"
                 placeholder="Your Skills"
                 name="skills"
@@ -229,10 +237,7 @@ const ProfileForm: React.FunctionComponent<OnboardingProps> = (props) => {
               />
 
               {/* <InputField label="Project Attachments" type="file" placeholder="projects" name="projects" /> */}
-              <CheckField
-                name="mentorshipConsent"
-                boxLabel="Would you like to mentor other women in tech?"
-              />
+              <CheckField name="mentorshipConsent" boxLabel="Would you like to mentor other women in tech?" />
               <CheckField
                 name="waiverOfLiability"
                 boxLabel="Accept our Waiver of Liability"

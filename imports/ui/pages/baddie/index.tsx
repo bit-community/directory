@@ -136,7 +136,7 @@ export const Baddie: React.FC<ProfileInterface> = (props): JSX.Element => {
                     skills.map((val: string, index: number) => {
                       return (
                         <Tag key={[index, val].join('-')} variantColor="blue" border="1px solid" size="sm">
-                          <TagIcon icon="at-sign" size="12px" />
+                          {/* <TagIcon icon="at-sign" size="12px" /> */}
                           <TagLabel>{val}</TagLabel>
                         </Tag>
                       )
